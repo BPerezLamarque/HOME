@@ -10,8 +10,7 @@ Represent all the results into a HTML file with plots and tables.
 
 }
 
-\usage{output_results(iter,name,name_index,lambda,nb_tree=1000,empirical,randomize,raref,...){
-}
+\usage{output_results(iter,name,name_index,lambda,nb_tree=1000,empirical,randomize,raref,...)}
 
 \arguments{
 \item{name}{

@@ -10,7 +10,7 @@ Perform the model selections of strict vertical transmission and independent evo
 
 }
 
-\usage{model_selection(index,name,nb_tree=1000,lambda,nb_cores=1,seed=1,nb_random=10,...){
+\usage{model_selection(index,name,nb_tree=1000,lambda,nb_cores=1,seed=1,nb_random=10,...)
 }
 
 \arguments{

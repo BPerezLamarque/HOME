@@ -10,9 +10,7 @@ Simulate the bank of microbial trees, used for the inferences, for a given numbe
 
 }
 
-\usage{
-simul_bank_tree(nb_ksi,name,nb_tree,lambda,seed=1,...){
-}
+\usage{simul_bank_tree(nb_ksi,name,nb_tree,lambda,seed=1,...)}
 
 \arguments{
 \item{name}{

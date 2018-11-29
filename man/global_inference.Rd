@@ -10,9 +10,8 @@ Infer parameters for one given index.
 
 }
 
-\usage{
-global_inference(index,name,nb_tree=1000,lambda,nb_cores=1,raref,...){
-}
+\usage{global_inference(index,name,nb_tree=1000,lambda,
+nb_cores=1,raref,...)}
 
 \arguments{
 \item{name}{
@@ -30,8 +29,6 @@ a number of tree for Monte-Carlo estimation of the number of switches (a low val
 \item{lambda}{
 integer values of number of switches to test during estimations
 }
-
-
 }
 
 
@@ -41,6 +38,7 @@ The function infer the parameters (subtitution rate and number of switches) for 
 \details{
 
 The functions prepare_data and simul_bank_tree must be run before.
+
 See reference for more details.
 
 }
@@ -49,7 +47,8 @@ Perez-Lamarque, B. and Morlon, H. (in. prep.) Modeling host-microbiota evolution
 }
 \author{Benoît Perez-Lamarque}
 \seealso{
-\code{\link{simulate_data}}
+\code{\link{simulate_data}},
+\code{\link{HOME_model}}
 }
 \examples{
 # Some examples may take a little bit of time. Be patient!

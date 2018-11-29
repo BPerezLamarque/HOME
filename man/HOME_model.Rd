@@ -12,7 +12,7 @@ Runs the model inference for all the different symbiont (called index) on the sa
 
 \usage{
 HOME_model(name,name_index,path,path_alignment,nb_cores=1,seed=3,nb_tree=5000,lambda,
-raref=FALSE,empirical=TRUE,randomize=TRUE){
+raref=FALSE,empirical=TRUE,randomize=TRUE)
 }
 
 \arguments{

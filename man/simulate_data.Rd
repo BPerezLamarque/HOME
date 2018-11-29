@@ -11,8 +11,7 @@ Runs the model inference for all the different symbiont (called index) on the sa
 }
 
 \usage{
-simulate_data(name, mu=1, n=20, seed=1,nb_cores=1,name_index,simul,N=300,proportion_variant=0.1,path,...){
-}
+simulate_data(name, mu=1, n=20, seed=1,nb_cores=1,name_index,simul,N=300,proportion_variant=0.1,path,...)}
 
 \arguments{
 \item{name}{

@@ -10,7 +10,7 @@ Prepare the data for the inference (format, model of nucleotidic evolution...).
 
 }
 
-\usage{prepare_data(iter,name,name_index,path,...){
+\usage{prepare_data(iter,name,name_index,path,...)
 }
 
 \arguments{
