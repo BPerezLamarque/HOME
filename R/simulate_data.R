@@ -4,7 +4,7 @@ function(name, mu=1, n=20, seed=1,nb_cores=1,name_index,simul,N=300,proportion_v
   if(!exists("name")) stop("Please provide the name of the simulations")
   if(!exists("simul")) {simul  <- c(rep(0,5),rep(1,5),rep(3,5),rep(5,5),rep(10,5),rep("indep",5))}
   if(!exists("name_index")) {name_index  <- sapply(1:length(simul), function(i) paste("S",i,sep=""))}
-  if(!exists("path")) {path <- getwd}
+  if(!exists("path")) {path <- getwd()}
   
   setwd(path)
   

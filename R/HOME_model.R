@@ -3,7 +3,7 @@ function(name,name_index,path,path_alignment,nb_cores=1,seed=3,nb_tree=5000,lamb
   
   if(!exists("name")) stop("Please provide the name of the dataset ")
   if(!exists("name_index")) stop("Please provide the name of the different alignments ")
-  if(!exists("path")) {path <- getwd}
+  if(!exists("path")) {path <- getwd()}
   
   setwd(path)
   

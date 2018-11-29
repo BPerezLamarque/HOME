@@ -1,5 +1,5 @@
 plot_simulated_switches <-
-function(host_tree,name,index,switches,path,...){ 
+function(n,host_tree,name,index,switches,path,...){ 
 
   pdf(paste(path,"/figures/host_tree_switches_",name,"_",index,".pdf",sep=""))
   tree <- ladderize(host_tree)
