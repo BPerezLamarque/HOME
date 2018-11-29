@@ -130,7 +130,7 @@ function(iter,name,name_index,lambda,nb_tree,empirical,randomize,raref,...){
         write.table(cbind("indep-ksi",ksi_randomize),paste("figures/results_randomize_",name,"_",index,".csv",sep=""),col.names=F,row.names=F,sep=";",quote=F,append=TRUE)
         write.table(cbind("indep-mu",mu_randomize),paste("figures/results_randomize_",name,"_",index,".csv",sep=""),col.names=F,row.names=F,sep=";",quote=F,append=TRUE)
       }else{
-        write.table(c(index,ksi),paste("figures/results_",name,"_",index,".csv",sep=""),col.names=F,row.names=F,sep=";",quote=F,append=F)
+        write.table(cbind(index,ksi),paste("figures/results_",name,"_",index,".csv",sep=""),col.names=F,row.names=F,sep=";",quote=F,append=F)
         write.table(cbind("est_mu",est_mu),paste("figures/results_",name,"_",index,".csv",sep=""),col.names=F,row.names=F,sep=";",quote=F,append=TRUE)
         write.table(cbind("est_ksi",est_ksi),paste("figures/results_",name,"_",index,".csv",sep=""),col.names=F,row.names=F,sep=";",quote=F,append=TRUE)
         write.table(cbind(selected_model,Q[1,3]),paste("figures/results_",name,"_",index,".csv",sep=""),col.names=F,row.names=F,sep=";",quote=F,append=TRUE)
@@ -147,7 +147,7 @@ function(iter,name,name_index,lambda,nb_tree,empirical,randomize,raref,...){
           write.table(cbind("indep-ksi",ksi_randomize),paste("figures/results_randomize_",name,"_",index,".csv",sep=""),col.names=F,row.names=F,sep=";",quote=F,append=TRUE)
           write.table(cbind("indep-mu",mu_randomize),paste("figures/results_randomize_",name,"_",index,".csv",sep=""),col.names=F,row.names=F,sep=";",quote=F,append=TRUE)
         }else{
-          write.table(c("name",index),paste("figures/results_",name,"_",index,".csv",sep=""),col.names=F,row.names=F,sep=";",quote=F,append=F)
+          write.table(cbind("name",index),paste("figures/results_",name,"_",index,".csv",sep=""),col.names=F,row.names=F,sep=";",quote=F,append=F)
           write.table(cbind("N_variant",N_variant),paste("figures/results_",name,"_",index,".csv",sep=""),col.names=F,row.names=F,sep=";",quote=F,append=TRUE)
           write.table(cbind("est_mu",est_mu),paste("figures/results_",name,"_",index,".csv",sep=""),col.names=F,row.names=F,sep=";",quote=F,append=TRUE)
           write.table(cbind("est_ksi",est_ksi),paste("figures/results_",name,"_",index,".csv",sep=""),col.names=F,row.names=F,sep=";",quote=F,append=TRUE)
@@ -254,13 +254,13 @@ function(iter,name,name_index,lambda,nb_tree,empirical,randomize,raref,...){
       HTML.title("Nucleotide frequencies:", HR=3)
       HTML(rbind(c("A","C","G","T"),round(PI,2)))
       
-      if (empirical==F){if ((as.numeric(ksi)>0)&(indep==F)){
+      if (empirical==F){if (indep==F){if (as.numeric(ksi)>0){
       HTML.title("Switches estimation", HR=2)
         HTML.title("Simulated switches:",HR=3)
         table <- read.table(paste("simulations/simulated_switches_",name,"_",index,".txt",sep=""),header=F)
         table <- cbind(c("Branch origin","Branch arrival","Absolute position"),table)
         colnames(table) <- c("Simulated switch(es):",as.factor(c(1:(ncol(table)-1))))
-        HTML(table,row.names=FALSE)}}
+        HTML(table,row.names=FALSE)}}}
       
       if (file.exists(paste(path,"/figures/host_tree_switches_",name,"_",index,".pdf",sep=""))){HTMLInsertGraph(paste("host_tree_switches_",name,"_",index,".pdf",sep=""),WidthHTML=600, Caption="", GraphBorder=0,Align="center")
         }else{HTMLInsertGraph(paste("host_tree_",name,"_",index,".pdf",sep=""),WidthHTML=600, Caption="", GraphBorder=0,Align="center")}
@@ -283,4 +283,5 @@ function(iter,name,name_index,lambda,nb_tree,empirical,randomize,raref,...){
     }
     
     HTMLStop()
-  }}
+  }
+  }
