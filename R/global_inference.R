@@ -1,5 +1,5 @@
 global_inference <-
-function(index,name,nb_tree,lambda,nb_cores,raref,...){ 
+function(index,name,nb_tree,lambda,nb_cores,raref=FALSE,...){ 
   print(paste("Index: ",index,sep=""))
   load(paste("data/data_model_",name,"_",index,".RData",sep=""))
   if (N_variant>0){
