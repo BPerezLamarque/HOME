@@ -9,6 +9,8 @@ function(iter,name,name_index,path,...){
   index <- name_index[iter]
   print(noquote(paste("Index: ",index,sep="")))
   
+  setwd(path)
+  
   if (!exists("path_alignment")){ path_alignment <- path}
   
   #### Step 1 : Load the host tree ####

@@ -79,5 +79,5 @@ function(iter,name_index,name,host_tree,mu,n,seed,N,proportion_variant,simul,mod
   nodes <- n+order(node.depth.edgelength(tree)[(n+1):(2*n-1)],decreasing =T)
   simulated_likelihood <- LL(mu=mu,symbiont_tree=tree,nodes=nodes,Nd=ncol(variant_sequences),n=n,eigQ=eigQ,ivp=ivp,sequences=variant_sequences,PI=PI)
   simulated_likelihood <- simulated_likelihood + sum(as.numeric(variant_sequences[nrow(variant_sequences),]))*log(1-exp(-mu*sum(tree$edge.length)))
-  save(simulated_likelihood,simulated_mu,seed,simul,file=paste("data/simulation_data_",name,"_",index,".RData",sep=""))
+  save(simulated_likelihood,simulated_mu,seed,simul,proportion_variant,file=paste("data/simulation_data_",name,"_",index,".RData",sep=""))
   }

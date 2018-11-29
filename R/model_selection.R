@@ -1,5 +1,5 @@
 model_selection <-
-function(index,name,nb_tree,lambda,nb_cores,seed,nb_random,...){
+function(index,name,nb_tree,lambda,nb_cores,seed,nb_random=10,...){
   print(noquote(paste("Index: ",index,sep="")))
   load(paste("data/data_model_",name,"_",index,".RData",sep=""))
   if (N_variant>0){
