@@ -6,7 +6,7 @@ General inference of parameters
 }
 
 \description{
-Infer parameters for one given index.
+This function infers parameters for one given index.
 
 }
 
@@ -27,27 +27,30 @@ a number of cores to run the analyses
 a number of tree for Monte-Carlo estimation of the number of switches (a low value will give inaccurate results whereas a high value will increase the computation time)
 }
 \item{lambda}{
-integer values of number of switches to test during estimations
+a vector of integer values of number of switches to test during estimations
 }
 }
 
 
 \value{
-The function infer the parameters (subtitution rate and number of switches) for one given index. Use the function output_results to interpret them.
+The function infers the parameters (subtitution rate and number of switches) for one given index. Use the function output_results to interpret them.
 }
 \details{
 
 The functions prepare_data and simul_bank_tree must be run before.
-
 See reference for more details.
 
 }
 \references{
-Perez-Lamarque, B. and Morlon, H. (in. prep.) Modeling host-microbiota evolution for characterizing symbiont inheritance – application to the great apes microbiota
+Perez-Lamarque, B. and Morlon, H. (in. prep.) Characterizing symbiont inheritance during host-microbiota evolution : application to the great apes microbiota
 }
 \author{Benoît Perez-Lamarque}
 \seealso{
 \code{\link{simulate_data}},
+\code{\link{prepare_data}},
+\code{\link{simul_bank_tree}},
+\code{\link{output_results}},
+\code{\link{model_selection}},
 \code{\link{HOME_model}}
 }
 \examples{
@@ -60,7 +63,7 @@ name="example_simulation"
 name_index=c("Simul_1","Simul_2","Simul_3")
 path=getwd()
 
-simulate_data(name, mu=1, n=10,name_index, simul=c(0,5,"indep"), N=300, proportion_variant=0.1)
+simulate_data(name, mu=1, n=10,name_index, path=path, simul=c(0,5,"indep"), N=300, proportion_variant=0.1)
 
 # Inference
 
@@ -68,7 +71,7 @@ simulate_data(name, mu=1, n=10,name_index, simul=c(0,5,"indep"), N=300, proporti
 for (i in 1:3){prepare_data(iter=i,name,name_index,path)}
 
 # Simulate the bank of trees
-for (ksi in seq(1,15)){simul_bank_tree(ksi,name,nb_tree=1000,lambda=seq(1,15),seed=1)}
+for (ksi in 1:length(seq(1,15))){simul_bank_tree(ksi,name,nb_tree=nb_tree,lambda=seq(1,15),seed=1)}
 
 # Infer the parameters
 for (i in 1:3){global_inference(index=name_index[i],name,nb_tree=1000,lambda=seq(1,15),nb_cores=1)}
@@ -81,8 +84,6 @@ for (i in 1:3){model_selection(index=name_index[i],name,nb_tree=1000,lambda=seq(
 
 # Plot the final outputs
 for (i in 1:3){output_results(iter=i,name,name_index,lambda=seq(1,15),nb_tree=1000,empirical=FALSE,randomize=TRUE,raref=FALSE)}
-
-
 
 }
 

@@ -6,7 +6,7 @@ Simulate a bank of trees
 }
 
 \description{
-Simulate the bank of microbial trees, used for the inferences, for a given number of switches.
+This function simulates the bank of microbial trees, used for the inferences, for a given number of switches.
 
 }
 
@@ -17,13 +17,13 @@ Simulate the bank of microbial trees, used for the inferences, for a given numbe
 the name of the run
 }
 \item{nb_ksi}{
-a psotive interger which represent the number of host-switches to simulate on the host tree
+a positive integer which represent the number of host-switches to simulate on the host tree
 }
 \item{nb_tree}{
 a number of tree to simulate
 }
 \item{lambda}{
-integer values of number of switches to test during estimations
+a vector of integer values of number of switches to test during estimations
 }
 \item{seed}{
 a seed to assure the reproducibility
@@ -33,20 +33,25 @@ a seed to assure the reproducibility
 
 
 \value{
-The function infer the parameters (subtitution rate and number of switches) for one given index. Use the function output_results to interpret them.
+The function outputs trees in the folder simulated_trees/ for each value of number of switches. Then, use the function \emph{global_inference} to infer the results.
 }
 \details{
 
-The functions prepare_data and simul_bank_tree must be run before.
+The functions \emph{prepare_data} and \emph{simul_bank_tree} must be run before.
 See reference for more details.
 
 }
 \references{
-Perez-Lamarque, B. and Morlon, H. (in. prep.) Modeling host-microbiota evolution for characterizing symbiont inheritance – application to the great apes microbiota
+Perez-Lamarque, B. and Morlon, H. (in. prep.) Characterizing symbiont inheritance during host-microbiota evolution : application to the great apes microbiota
 }
 \author{Benoît Perez-Lamarque}
 \seealso{
-\code{\link{simulate_data}}
+\code{\link{simulate_data}},
+\code{\link{prepare_data}},
+\code{\link{global_inference}},
+\code{\link{output_results}},
+\code{\link{model_selection}},
+\code{\link{HOME_model}}
 }
 \examples{
 # Some examples may take a little bit of time. Be patient!
@@ -58,7 +63,7 @@ name="example_simulation"
 name_index=c("Simul_1","Simul_2","Simul_3")
 path=getwd()
 
-simulate_data(name, mu=1, n=10,name_index, simul=c(0,5,"indep"), N=300, proportion_variant=0.1)
+simulate_data(name, mu=1, n=10, name_index, path=path, simul=c(0,5,"indep"), N=300, proportion_variant=0.1)
 
 # Inference
 
@@ -66,7 +71,7 @@ simulate_data(name, mu=1, n=10,name_index, simul=c(0,5,"indep"), N=300, proporti
 for (i in 1:3){prepare_data(iter=i,name,name_index,path)}
 
 # Simulate the bank of trees
-for (ksi in seq(1,15)){simul_bank_tree(ksi,name,nb_tree=1000,lambda=seq(1,15),seed=1)}
+for (nb_ksi in 1:length(seq(1,15))){simul_bank_tree(nb_ksi,name,nb_tree=nb_tree,lambda=seq(1,15),seed=1)}
 
 # Infer the parameters
 for (i in 1:3){global_inference(index=name_index[i],name,nb_tree=1000,lambda=seq(1,15),nb_cores=1)}
