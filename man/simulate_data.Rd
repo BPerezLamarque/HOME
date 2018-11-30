@@ -11,7 +11,8 @@ Runs the model inference for all the different symbiont (called index) on the sa
 }
 
 \usage{
-simulate_data(name, mu=1, n=20, seed=1,nb_cores=1,name_index,simul,N=300,proportion_variant=0.1,path,...)}
+simulate_data(name, mu=1, n=20, seed=1,nb_cores=1,name_index,
+simul,N=300,proportion_variant=0.1,path,provided_tree,...)}
 
 \arguments{
 \item{name}{
@@ -43,7 +44,7 @@ a positive interger value representing the total number of nucleotides (variant 
 a value between 0 and 1 representing the proportion of variant nucleotides among N
 }
 
-\item{host tree}{
+\item{provided_tree}{
 optional - the n-tips, binary, rooted, and ultrametric host tree to simulate the alignments on it (by default a pure-birth host tree is simulated)}
 
 }
