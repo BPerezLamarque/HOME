@@ -42,9 +42,7 @@ function(iter,name,name_index,path,...){
   
   #### Step 4 : Substitution model ####
   sequences_model <- read.phyDat(paste("data/alignment_variant_",name,"_",index,".fas",sep=""),format="fasta")
-  options(warn=-1)
-  model_test <- modelTest(sequences_model,model=c("K80","F81","HKY"),G=F,I=F) 
-  #options(warn=0)
+  invisible(model_test <- modelTest(sequences_model,model=c("K80","F81","HKY"),G=F,I=F))
   
   model_evo <- eval(get(model_test$Model[which.min(model_test$BIC)], attr(model_test, "env")), env=attr(model_test, "env"))
   selected_model <- model_test$Model[which.min(model_test$BIC)]
@@ -55,7 +53,6 @@ function(iter,name,name_index,path,...){
   eigQ <- eigen(Q)
   ivp <- solve(eigQ$vectors)
   save(host_tree,variant_sequences,selected_model,n,r,N,N_invariant,N_variant,PI,Q,ivp,eigQ,file=paste("data/data_model_",name,"_",index,".RData",sep=""))
-  options(warn=0)
 }else{save(host_tree,n,N,N_invariant,N_variant,file=paste("data/data_model_",name,"_",index,".RData",sep=""))
   write.table(c("NO VARIATION WITHIN ALIGNMENT",N_variant),paste("figures/results_randomize_",name,"_",index,".csv",sep=""),col.names=F,row.names=F,sep=";",quote=F,append=F)
   write.table(c("NO VARIATION WITHIN ALIGNMENT",N_variant),paste("figures/results_",name,"_",index,".csv",sep=""),col.names=F,row.names=F,sep=";",quote=F,append=F)}
