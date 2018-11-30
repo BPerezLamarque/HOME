@@ -49,11 +49,11 @@ function(iter,name,name_index,lambda,nb_tree,empirical,randomize,raref,...){
           geom_line(alpha=0.8, aes(y=minloglik), colour="#d35400",size=1.5)+
           geom_point(aes(x=ksi,y=minloglik), color="#d35400")+
           geom_hline(yintercept = simulated_likelihood,color="#154360",linetype="dashed", size=1)+  #### SIMULATIONS
-          labs(x = "Number of switches", y="-log(Likelihood)")+transparent_theme+scale_x_continuous(breaks=seq(0,max(lambda),5))
+          labs(x = "Number of switches", y="-log(Likelihood)")+transparent_theme+scale_x_continuous(breaks=seq(0,max(max(lambda),10),5))
       }else{p <- ggplot(results, aes(x=ksi))+
         geom_line(alpha=0.8, aes(y=minloglik), colour="#d35400",size=1.5)+
         geom_point(aes(x=ksi,y=minloglik), color="#d35400")+
-        labs(x = "Number of switches", y="-log(Likelihood)")+transparent_theme+scale_x_continuous(breaks=seq(0,max(lambda),5))
+        labs(x = "Number of switches", y="-log(Likelihood)")+transparent_theme+scale_x_continuous(breaks=seq(0,max(max(lambda),10),5))
       }
       pdf(paste("figures/profil_model_switches_",name,"_",index,".pdf",sep=""),width=5,height=4) 
       print(p)
@@ -61,8 +61,8 @@ function(iter,name,name_index,lambda,nb_tree,empirical,randomize,raref,...){
       
       p <- ggplot(results, aes(x=ksi))+ 
         geom_line(alpha=0.8, aes(y=mu), colour="#d35400",size=1.5)+
-        geom_point(aes(x=ksi,y=mu), color="#d35400")+scale_x_continuous(breaks=seq(0,max(lambda),5))+
-        labs(x = "Number of switches", y="Mutation rate")+transparent_theme
+        geom_point(aes(x=ksi,y=mu), color="#d35400")+scale_x_continuous(breaks=seq(0,max(max(lambda),10),5))+
+        labs(x = "Number of switches", y="Substitution rate")+transparent_theme
       pdf(paste("figures/profil_model_switches_mu_",name,"_",index,".pdf",sep=""),width=5,height=4) 
       print(p)
       dev.off()
@@ -98,7 +98,7 @@ function(iter,name,name_index,lambda,nb_tree,empirical,randomize,raref,...){
       results_randomize <- rbind(results_randomize,results_ll)
       p <- ggplot(results_randomize, aes(x=ksi))+
         geom_point(aes(x=ksi,y=mu), shape=21, fill="#154360", color="#333333",size=3.5)+transparent_theme+
-        labs(x = "Estimated number of switches", y="Estimated substitution rate")+scale_x_continuous(breaks=seq(0,max(lambda),5))+
+        labs(x = "Estimated number of switches", y="Estimated substitution rate")+scale_x_continuous(breaks=seq(0,max(max(lambda),10),5))+
         geom_point(aes(x=est_ksi,y=est_mu), shape=21, fill="#d35400",color="#333333", size=3)
       pdf(paste("figures/independent_evolution_randomize_",name,"_",index,".pdf",sep=""),width=5,height=4)
       print(p)

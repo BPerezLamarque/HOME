@@ -14,6 +14,11 @@ function(iter,name,name_index,path,...){
   if (!exists("path_alignment")){ path_alignment <- path}
   
   #### Step 1 : Load the host tree ####
+  if (!file.exists(paste("host_tree_",name,".tre",sep=""))) stop("Please provide the host tree (format .tre) in the working directory")
+  if (!is.binary(read.tree(paste("host_tree_",name,".tre",sep="")))) stop("Please provide a binary host tree")
+  if (!is.rooted(read.tree(paste("host_tree_",name,".tre",sep="")))) stop("Please provide a rooted host tree")
+  if (!is.ultrametric(read.tree(paste("host_tree_",name,".tre",sep="")))) stop("Please provide an ultrametric host tree")
+  
   host_tree <- read.tree(paste("host_tree_",name,".tre",sep=""))
   host_tree <- ladderize(host_tree)
   host_tree$edge.length <- host_tree$edge.length/sum(host_tree$edge.length)  #host tree scaled with total branch length=1
@@ -21,6 +26,8 @@ function(iter,name,name_index,path,...){
   #### Step 2 : Load the symbiont sequences ####
   if (!file.exists(paste(path_alignment,"/alignment_",name,"_",index,".fas",sep=""))) stop(paste("Please provide an nucleotidic alignment (format .fas) in path_alignment/ for the index",index,sep=""))
   variant_sequences <-  read.dna(paste(path_alignment,"/alignment_",name,"_",index,".fas",sep=""),format="fasta",as.character=T)
+  if (length(which(!rownames(alignment_OTU47610657) %in% host_tree$tip.label))>0) stop(paste("Please provide an nucleotidic alignment with names of sequences matching the names of the tips of the host tree for the index",index,sep=""))
+  
   if (nrow(variant_sequences)<3) stop("Not enought hosts")
   n <- nrow(variant_sequences)
   N <- ncol(variant_sequences)

@@ -1,5 +1,5 @@
 HOME_model <-
-function(name,name_index,path,path_alignment,nb_cores=1,seed=3,nb_tree=5000,lambda,raref=FALSE,empirical=TRUE,randomize=TRUE,nb_random=10){
+function(name,name_index,path,path_alignment,nb_cores=1,seed=3,nb_tree=5000,lambda=c(1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25),raref=FALSE,empirical=TRUE,randomize=TRUE,nb_random=10){
   
   if(!exists("name")) stop("Please provide the name of the dataset ")
   if(!exists("name_index")) stop("Please provide the name of the different alignments ")
@@ -8,7 +8,6 @@ function(name,name_index,path,path_alignment,nb_cores=1,seed=3,nb_tree=5000,lamb
   setwd(path)
   
   if (!exists("path_alignment")){ path_alignment <- path}
-  if (!exists("lambda")){lambda <- c(1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25)}
   
   if (!file.exists(paste("host_tree_",name,".tre",sep=""))) stop("Please provide the host tree (format .tre) in the working directory")
   if (!is.binary(read.tree(paste("host_tree_",name,".tre",sep="")))) stop("Please provide a binary host tree")

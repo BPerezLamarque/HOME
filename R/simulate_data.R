@@ -13,10 +13,10 @@ function(name, name_index,simul, path,mu=1, n=20, seed=1,nb_cores=1,N=300,propor
   dir.create(file.path(path, "figures/"), showWarnings = FALSE)
   
   set.seed(seed)
-  if (!exists("host_tree")){
+  if (!exists("provided_tree")){
     print("Simulation of an host tree")
     host_tree <- pbtree(n=n)
-    host_tree$tip.label <- sample(paste(rep("H",n),1:n,sep=""))}
+    host_tree$tip.label <- sample(paste(rep("H",n),1:n,sep=""))}else{host_tree <- provided_tree}
   host_tree <- ladderize(host_tree)
   host_tree$edge.length <- host_tree$edge.length/sum(host_tree$edge.length) #host tree scaled with total branch length=1
   write.tree(host_tree,file=paste("host_tree_",name,".tre",sep=""))
