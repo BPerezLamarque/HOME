@@ -19,6 +19,7 @@ the name of the run
 \item{path}{
 the path to the working directory
 }
+}
 
 \references{
 Perez-Lamarque, B. and Morlon, H. (in. prep.) Modeling host-microbiota evolution for characterizing symbiont inheritance – application to the great apes microbiota
