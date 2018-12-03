@@ -9,8 +9,6 @@ Simulate microbial alignments according to different models of Host-Microbiota e
 This function simulates microbial alignments according to different models of host-microbiota evolution (strict vertical transmission, horizontal transmission, environmental acquisition).
 }
 
-}
-
 \usage{
 simulate_data(name, mu=1, n=20, seed=1,nb_cores=1,name_index,
 simul,N=300,proportion_variant=0.1,path,provided_tree,...)}
