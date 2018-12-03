@@ -22,7 +22,7 @@ importFrom(BioGeoBEARS,adf2,dfnums_to_numeric)
 
 importFrom(parallel,mclapply)
 importFrom(phangorn,modelTest,read.phyDat)
-importFrom(ggplot2,ggplot,theme,element_line,element_rect,element_blank)
+importFrom(ggplot2,ggplot,theme,element_line,element_rect,element_blank,aes)
 importFrom(R2HTML,HTMLStart,HTML.title,HTML,HTMLInsertGraph,HTMLStop)
 
 
