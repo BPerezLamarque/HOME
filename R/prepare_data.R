@@ -26,7 +26,7 @@ function(iter,name,name_index,path,...){
   #### Step 2 : Load the symbiont sequences ####
   if (!file.exists(paste(path_alignment,"/alignment_",name,"_",index,".fas",sep=""))) stop(paste("Please provide an nucleotidic alignment (format .fas) in path_alignment/ for the index",index,sep=""))
   variant_sequences <-  read.dna(paste(path_alignment,"/alignment_",name,"_",index,".fas",sep=""),format="fasta",as.character=T)
-  if (length(which(!rownames(alignment_OTU47610657) %in% host_tree$tip.label))>0) stop(paste("Please provide an nucleotidic alignment with names of sequences matching the names of the tips of the host tree for the index",index,sep=""))
+  if (length(which(!rownames(variant_sequences) %in% host_tree$tip.label))>0) stop(paste("Please provide an nucleotidic alignment with names of sequences matching the names of the tips of the host tree for the index",index,sep=""))
   
   if (nrow(variant_sequences)<3) stop("Not enought hosts")
   n <- nrow(variant_sequences)
