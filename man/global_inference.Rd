@@ -71,7 +71,7 @@ simulate_data(name, mu=1, n=10,name_index, path=path, simul=c(0,5,"indep"), N=30
 for (i in 1:3){prepare_data(iter=i,name,name_index,path)}
 
 # Simulate the bank of trees
-for (ksi in 1:length(seq(1,15))){simul_bank_tree(ksi,name,nb_tree=nb_tree,lambda=seq(1,15),seed=1)}
+for (ksi in 1:length(seq(1,15))){simul_bank_tree(ksi,name,nb_tree=1000,lambda=seq(1,15),seed=1)}
 
 # Infer the parameters
 for (i in 1:3){global_inference(index=name_index[i],name,nb_tree=1000,lambda=seq(1,15),nb_cores=1)}
