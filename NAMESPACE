@@ -11,7 +11,11 @@ importFrom(fpc,pamk)
 importFrom(cluster,pam)
 importFrom(geiger, drop.extinct)
 importFrom(pvclust,pvclust,pvrect)
+
+
 importFrom(phytools,make.simmap,nodeHeights,findMRCA,getDescendants,drop.tip.simmap,pbtree)
+
+
 importFrom(corpcor,pseudoinverse)
 importFrom(stats, rnorm, runif, optim, integrate, smooth.spline, splinefun, as.dist, bw.nrd0, dnorm, heatmap, kmeans, na.omit, pnorm, predict, sd, var, reorder, rexp, cov2cor)
 importFrom(graphics, lines, mtext, par, plot, matplot, matlines, abline, text)
