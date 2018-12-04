@@ -1,6 +1,6 @@
 plot_simulated_switches <-
 function(n,host_tree,name,index,switches,path,...){ 
-
+  
   pdf(paste(path,"/figures/host_tree_switches_",name,"_",index,".pdf",sep=""))
   tree <- ladderize(host_tree)
   for(i in 1:n){tree$tip.label[i] <- paste("    ",tree$tip.label[i],sep="")}

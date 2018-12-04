@@ -23,4 +23,4 @@ function(name, name_index,simul, path,mu=1, n=20, seed=1,nb_cores=1,N=300,propor
   host_tree <- read.tree(file=paste("host_tree_",name,".tre",sep=""))
   n <- Ntip(host_tree)
   output <- mclapply(1:length(name_index),simulate_alignment,mc.cores=nb_cores,host_tree=host_tree,name=name,seed=seed,name_index=name_index,mu=mu,n=n,N=N,proportion_variant=proportion_variant,simul=simul,model=model)
-  }
+}

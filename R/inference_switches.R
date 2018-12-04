@@ -1,7 +1,9 @@
 inference_switches <-
 function(mu,ksi,randomize,nb_cores,name,index,sequences,nb_tree,list_tree){
   load(file=paste("data/data_model_",name,"_",index,".RData",sep=""))
-  output <- unlist(mclapply(1:nb_tree,LL_tree,mc.cores=nb_cores,mu=mu,list_tree=list_tree,N_variant=N_variant,n=n,eigQ=eigQ,ivp=ivp,sequences=sequences,PI=PI))
+  #output <- unlist(mclapply(1:nb_tree,LL_tree,mc.cores=nb_cores,mu=mu,list_tree=list_tree,N_variant=N_variant,n=n,eigQ=eigQ,ivp=ivp,sequences=sequences,PI=PI))
+  output <- unlist(lapply(1:nb_tree, function (i) LL_tree (i,mu=mu,list_tree=list_tree,N_variant=N_variant,n=n,eigQ=eigQ,ivp=ivp,sequences=sequences,PI=PI)))
+  
   rm(list_tree)
   if (all(is.finite(output))) {
     max_likelihood <- max(-unlist(output))

@@ -118,7 +118,7 @@ function(iter,name,name_index,lambda,nb_tree,empirical,randomize,raref,...){
       print(p)
       dev.off()
     }
-   
+    
     ###### File resume ##
     if (empirical==F){
       if(randomize==T){
@@ -154,7 +154,7 @@ function(iter,name,name_index,lambda,nb_tree,empirical,randomize,raref,...){
           write.table(cbind(selected_model,Q[1,3]),paste("figures/results_",name,"_",index,".csv",sep=""),col.names=F,row.names=F,sep=";",quote=F,append=TRUE)
           write.table(cbind("strict-vertical",as.numeric(results_vertical[1,3])),paste("figures/results_",name,"_",index,".csv",sep=""),col.names=F,row.names=F,sep=";",quote=F,append=TRUE)
         }}
-
+    
     HTMLStart(outdir=paste(path,"/figures/",sep=""), file=paste("report_",name,"_",index,sep=""), extension="html", echo=FALSE, HTMLframe=T)
     HTML.title(paste("Results",name,index,sep=" "), HR=1)
     HTML.title("Description of the data", HR=2)
@@ -234,7 +234,7 @@ function(iter,name,name_index,lambda,nb_tree,empirical,randomize,raref,...){
       HTMLInsertGraph(paste("profil_model_switches_",name,"_",index,".pdf",sep=""),WidthHTML=400, Caption="", GraphBorder=0,Align="center")
       HTML.title("Estimated substitution rate as a function of the number of switches.",HR=4)
       HTMLInsertGraph(paste("profil_model_switches_mu_",name,"_",index,".pdf",sep=""),WidthHTML=400, Caption="", GraphBorder=0,Align="center")
-        
+      
       HTML.title("Strict vertical transmission model (rejected if p-value < 0.05):", HR=2)
       table <- read.table(paste("results/model_selection_vertical_",name,"_",index,".txt",sep=""),header=T)
       HTML(rbind(c("Ratio log(Likelihood)","df","p-value"),round(as.numeric(table[1,1:3]),4)))
@@ -255,7 +255,7 @@ function(iter,name,name_index,lambda,nb_tree,empirical,randomize,raref,...){
       HTML(rbind(c("A","C","G","T"),round(PI,2)))
       
       if (empirical==F){if (indep==F){if (as.numeric(ksi)>0){
-      HTML.title("Switches estimation", HR=2)
+        HTML.title("Switches estimation", HR=2)
         HTML.title("Simulated switches:",HR=3)
         table <- read.table(paste("simulations/simulated_switches_",name,"_",index,".txt",sep=""),header=F)
         table <- cbind(c("Branch origin","Branch arrival","Absolute position"),table)
@@ -263,7 +263,7 @@ function(iter,name,name_index,lambda,nb_tree,empirical,randomize,raref,...){
         HTML(table,row.names=FALSE)}}}
       
       if (file.exists(paste(path,"/figures/host_tree_switches_",name,"_",index,".pdf",sep=""))){HTMLInsertGraph(paste("host_tree_switches_",name,"_",index,".pdf",sep=""),WidthHTML=600, Caption="", GraphBorder=0,Align="center")
-        }else{HTMLInsertGraph(paste("host_tree_",name,"_",index,".pdf",sep=""),WidthHTML=600, Caption="", GraphBorder=0,Align="center")}
+      }else{HTMLInsertGraph(paste("host_tree_",name,"_",index,".pdf",sep=""),WidthHTML=600, Caption="", GraphBorder=0,Align="center")}
       
       if (raref==T){
         HTML.title("Rarefactions:", HR=2)
@@ -284,4 +284,4 @@ function(iter,name,name_index,lambda,nb_tree,empirical,randomize,raref,...){
     
     HTMLStop()
   }
-  }
+}
