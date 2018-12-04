@@ -21,7 +21,7 @@ the name of the run
 the name of the particular index from name_index (e.g. name of one OTU)
 }
 \item{nb_cores}{
-a number of cores to run the analyses
+a number of cores to run the analyses (ideally, it should be equal to the length of lambda for an optimal speed)
 }
 \item{nb_tree}{
 a number of tree for Monte-Carlo estimation of the number of switches (a low value will give inaccurate results whereas a high value will increase the computation time)

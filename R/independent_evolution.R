@@ -12,7 +12,9 @@ function(replicate,name,index,seed,nb_tree,lambda,nb_cores){
   
   results <- cbind(0,output$minimum,output$objective)
   colnames(results) <- c("ksi","mu","minloglik")
-  for (ksi in lambda){
+  
+  #for (ksi in lambda){
+  inference_ksi_indep <- function(ksi){
     load(file=paste("simulated_trees/simulated_trees_",name,"_",ksi,".RData",sep=""))
     if (n!=Ntip(list_tree[[1]])) {missing_symbiont <- setdiff(list_tree[[1]]$tip.label,row.names(variant_sequences)[1:n])
     for(i in 1:nb_tree){for (missing in missing_symbiont){list_tree[[i]] <- drop.tip(list_tree[[i]], tip=missing)}}}
@@ -21,7 +23,9 @@ function(replicate,name,index,seed,nb_tree,lambda,nb_cores){
     
     results <- rbind(results,c(ksi,output$minimum,output$objective))
     write.table(results, paste("model_selection/results_randomize_",name,"_",index,"_replicate_",replicate,".txt",sep=""), row.names=F,quote = F,sep="\t")
-  } 
+  }
+  output <- unlist(mclapply(lambda,inference_ksi_indep,mc.cores=nb_cores))
+  
   results <- data.frame(results)
   results <- cbind(c(replicate),results[which.min(results$minloglik),])
   colnames(results) <- c("replicate","ksi","mu","minloglik")

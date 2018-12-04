@@ -30,7 +30,7 @@ the path to the working directory
 the path toward the folder containing the different OTU alignments
 }
 \item{nb_cores}{
-a number of cores to run the analyses
+a number of cores to run the analyses (ideally, it should be equal to the length of lambda for an optimal speed)
 }
 \item{seed}{
 a seed to assure the reproducibility
