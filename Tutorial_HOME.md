@@ -15,10 +15,10 @@ This document indicates how to use our model of **HO**st-**M**icrobiota **E**vol
 
 
 # Contents:
-**Installation (page 1);**\
-**Run Simulations (page 1);**\
-**Run Empirical application  (page 3);**\
-**Interpretation of Results (page 4):**\
+**Installation;**\
+**Run Simulations;**\
+**Run Empirical application;**\
+**Interpretation of Results:**\
      *       Example 1: Results from a simulation with horizontal transmission;\
       *      Example 2: Results from a simulation with strict vertical transmission;\
        *     Example 3: Results from a simulation with environmental acquisition;
@@ -26,7 +26,7 @@ This document indicates how to use our model of **HO**st-**M**icrobiota **E**vol
 
 # Installation:
   
-Our model is part on the R package RPANDA (Morlon et al., 2016) availbale on the CRAN or from gitHub.\
+Our model is part on the R package RPANDA (Morlon et al., 2016) availbale on the CRAN or from gitHub.
   
   
 ```{r, eval=FALSE}
@@ -37,12 +37,12 @@ install_github("hmorlon/PANDA")
 
 
 # Simulations:
-\
-
-**Host tree simulation **\
 
 
-```{r, eval=FALSE}
+##Host tree simulation
+
+
+```r
 
 ########  Parameters  #######
 
@@ -79,9 +79,9 @@ simulate_data(model="uniform", name=name, mu=simulated_mu, n=n, nb_cores=nb_core
 
 
 ```
-\
-\
-**Empirical host tree**\
+
+
+##Empirical host tree
 
 Or you can *provide a host tree* (e.g. an empirical tree) and simulate the evolution of a mock microbiota on it. in that case, the filename of the host tree sould be well-formated **host_tree_NAME.tre** (Newick format) and saved in your PATH.\
 
