@@ -231,7 +231,6 @@ Number of strictly variant sites:|	19
 
 ## Summary of the most likely scenario:
 
-<center>
 Parameters  | Values
 ------------- | -------------
 Inferred substitution model:|	K80
@@ -242,7 +241,7 @@ Associated likelihood:|	137.151
 p-value: Strict vertical transmission:|	6e-04
 p-value: Independent evolutions (nb switches):|	0
 p-value: Independent evolutions (subs. rate):|	0
-</center>
+
 
 ## Host-switches inference:
 Most likely scenario estimated by the host-switches estimation: 
