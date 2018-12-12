@@ -134,10 +134,10 @@ HOME_model(name=name, name_index=name_index, nb_cores=nb_cores, seed=seed, nb_tr
 ## Creating alignments for each OTU
 
 
-In order to run HOME, you need first to create the microbial alignments for each OTU of the microbiota. The first steps of processing of the raw data (combining [QIIME](http://qiime.org) and [UPARSE](https://www.drive5.com/uparse/) thanks to the [BMP](http://www.brmicrobiome.org/16sillumina) pipelines) and the second steps to make the OTU alignments are available in a bash script [here](http://www.brmicrobiome.org/16sillumina).
+In order to run HOME, you need first to create the microbial alignments for each OTU of the microbiota. The first steps of processing of the raw data (combining [QIIME](http://qiime.org) and [UPARSE](https://www.drive5.com/uparse/) thanks to the [BMP](http://www.brmicrobiome.org/16sillumina) pipelines) and the second steps to make the OTU alignments are available in a bash script [here](https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/make_clusters_OTU.sh).
 
 
-
+All OTU alignments must be store in a specific folder (where you will run HOME) with the name formatted as **alignment_NAME_OTU.fas**, where "NAME" will be the name our your HOME run and "OTU" is the name of the specific OTU
 
 
 
@@ -148,13 +148,12 @@ Let's run HOME for 3 the great apes microbiota. Previously, your working directo
 
 For instance, in this empirical application, you must provide:
 
--- */my_working_directory/host_tree_great_apes.tre*
+- */my_working_directory/host_tree_great_apes.tre*
+- */my_working_directory/alignment_great_apes_OTU0001.fas*
+- */my_working_directory/alignment_great_apes_OTU0002.fas*
+- */my_working_directory/alignment_great_apes_OTU0003.fas*
 
--- */my_working_directory/alignment_great_apes_OTU0001.fas*
 
--- */my_working_directory/alignment_great_apes_OTU0002.fas*
-
--- */my_working_directory/alignment_great_apes_OTU0003.fas*
 
 
 You can directly download this example from RPANDA:  
@@ -209,10 +208,9 @@ HOME_model(name=name, name_index=name_OTU, nb_tree=nb_tree, lambda=lambda, empir
 ```
 
 
-\newpage 
-
 # Interpret Results: 
-# Example 1: Results from a simulation with horizontal transmission
+
+## Example 1: Results from a simulation with horizontal transmission
 
 ## Description of the data - Simulation
 
@@ -254,6 +252,12 @@ ksi | mu | -log(Likelihood)
 \caption{Profil of minus log likelihood as a function of the number of switches.}
 \end{center}
 \end{figure}
+
+
+
+![](tutorial_HOME/profil_model_switches_simul_C1_S65.pdf)<!-- -->
+
+
 
 \begin{figure}[h!]
 \begin{center}
