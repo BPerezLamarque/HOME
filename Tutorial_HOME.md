@@ -44,11 +44,12 @@ You can *provide a host tree* (e.g. an empirical tree) and simulate the evolutio
 If you don't provide a host tree, it will random simulate a host tree (with a pure-bith process). 
 
 
+
+
+
+## Parameters for simulations
+
 ```r
-
-
-########  Parameters  #######
-
 
 setwd("/my_working_directory/") # working directory where all the files will be created. 
 
@@ -83,9 +84,11 @@ seed <- 1
 # if you don't provide a host tree, you must add the size of the simulated host tree
 n <- 20  
 
+```
 
+## Simulation of microbiota
 
-########  Simulation  #######
+```r
 
 sim_microbiota(name=name, host_tree=host_tree, mu=simulated_mu, nb_cores=nb_cores,name_index=name_index, simul=simul, N=N, proportion_variant=proportion_variant, seed=seed)
 
@@ -100,24 +103,7 @@ raref <- F # if TRUE rarefactions on the number of trees are performed
 ```
 
 
-## Empirical host tree
 
-
-
-```{r, eval=FALSE}
-
-name <- "simulation_tree_1" # name of the simualtions (sould match the name of your host tree) 
-
-host_tree <- host_tree <- read.tree(file=paste("host_tree_",name,".tre",sep=""))
-
-########  Simulation  #######
-sim_microbiota(model="uniform", name=name, mu=simulated_mu, n=n, nb_cores=nb_cores,
-              name_index=name_index, simul=simul, N=N, 
-              proportion_variant=proportion_variant,
-              path=path, seed=seed, provided_tree=host_tree)
-```
-\
-\
 Then, you can proceed to the **parameters estimation**. 
 \
 
