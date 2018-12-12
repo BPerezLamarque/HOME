@@ -214,6 +214,7 @@ HOME_model(name=name, name_index=name_OTU, nb_tree=nb_tree, lambda=lambda, empir
 
 ## Description of the data - Simulation
 
+<center>
 Parameters  | Values
 ------------- | -------------
 Number of symbiont-host association:|	20
@@ -224,9 +225,11 @@ Sequences length:	|300
 Probability variant sites:|	0.1
 Number of invariant sites:|	281
 Number of strictly variant sites:|	19
+</center>
 
 ## Summary of the most likely scenario:
 
+<center>
 Parameters  | Values
 ------------- | -------------
 Inferred substitution model:|	K80
@@ -237,7 +240,7 @@ Associated likelihood:|	137.151
 p-value: Strict vertical transmission:|	6e-04
 p-value: Independent evolutions (nb switches):|	0
 p-value: Independent evolutions (subs. rate):|	0
-
+</center>
 
 ## Host-switches inference:
 Most likely scenario estimated by the host-switches estimation: 
