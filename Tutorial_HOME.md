@@ -247,50 +247,53 @@ ksi | mu | -log(Likelihood)
 3 | 0.8519 | 137.151
 
 
+Minus log likelihood as a function of the number of switches:
+
 <p align="center">
     <img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_simul_C1_S65.png" width="500">
-
-    Minus log likelihood as a function of the number of switches.
 </p>
 
 
+Estimated substitution rate as a function of the number of switches:
 
+<p align="center">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_mu_simul_C1_S35.png" width="500">
+</p>
 
 
 
 
 ## Strict vertical transmission model:
 
-Likelihood ratio test testing the model of strict vertical transmission (ksi=0). Strict vertical transmission is rejected if p-value < 0.05 (see Figure 3).
+Likelihood ratio test testing the model of strict vertical transmission (ksi=0). Strict vertical transmission is rejected if p-value < 0.05.
 
 
-![](tutorial_HOME/pure_vertical_transmission_simul_C1_S65.png | width=100)
+<p align="center">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/pure_vertical_transmission_simul_C1_S65.png" width="500">
+</p>
+
 
 Results of the likelihood ratio test. The grey curve correponds to the Chi2 distribution with df=1. The dark blue line (resp. light) stands for the 0.05 (resp. 0.01) p-value threshold and the dashed orange line is the observed LRT ratio.
 
 
-#Host-symbiont independent evolutions:
+## Host-symbiont independent evolutions:
 
-Model selection on independent evolutions (see Figure 4).
+Model selection on independent evolutions.
 
 Test  | p-values
 ------------- | -------------
 Empirical ranking (ksi distribution)|	0
 Empirical ranking (mu distribution)|	0
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.5\textwidth]{/Users/benoitperez1/ownCloud/Recherche/These/ENS/Modele_codiv/tutorial/example/horizontal/independent_evolution_bootstrap_simul_C1_S65.pdf}
-\caption{Representation of the estimated numbers of switches and the estimated substitution rates for the randomized alignments (in blue) and the empirical alignment (in orange). Independent evolutions can be rejected if the orange dot stands alone in the bottom left corner (i.e. rejected if p-values < 0.05).}
-\end{center}
-\end{figure}
 
 
-```{r, results='asis', echo=FALSE}
-cat("\\newpage")
-```
+<p align="center">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/independent_evolution_bootstrap_simul_C1_S65.png" width="500">
+</p>
 
-\newpage
+Representation of the estimated numbers of switches and the estimated substitution rates for the randomized alignments (in blue) and the empirical alignment (in orange). Independent evolutions can be rejected if the orange dot stands alone in the bottom left corner (i.e. rejected if p-values < 0.05).
+
+
 
 ## Estimated substitution model
 
@@ -319,15 +322,13 @@ Branch arrival |35| 2 |28
 Absolute position| 0.022 |0.089 |0.13
 
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.7\textwidth]{/Users/benoitperez1/ownCloud/Recherche/These/ENS/Modele_codiv/tutorial/example/horizontal/host_tree_simul_C1_S65.pdf}
-\caption{Host tree.}
-\end{center}
-\end{figure}
 
+Host tree: 
 
-\newpage
+<p align="center">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/host_tree_simul_C1_S65.png" width="500">
+</p>
+
 
 
 
@@ -362,63 +363,59 @@ p-value: Independent evolutions (subs. rate):|	0
 *CONCLUSION: STRICT VERTICAL TRANSMISSION.*
 
 ## Host-switches inference:
-Most likely scenario estimated by the host-switches estimation (see Figure 6 & 7): 
+Most likely scenario estimated by the host-switches estimation: 
 
 ksi | mu | -log(Likelihood)
 ------------- | ------------- | -------------
 3 | 0.70 | 149.8
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.5\textwidth]{/Users/benoitperez1/ownCloud/Recherche/These/ENS/Modele_codiv/tutorial/example/vertical/profil_model_switches_simul_C1_S5.pdf}
-\caption{Profil of minus log likelihood as a function of the number of switches.}
-\end{center}
-\end{figure}
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.5\textwidth]{/Users/benoitperez1/ownCloud/Recherche/These/ENS/Modele_codiv/tutorial/example/vertical/profil_model_switches_mu_simul_C1_S5.pdf}
-\caption{Estimated substitution rate as a function of the number of switches.}
-\end{center}
-\end{figure}
 
-\newpage 
 
-#Strict vertical transmission model:
+Minus log likelihood as a function of the number of switches:
+<p align="center">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_simul_C1_S5.png" width="500">
+</p>
 
-Likelihood ratio test testing the model of strict vertical transmission (ksi=0). Strict vertical transmission is rejected if p-value < 0.05 (see Figure 8).
+Estimated substitution rate as a function of the number of switches:
+<p align="center">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_mu_simul_C1_S5.png" width="500">
+</p>
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.5\textwidth]{/Users/benoitperez1/ownCloud/Recherche/These/ENS/Modele_codiv/tutorial/example/vertical/pure_vertical_transmission_simul_C1_S5.pdf}
-\caption{Results of the likelihood ratio test. The grey curve correponds to the Chi2 distribution with df=1. The dark blue line (resp. light) stands for the 0.05 (resp. 0.01) p-value threshold and the dashed orange line is the observed LRT ratio.}
-\end{center}
-\end{figure}
 
-\newpage
 
-#Host-symbiont independent evolutions:
+## Strict vertical transmission model:
 
-Model selection on independent evolutions (see Figure 9).
+Likelihood ratio test testing the model of strict vertical transmission (ksi=0). Strict vertical transmission is rejected if p-value < 0.05.
+
+
+<p align="center">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/pure_vertical_transmission_simul_C1_S5.png" width="500">
+</p>
+
+
+Results of the likelihood ratio test. The grey curve correponds to the Chi2 distribution with df=1. The dark blue line (resp. light) stands for the 0.05 (resp. 0.01) p-value threshold and the dashed orange line is the observed LRT ratio.
+
+
+
+## Host-symbiont independent evolutions:
+
+Model selection on independent evolutions.
 
 Test  | p-values
 ------------- | -------------
 Empirical ranking (ksi distribution)|	0
 Empirical ranking (mu distribution)|	0
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.5\textwidth]{/Users/benoitperez1/ownCloud/Recherche/These/ENS/Modele_codiv/tutorial/example/vertical/independent_evolution_bootstrap_simul_C1_S5.pdf}
-\caption{Representation of the estimated numbers of switches and the estimated substitution rates for the randomized alignments (in blue) and the empirical alignment (in orange). Independent evolutions can be rejected if the orange dot stands alone in the bottom left corner (i.e. rejected if p-values < 0.05).}
-\end{center}
-\end{figure}
+
+<p align="center">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/independent_evolution_bootstrap_simul_C1_S5.png" width="500">
+</p>
+
+Representation of the estimated numbers of switches and the estimated substitution rates for the randomized alignments (in blue) and the empirical alignment (in orange). Independent evolutions can be rejected if the orange dot stands alone in the bottom left corner (i.e. rejected if p-values < 0.05).
 
 
-```{r, results='asis', echo=FALSE}
-cat("\\newpage")
-```
 
-\newpage
 
 ## Estimated substitution model
 
@@ -438,15 +435,8 @@ A  |C |G |T
 ------------- | -------------| -------------| -------------
 0.25  |	0.25  |	0.25 |	0.25 
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.7\textwidth]{/Users/benoitperez1/ownCloud/Recherche/These/ENS/Modele_codiv/tutorial/example/vertical/host_tree_simul_C1_S5.pdf}
-\caption{Host tree.}
-\end{center}
-\end{figure}
 
 
-\newpage
 
 # Example 3: Results from a simulated OTU with environnemental acquisition (independent evolution)
 
@@ -480,63 +470,54 @@ p-value: Independent evolutions (subs. rate):|	0.89
 *CONCLUSION:INDEPENDENT EVOLUTIONS (BASED ON THE NUMBER OF SWITCHES AND THE SUBSTITUTION RATE).*
 
 ## Host-switches inference:
-Most likely scenario estimated by the host-switches estimation (see Figure 11 & 12): 
+Most likely scenario estimated by the host-switches estimation: 
 
 ksi | mu | -log(Likelihood)
 ------------- | ------------- | -------------
 25 | 3.38 | 270.3
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.5\textwidth]{/Users/benoitperez1/ownCloud/Recherche/These/ENS/Modele_codiv/tutorial/example/indep/profil_model_switches_simul_C1_S124.pdf}
-\caption{Profil of minus log likelihood as a function of the number of switches.}
-\end{center}
-\end{figure}
+Minus log likelihood as a function of the number of switches:
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.5\textwidth]{/Users/benoitperez1/ownCloud/Recherche/These/ENS/Modele_codiv/tutorial/example/indep/profil_model_switches_mu_simul_C1_S124.pdf}
-\caption{Estimated substitution rate as a function of the number of switches.}
-\end{center}
-\end{figure}
+<p align="center">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_simul_C1_S124.png" width="500">
+</p>
 
-\newpage 
 
-#Strict vertical transmission model:
+Estimated substitution rate as a function of the number of switches:
+<p align="center">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_mu_simul_C1_S124.png" width="500">
+</p>
 
-Likelihood ratio test testing the model of strict vertical transmission (ksi=0). Strict vertical transmission is rejected if p-value < 0.05 (see Figure 13).
+## Strict vertical transmission model:
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.5\textwidth]{/Users/benoitperez1/ownCloud/Recherche/These/ENS/Modele_codiv/tutorial/example/indep/pure_vertical_transmission_simul_C1_S124.pdf}
-\caption{Results of the likelihood ratio test. The grey curve correponds to the Chi2 distribution with df=1. The dark blue line (resp. light) stands for the 0.05 (resp. 0.01) p-value threshold and the dashed orange line is the observed LRT ratio.}
-\end{center}
-\end{figure}
+Likelihood ratio test testing the model of strict vertical transmission (ksi=0). Strict vertical transmission is rejected if p-value < 0.05.
 
-\newpage
+<p align="center">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/pure_vertical_transmission_simul_C1_S124.png" width="500">
+</p>
 
-#Host-symbiont independent evolutions:
 
-Model selection on independent evolutions (see Figure 14).
+Results of the likelihood ratio test. The grey curve correponds to the Chi2 distribution with df=1. The dark blue line (resp. light) stands for the 0.05 (resp. 0.01) p-value threshold and the dashed orange line is the observed LRT ratio.
+
+
+
+
+## Host-symbiont independent evolutions:
+
+Model selection on independent evolutions.
 
 Test  | p-values
 ------------- | -------------
 Empirical ranking (ksi distribution)|	0.56
 Empirical ranking (mu distribution)|	0.88
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.5\textwidth]{/Users/benoitperez1/ownCloud/Recherche/These/ENS/Modele_codiv/tutorial/example/indep/independent_evolution_bootstrap_simul_C1_S124.pdf}
-\caption{Representation of the estimated numbers of switches and the estimated substitution rates for the randomized alignments (in blue) and the empirical alignment (in orange). Independent evolutions can be rejected if the orange dot stands alone in the bottom left corner (i.e. rejected if p-values < 0.05).}
-\end{center}
-\end{figure}
+<p align="center">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/independent_evolution_bootstrap_simul_C1_S124.png" width="500">
+</p>
+
+Representation of the estimated numbers of switches and the estimated substitution rates for the randomized alignments (in blue) and the empirical alignment (in orange). Independent evolutions can be rejected if the orange dot stands alone in the bottom left corner (i.e. rejected if p-values < 0.05).
 
 
-```{r, results='asis', echo=FALSE}
-cat("\\newpage")
-```
-
-\newpage
 
 ## Estimated substitution model
 
@@ -556,14 +537,4 @@ A  |C |G |T
 ------------- | -------------| -------------| -------------
 0.25  |	0.25  |	0.25 |	0.25 
 
-
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.7\textwidth]{/Users/benoitperez1/ownCloud/Recherche/These/ENS/Modele_codiv/tutorial/example/indep/host_tree_simul_C1_S124.pdf}
-\caption{Host tree.}
-\end{center}
-\end{figure}
-
-
-\newpage
 
