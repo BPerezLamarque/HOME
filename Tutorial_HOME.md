@@ -263,6 +263,8 @@ ksi | mu | -log(Likelihood)
 </embed>
 </object>
 
+[embed]https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_simul_C1_S65.pdf[/embed]
+
 
 \begin{figure}[h!]
 \begin{center}
