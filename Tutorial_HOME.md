@@ -215,6 +215,7 @@ HOME_model(name=name, name_index=name_OTU, nb_tree=nb_tree, lambda=lambda, empir
 ## Description of the data - Simulation
 
 <center>
+
 Parameters  | Values
 ------------- | -------------
 Number of symbiont-host association:|	20
@@ -225,6 +226,7 @@ Sequences length:	|300
 Probability variant sites:|	0.1
 Number of invariant sites:|	281
 Number of strictly variant sites:|	19
+
 </center>
 
 ## Summary of the most likely scenario:
