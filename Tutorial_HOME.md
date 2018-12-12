@@ -8,7 +8,7 @@
 This document indicates how to use our model of **HO**st-**M**icrobiota **E**volution. The first part details how to simulate mock microbiota. The second part details how to perform an empirical application; it is illustrated with the great apes microbiota data. The last part details how to interpret the HTML outputs of HOME.
 
 
-**Citation:** Perez-Lamarque B., Morlon H. Characterizing symbiont inheritance during host-microbiota evolution : application to the great apes microbiota, 2018. 
+**Citation:** Perez-Lamarque B., Morlon H. Characterizing symbiont inheritance during host-microbiota evolution : application to the great apes microbiota, 2018.
 
 
 **Contact:** Benoît Perez-Lamarque, benoit.perez.lamarque@gmail.com
@@ -19,9 +19,9 @@ This document indicates how to use our model of **HO**st-**M**icrobiota **E**vol
 **Run Simulations (page 1);**\
 **Run Empirical application  (page 3);**\
 **Interpretation of Results (page 4):**\
-            Example 1: Results from a simulation with horizontal transmission;\
-            Example 2: Results from a simulation with strict vertical transmission;\
-            Example 3: Results from a simulation with environmental acquisition;
+     *       Example 1: Results from a simulation with horizontal transmission;\
+      *      Example 2: Results from a simulation with strict vertical transmission;\
+       *     Example 3: Results from a simulation with environmental acquisition;
 
 
 # Installation:
