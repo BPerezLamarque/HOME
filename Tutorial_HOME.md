@@ -41,7 +41,7 @@ install_github("hmorlon/PANDA")
 
 You can *provide a host tree* (e.g. an empirical tree) and simulate the evolution of a mock microbiota on it. Your tree must be binary, rooted and ultrametric. In that case, the filename of the host tree sould be well-formated **host_tree_NAME.tre** (Newick format) and saved in your PATH.
 
-If you don't provide a host tree, it will random simulate a host tree (with a pure-bith process). 
+If you don't provide a host tree, it will random simulate a host tree (with a pure-birth process). 
 
 
 
@@ -52,6 +52,7 @@ If you don't provide a host tree, it will random simulate a host tree (with a pu
 ```r
 
 setwd("/my_working_directory/") # working directory where all the files will be created. 
+
 
 # name of your simulation
 name <- "simulation_tree_1" 
@@ -81,6 +82,9 @@ nb_cores <- 1 # if you don't run in a multi-cores machine, the default value is 
 
 # seed used for simulations 
 seed <- 1 
+
+# Load the host tree to simulate a microbiota on it 
+host_tree <- read.tree("my_tree.tre")
 
 # if you don't provide a host tree, you must add the size of the simulated host tree
 n <- 20  
