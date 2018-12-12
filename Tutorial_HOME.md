@@ -1,19 +1,16 @@
----
-title: "**HOME Tutorial** -	**HO**st-**M**icrobiota **E**volution"
-author: "Benoît Perez-Lamarque"
-date: "November 2018"
-output: pdf_document
-fontsize: 20pt
----
+
+**HOME Tutorial** -	**HO**st-**M**icrobiota **E**volution
+====
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This document indicates how to use our model of **HO**st-**M**icrobiota **E**volution. The first part presents the simulations of mock microbiota. The second part present how to deal with empirical application (example on the great apes microbiota). The last part gives examples of how to interpret the HTML outputs of HOME.\
-  
-  
-**Citation:** Perez-Lamarque B., Morlon H., A modeling approach for characterizing symbiont inheritance during host-microbiota evolution using maximum likelihood inference, 2018. <http://rmarkdown.rstudio.com> \
+This document indicates how to use our model of **HO**st-**M**icrobiota **E**volution. The first part details how to simulate mock microbiota. The second part details how to perform an empirical application; it is illustrated with the great apes microbiota data. The last part details how to interpret the HTML outputs of HOME.\
+
+
+**Citation:** Perez-Lamarque B., Morlon H. Characterizing symbiont inheritance during host-microbiota evolution : application to the great apes microbiota, 2018. 
 \
 
 **Contact:** Benoît Perez-Lamarque, benoit.perez.lamarque@gmail.com
@@ -22,8 +19,8 @@ This document indicates how to use our model of **HO**st-**M**icrobiota **E**vol
 # Contents:
 Installation (page 1);\
 Run Simulations (page 1);\
-Run Empirical dataset (page 3);\
-Interpret Results (page 4):\
+Run Empirical application  (page 3);\
+Interpretation of Results (page 4):\
 \ \ \ \  Example 1: Results from a simulation with horizontal transmission;\
 \ \ \ \    Example 2: Results from a simulation with strict vertical transmission;\
 \ \ \ \    Example 3: Results from a simulation with environmental acquisition;
@@ -41,24 +38,24 @@ install_github("hmorlon/PANDA")
 ```
 
 
-# Run Simulations:
+# Simulations:
 \
 
-**Simulated host tree**\
+**Host tree simulation **\
 
-Simulations can be done on a simulated host tree: \
 
 ```{r, eval=FALSE}
 
 ########  Parameters  #######
 
-name <- "simulation_tree_1" # name of the simualtions on "tree 1"
-n <- 20  # number of host individuals 
+name <- "simulation_tree_1" # name of simulated tree
+n <- 20  # size of host tree  
 name_index <-  c("S1","S2","S3","S4","S5","S6") # name of the different simulations 
 simul <- c(0,1,3,5,"indep","indep") # simulated scenarii: 
 # i) 0 for strict vertical   transmission
 # ii) any positive integer for the number of host-switches transmissions
 # iii) "indep" to simulate independent evolutions and environmental acquisitions. 
+
 
 simulated_mu <- 1 # simulated relative substitution rate
 # NB: simulated_mu=1 corresponds to on average 1 mutation per nucleotide)
