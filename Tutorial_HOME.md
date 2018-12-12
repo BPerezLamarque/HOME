@@ -39,51 +39,69 @@ install_github("hmorlon/PANDA")
 # Simulations:
 
 
-##Host tree simulation
+You can *provide a host tree* (e.g. an empirical tree) and simulate the evolution of a mock microbiota on it. Your tree must be binary, rooted and ultrametric. In that case, the filename of the host tree sould be well-formated **host_tree_NAME.tre** (Newick format) and saved in your PATH.
+
+If you don't provide a host tree, it will random simulate a host tree (with a pure-bith process). 
 
 
 ```r
 
+
 ########  Parameters  #######
 
-name <- "simulation_tree_1" # name of simulated tree
-n <- 20  # size of host tree  
-name_index <-  c("S1","S2","S3","S4","S5","S6") # name of the different simulations 
-simul <- c(0,1,3,5,"indep","indep") # simulated scenarii: 
-# i) 0 for strict vertical   transmission
-# ii) any positive integer for the number of host-switches transmissions
-# iii) "indep" to simulate independent evolutions and environmental acquisitions. 
+
+setwd("/my_working_directory/") # working directory where all the files will be created. 
+
+# name of your simulation
+name <- "simulation_tree_1" 
+
+# name of the different microbial OTU of your simulations (hereafter you will model th evolution of 6 OTUs on your host tree)
+name_index <-  c("S1","S2","S3","S4","S5","S6")  
+
+# simulated scenarii for each OTU: 
+simul <- c(0,1,3,5,"indep","indep")
+# i) "0" simulates strict vertical transmission (i.e. O host-switch)
+# ii) any positive integer simulates horizontal transmissions (with this given number of host-switches)
+# iii) "indep" simulates environmental acquisition (i.e. independent evolutions) 
+
+# simulated substitution rate 
+simulated_mu <- 1  # simulated_mu=1 corresponds to on average 1 mutation per nucleotide
+
+# total number of nucleotides in the alignment 
+N <- 300  
+
+# proportion of variable nucleotides in the alignment
+proportion_variant <- 0.1 
 
 
-simulated_mu <- 1 # simulated relative substitution rate
-# NB: simulated_mu=1 corresponds to on average 1 mutation per nucleotide)
-N <- 300 #total number of nucleotides in the alignment  
-proportion_variant <- 0.1 # proportion of variant nucelotides in the alignment
+# number of cores to run the analyses
+nb_cores <- 1 # if you don't run in a multi-cores machine, the default value is 1
+
+# seed used for simulations 
+seed <- 1 
+
+# if you don't provide a host tree, you must add the size of the simulated host tree
+n <- 20  
+
+
+
+########  Simulation  #######
+
+sim_microbiota(name=name, host_tree=host_tree, mu=simulated_mu, nb_cores=nb_cores,name_index=name_index, simul=simul, N=N, proportion_variant=proportion_variant, seed=seed)
+
+
+OTHERS !!!!!
 
 lambda <- c(1:n) # values of number of switches to test during estimations. 
 nb_tree <- 10000 # number of trees (for Monte-Carlo estimation of the number of switches)
 raref <- F # if TRUE rarefactions on the number of trees are performed
 
-path <- "~/"  # path toward the folder of simulations 
-nb_cores <- 1 # number of cores to run the analyses
-seed <- 1 # seed for simulations 
-
-
-########  Simulation  #######
-simulate_data(model="uniform", name=name, mu=simulated_mu, n=n, nb_cores=nb_cores,
-              name_index=name_index, simul=simul, N=N, 
-              proportion_variant=proportion_variant,
-              path=path, seed=seed)
-
-
-
 
 ```
 
 
-##Empirical host tree
+## Empirical host tree
 
-Or you can *provide a host tree* (e.g. an empirical tree) and simulate the evolution of a mock microbiota on it. in that case, the filename of the host tree sould be well-formated **host_tree_NAME.tre** (Newick format) and saved in your PATH.\
 
 
 ```{r, eval=FALSE}
@@ -93,7 +111,7 @@ name <- "simulation_tree_1" # name of the simualtions (sould match the name of y
 host_tree <- host_tree <- read.tree(file=paste("host_tree_",name,".tre",sep=""))
 
 ########  Simulation  #######
-simulate_data(model="uniform", name=name, mu=simulated_mu, n=n, nb_cores=nb_cores,
+sim_microbiota(model="uniform", name=name, mu=simulated_mu, n=n, nb_cores=nb_cores,
               name_index=name_index, simul=simul, N=N, 
               proportion_variant=proportion_variant,
               path=path, seed=seed, provided_tree=host_tree)
