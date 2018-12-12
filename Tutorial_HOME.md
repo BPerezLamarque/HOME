@@ -210,7 +210,7 @@ HOME_model(name=name, name_index=name_OTU, nb_tree=nb_tree, lambda=lambda, empir
 
 # Interpret Results: 
 
-## Example 1: Results from a simulation with horizontal transmission
+# Example 1: Results from a simulated OTU with horizontal transmission
 
 ## Description of the data - Simulation
 
@@ -246,47 +246,24 @@ ksi | mu | -log(Likelihood)
 ------------- | ------------- | -------------
 3 | 0.8519 | 137.151
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.5\textwidth]{/Users/benoitperez1/ownCloud/Recherche/These/ENS/Modele_codiv/tutorial/example/horizontal/profil_model_switches_simul_C1_S65.pdf}
-\caption{Profil of minus log likelihood as a function of the number of switches.}
-\end{center}
-\end{figure}
 
 
 
-![](tutorial_HOME/profil_model_switches_simul_C1_S65.pdf)<!-- -->
+![](tutorial_HOME/profil_model_switches_simul_C1_S65.png)<!-- -->
 
-<object data="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_simul_C1_S65.pdf" type="application/pdf" width="700px" height="700px">
-<embed src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_simul_C1_S65.pdf">
-<p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_simul_C1_S65.pdf">Download PDF</a>.</p>
-</embed>
-</object>
-
-[embed]https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_simul_C1_S65.pdf[/embed]
+Minus log likelihood as a function of the number of switches.
 
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.5\textwidth]{/Users/benoitperez1/ownCloud/Recherche/These/ENS/Modele_codiv/tutorial/example/horizontal/profil_model_switches_mu_simul_C1_S65.pdf}
-\caption{Estimated substitution rate as a function of the number of switches.}
-\end{center}
-\end{figure}
 
-\newpage 
-
-#Strict vertical transmission model:
+## Strict vertical transmission model:
 
 Likelihood ratio test testing the model of strict vertical transmission (ksi=0). Strict vertical transmission is rejected if p-value < 0.05 (see Figure 3).
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.5\textwidth]{/Users/benoitperez1/ownCloud/Recherche/These/ENS/Modele_codiv/tutorial/example/horizontal/pure_vertical_transmission_simul_C1_S65.pdf}
-\caption{Results of the likelihood ratio test. The grey curve correponds to the Chi2 distribution with df=1. The dark blue line (resp. light) stands for the 0.05 (resp. 0.01) p-value threshold and the dashed orange line is the observed LRT ratio.}
-\end{center}
-\end{figure}
 
-\newpage
+![](tutorial_HOME/pure_vertical_transmission_simul_C1_S65.png)<!-- -->
+
+Results of the likelihood ratio test. The grey curve correponds to the Chi2 distribution with df=1. The dark blue line (resp. light) stands for the 0.05 (resp. 0.01) p-value threshold and the dashed orange line is the observed LRT ratio.
+
 
 #Host-symbiont independent evolutions:
 
@@ -350,7 +327,7 @@ Absolute position| 0.022 |0.089 |0.13
 
 
 
-# Example 2: Results from a simulation with strict vertical transmission
+# Example 2: Results from a simulated OTU with strict vertical transmission
 
 ## Description of the data - Simulation
 
@@ -467,7 +444,7 @@ A  |C |G |T
 
 \newpage
 
-# Example 3: Results from a simulation with environnemental acquisition (independent evolution)
+# Example 3: Results from a simulated OTU with environnemental acquisition (independent evolution)
 
 ## Description of the data - Simulation
 
