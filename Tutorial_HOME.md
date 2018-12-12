@@ -249,6 +249,7 @@ ksi | mu | -log(Likelihood)
 
 <p align="center">
     <img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_simul_C1_S65.png" width="500">
+
     Minus log likelihood as a function of the number of switches.
 </p>
 
