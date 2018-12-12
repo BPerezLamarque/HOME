@@ -240,7 +240,7 @@ p-value: Independent evolutions (subs. rate):|	0
 
 
 ## Host-switches inference:
-Most likely scenario estimated by the host-switches estimation (see Figure 1 & 2): 
+Most likely scenario estimated by the host-switches estimation: 
 
 ksi | mu | -log(Likelihood)
 ------------- | ------------- | -------------
@@ -257,7 +257,7 @@ Minus log likelihood as a function of the number of switches:
 Estimated substitution rate as a function of the number of switches:
 
 <p align="center">
-<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_mu_simul_C1_S35.png" width="500">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_mu_simul_C1_S65.png" width="500">
 </p>
 
 
