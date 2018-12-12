@@ -257,6 +257,11 @@ ksi | mu | -log(Likelihood)
 
 ![](tutorial_HOME/profil_model_switches_simul_C1_S65.pdf)<!-- -->
 
+<object data="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_simul_C1_S65.pdf" type="application/pdf" width="700px" height="700px">
+<embed src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_simul_C1_S65.pdf">
+<p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_simul_C1_S65.pdf">Download PDF</a>.</p>
+</embed>
+</object>
 
 
 \begin{figure}[h!]
