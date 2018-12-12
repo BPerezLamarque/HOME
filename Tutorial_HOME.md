@@ -131,14 +131,29 @@ HOME_model(name=name, name_index=name_index, nb_cores=nb_cores, seed=seed, nb_tr
 
 # Run Empirical applications: 
 
+## Creating alignments for each OTU
+
+
+In order to run HOME, you need first to create the microbial alignments for each OTU of the microbiota. The first steps of processing of the raw data (combining [QIIME](http://qiime.org) and [UPARSE](https://www.drive5.com/uparse/) thanks to the [BMP](http://www.brmicrobiome.org/16sillumina) pipelines) and the second steps to make the OTU alignments are available in a bash script [here](http://www.brmicrobiome.org/16sillumina).
+
+
+
+
+
+
+## Example of empirical applications - great apes microbiota: 
 
 Let's run HOME for 3 the great apes microbiota. Previously, your working directory must contain the host tree with a filename **host_tree_NAME.tre** (Newick format), and all the OTU alignments with the filenames **alignment_NAME_OTU.fas** (FASTA format).
 
 
 For instance, in this empirical application, you must provide:
+
 -- */my_working_directory/host_tree_great_apes.tre*
+
 -- */my_working_directory/alignment_great_apes_OTU0001.fas*
+
 -- */my_working_directory/alignment_great_apes_OTU0002.fas*
+
 -- */my_working_directory/alignment_great_apes_OTU0003.fas*
 
 
