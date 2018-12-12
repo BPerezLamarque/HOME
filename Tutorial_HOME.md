@@ -249,7 +249,7 @@ ksi | mu | -log(Likelihood)
 
 
 
-![](tutorial_HOME/profil_model_switches_simul_C1_S65.png)<!-- -->
+![](tutorial_HOME/profil_model_switches_simul_C1_S65.png| width=100)<!-- -->
 
 Minus log likelihood as a function of the number of switches.
 
@@ -260,7 +260,7 @@ Minus log likelihood as a function of the number of switches.
 Likelihood ratio test testing the model of strict vertical transmission (ksi=0). Strict vertical transmission is rejected if p-value < 0.05 (see Figure 3).
 
 
-![](tutorial_HOME/pure_vertical_transmission_simul_C1_S65.png)<!-- -->
+![](tutorial_HOME/pure_vertical_transmission_simul_C1_S65.png| width=100)
 
 Results of the likelihood ratio test. The grey curve correponds to the Chi2 distribution with df=1. The dark blue line (resp. light) stands for the 0.05 (resp. 0.01) p-value threshold and the dashed orange line is the observed LRT ratio.
 
