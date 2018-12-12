@@ -61,6 +61,7 @@ name_index <-  c("S1","S2","S3","S4","S5","S6")
 
 # simulated scenarii for each OTU: 
 simul <- c(0,1,3,5,"indep","indep")
+# each simulated OTU has if own evolutionary history:
 # i) "0" simulates strict vertical transmission (i.e. O host-switch)
 # ii) any positive integer simulates horizontal transmissions (with this given number of host-switches)
 # iii) "indep" simulates environmental acquisition (i.e. independent evolutions) 
@@ -86,18 +87,12 @@ n <- 20
 
 ```
 
-## Simulation of microbiota
+## Simulation of a microbiota
 
 ```r
 
 sim_microbiota(name=name, host_tree=host_tree, mu=simulated_mu, nb_cores=nb_cores,name_index=name_index, simul=simul, N=N, proportion_variant=proportion_variant, seed=seed)
 
-
-OTHERS !!!!!
-
-lambda <- c(1:n) # values of number of switches to test during estimations. 
-nb_tree <- 10000 # number of trees (for Monte-Carlo estimation of the number of switches)
-raref <- F # if TRUE rarefactions on the number of trees are performed
 
 
 ```
@@ -105,65 +100,95 @@ raref <- F # if TRUE rarefactions on the number of trees are performed
 
 
 Then, you can proceed to the **parameters estimation**. 
-\
 
-```{r, eval=FALSE}
 
-########  Run HOME  #######
+```r
 
-HOME_model(name=name,name_index=name_index,path=path,path_alignment=path_alignment,
-           nb_cores=nb_cores,seed=seed,nb_tree=nb_tree,lambda=lambda,raref=raref,
-           empirical=FALSE,randomize=TRUE,nb_random=10)
-# nb_random: number of randomizations in the model selection on indep. evolutions 
+##  Run HOME on the simulated microbiota
+
+
+
+#  possible numbers of host-switches to test during the inference
+lambda <- c(1:n) 
+
+# number of trees (for Monte-Carlo estimation of the number of switches)
+nb_tree <- 10000 
+
+# number of randomizations in the model selection testing independent evolutions 
+nb_random <- 10
+
+# rarefactions on the number of trees
+raref <- FALSE # if TRUE rarefactions on the number of trees are performed
 
 ```
 
-\newpage 
+```r
+
+HOME_model(name=name, name_index=name_index, nb_cores=nb_cores, seed=seed, nb_tree=nb_tree, lambda=lambda, raref=raref, empirical=FALSE, nb_random=nb_random)
+
+```
+
 
 # Run Empirical applications: 
-\
 
-Let's run HOME for 3 the great apes microbiota. Previously, a folder ("path") must contain the host tree with a filename **host_tree_NAME.tre** (Newick format). An another folder ("path_alignment") must contain all the OTU alignments with the filenames **alignment_NAME_OTU.fas** (FASTA format). \
-\
 
-For instance, in this empirical application, you must provide:\
--- */path/host_tree_great_apes_97.tre* \
--- */path_alignment/alignment_great_apes_97_OTU880092397.fas* \
--- */path_alignment/alignment_great_apes_97_OTU838728681.fas* \
--- */path_alignment/alignment_great_apes_97_OTU934380954.fas* \
+Let's run HOME for 3 the great apes microbiota. Previously, your working directory must contain the host tree with a filename **host_tree_NAME.tre** (Newick format), and all the OTU alignments with the filenames **alignment_NAME_OTU.fas** (FASTA format).
 
-```{r, eval=FALSE}
 
-########  Parameters  #######
+For instance, in this empirical application, you must provide:
+-- */my_working_directory/host_tree_great_apes.tre*
+-- */my_working_directory/alignment_great_apes_OTU0001.fas*
+-- */my_working_directory/alignment_great_apes_OTU0002.fas*
+-- */my_working_directory/alignment_great_apes_OTU0003.fas*
 
-name <- "great_apes" # name of the empirical application 
-# Great apes microbiota with OTUs defined at 97% 
-name_index <-  c("OTU892624276","OTU47610657","OTU733943228") 
+
+You can directly download this example from RPANDA:  
+
+```r
+
+example_great_apes_microbiota(name="great_apes")
+
+```
+
+
+## Parameters of the empirical application 
+
+```r
+
+# name of the empirical application 
+name <- "great_apes" 
+
 # name of the different OTUs
-
-lambda <- c(1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25) 
-# values of number of switches to test during estimations. 
-nb_tree <- 5000 # number of trees (for Monte-Carlo estimation of the number of switches)
-raref <- F # if TRUE rarefactions on the number of trees are performed
+name_OTU <-  c("OTU0001","OTU0002","OTU0003")
 
 
-path <- "~/"  # path toward the main folder  
-path_alignment <- "~/" # path toward the folder containing the different OTU alignments 
+#  possible numbers of host-switches to test during the inference
+lambda <- c(1:n) 
+
+# number of trees (for Monte-Carlo estimation of the number of switches)
+nb_tree <- 10000 
+
+# number of randomizations in the model selection testing independent evolutions 
+nb_random <- 10
+
+# rarefactions on the number of trees
+raref <- FALSE # if TRUE rarefactions on the number of trees are performed
   
+# number of cores to run the analyses
+nb_cores <- 1 # if you don't run in a multi-cores machine, the default value is 1
 
-nb_cores <- 1 # number of cores to run the analyses
-seed <- 1 # seed for simulations 
+# seed used for simulations 
+seed <- 1 
 
-########  Download the data of this example  #######
-##  OTU892624276, OTU47610657, and OTU733943228 from the great apes microbiota ##
-example_great_apes_microbiota(name,path)
+```
+
+## Run HOME on the empirical application 
+
+```r
 
 
-########  Run HOME  #######
+HOME_model(name=name, name_index=name_OTU, nb_tree=nb_tree, lambda=lambda, empirical=TRUE, raref=raref, nb_random=nb_random)
 
-HOME_model(name=name,name_index=c("OTU892624276","OTU47610657","OTU733943228"), 
-           nb_tree=nb_tree,lambda=lambda, empirical=TRUE,randomize=TRUE,
-           nb_random=10,path=path)
 
 
 ```
