@@ -8,7 +8,7 @@
 This document indicates how to use our model of **HO**st-**M**icrobiota **E**volution. The first part details how to simulate mock microbiota. The second part details how to perform an empirical application; it is illustrated with the great apes microbiota data. The last part details how to interpret the HTML outputs of HOME.
 
 
-**Citation:** Perez-Lamarque B., Morlon H. Characterizing symbiont inheritance during host-microbiota evolution : application to the great apes microbiota, 2018.
+**Citation:** Perez-Lamarque B., Morlon H. Characterizing symbiont inheritance during host-microbiota evolution : application to the great apes microbiota (in prep.).
 
 
 **Contact:** Benoît Perez-Lamarque, benoit.perez.lamarque@gmail.com
@@ -29,9 +29,9 @@ This document indicates how to use our model of **HO**st-**M**icrobiota **E**vol
 Our model is part on the R package RPANDA (Morlon et al., 2016) availbale on the CRAN or from gitHub.
   
   
-```{r, eval=FALSE}
+```r
 library(devtools)
-install_github("hmorlon/PANDA")
+install_github("hmorlon/PANDA",ref="Benoit")
 
 ```
 
@@ -39,9 +39,10 @@ install_github("hmorlon/PANDA")
 # Simulations:
 
 
-You can *provide a host tree* (e.g. an empirical tree) and simulate the evolution of a mock microbiota on it. Your tree must be binary, rooted and ultrametric. In that case, the filename of the host tree sould be well-formated **host_tree_NAME.tre** (Newick format) and saved in your PATH.
+You can *provide a host tree* (e.g. an empirical tree) and simulate the evolution of a mock microbiota on it. Your tree must be binary, rooted and ultrametric. In that case, the filename of the host tree sould be well-formated **host_tree_NAME.tre** (Newick format) and saved in your working directory.
 
-If you don't provide a host tree, it will random simulate a host tree (with a pure-birth process). 
+
+If you don't provide a host tree, it will randomly simulate a host tree (with a pure-birth process). 
 
 
 
@@ -51,7 +52,7 @@ If you don't provide a host tree, it will random simulate a host tree (with a pu
 
 ```r
 
-setwd("/my_working_directory/") # working directory where all the files will be created. 
+setwd("/my_working_directory/") # working directory where all the files and folders will be created. 
 
 
 # name of your simulation
@@ -95,7 +96,9 @@ n <- 20
 
 ```r
 
-sim_microbiota(name=name, host_tree=host_tree, mu=simulated_mu, nb_cores=nb_cores,name_index=name_index, simul=simul, N=N, proportion_variant=proportion_variant, seed=seed)
+sim_microbiota(name=name, name_index=name_index, simul=simul, 
+provided_tree=host_tree, mu=simulated_mu, N=N, proportion_variant=proportion_variant, 
+seed=seed, nb_cores=nb_cores)
 
 
 
@@ -113,7 +116,7 @@ Then, you can proceed to the **parameters estimation**.
 
 
 #  possible numbers of host-switches to test during the inference
-lambda <- c(1:n) 
+lambda <- c(1:25) 
 
 # number of trees (for Monte-Carlo estimation of the number of switches)
 nb_tree <- 10000 
@@ -128,7 +131,7 @@ raref <- FALSE # if TRUE rarefactions on the number of trees are performed
 
 ```r
 
-HOME_model(name=name, name_index=name_index, nb_cores=nb_cores, seed=seed, nb_tree=nb_tree, lambda=lambda, raref=raref, empirical=FALSE, nb_random=nb_random)
+HOME_model(name=name, name_index=name_index, nb_tree=nb_tree, lambda=lambda, empirical=FALSE, raref=raref, nb_random=nb_random, seed=seed, nb_cores=nb_cores)
 
 ```
 
@@ -164,6 +167,9 @@ You can directly download this example from RPANDA:
 
 ```r
 
+setwd("/my_working_directory/") # working directory where all the files and folders will be created. 
+
+
 example_great_apes_microbiota(name="great_apes")
 
 ```
@@ -181,7 +187,7 @@ name_OTU <-  c("OTU0001","OTU0002","OTU0003")
 
 
 #  possible numbers of host-switches to test during the inference
-lambda <- c(1:n) 
+lambda <- c(1:25) 
 
 # number of trees (for Monte-Carlo estimation of the number of switches)
 nb_tree <- 10000 
@@ -205,7 +211,8 @@ seed <- 1
 ```r
 
 
-HOME_model(name=name, name_index=name_OTU, nb_tree=nb_tree, lambda=lambda, empirical=TRUE, raref=raref, nb_random=nb_random)
+HOME_model(name=name, name_index=name_OTU, nb_tree=nb_tree, lambda=lambda, empirical=TRUE, raref=raref, 
+nb_random=nb_random,  seed=seed, nb_cores=nb_cores)
 
 
 
