@@ -131,7 +131,8 @@ raref <- FALSE # if TRUE rarefactions on the number of trees are performed
 
 ```r
 
-HOME_model(name=name, name_index=name_index, nb_tree=nb_tree, lambda=lambda, empirical=FALSE, raref=raref, nb_random=nb_random, seed=seed, nb_cores=nb_cores)
+HOME_model(name=name, name_index=name_index, nb_tree=nb_tree, lambda=lambda, empirical=FALSE, raref=raref, 
+nb_random=nb_random, seed=seed, nb_cores=nb_cores)
 
 ```
 
