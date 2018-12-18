@@ -227,7 +227,7 @@ nb_random=nb_random,  seed=seed, nb_cores=nb_cores)
 # Interpret Results: 
 
 
-The results of each HOME run are available in the folder "/my_working_directory/figures/". For each OTU, a HTMH file summaries all the results with tables and figures.
+The results of each HOME run are available in the folder "/my_working_directory/figures/". For each OTU, a HTMH file summaries all the results with tables and figures. Here, we provide 3 examples of results interpretations. 
 
 
 # Example 1: Results from a simulated OTU with horizontal transmission
