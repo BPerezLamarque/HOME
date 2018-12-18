@@ -39,10 +39,10 @@ install_github("hmorlon/PANDA",ref="Benoit")
 # Simulations:
 
 
-You can *provide a host tree* (e.g. an empirical tree) and simulate the evolution of a mock microbiota on it. Your tree must be binary, rooted and ultrametric. In that case, the filename of the host tree sould be well-formated **host_tree_NAME.tre** (Newick format) and saved in your working directory.
+You can *provide a host tree* (e.g. an empirical tree) and simulate the evolution of a mock microbiota on it. Your tree must be binary, rooted and ultrametric. You can either directly provide a host tree in the function *sim_microbiota* or you can have the host tree saved in your working directory (thus, its filename must be well-formated **host_tree_"name".tre** in a Newick format).
 
 
-If you don't provide a host tree, it will randomly simulate a host tree (with a pure-birth process). 
+If you don't provide a host tree, it will randomly simulate a host tree (with a pure-birth process) according to the number of tips (i.e. number of host species) you provide. 
 
 
 
@@ -145,13 +145,13 @@ nb_random=nb_random, seed=seed, nb_cores=nb_cores)
 In order to run HOME, you need first to create the microbial alignments for each OTU of the microbiota. The first steps of processing of the raw data (combining [QIIME](http://qiime.org) and [UPARSE](https://www.drive5.com/uparse/) thanks to the [BMP](http://www.brmicrobiome.org/16sillumina) pipelines) and the second steps to make the OTU alignments are available in a bash script [here](https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/make_clusters_OTU.sh).
 
 
-All OTU alignments must be store in a specific folder (where you will run HOME) with the name formatted as **alignment_NAME_OTU.fas**, where "NAME" will be the name our your HOME run and "OTU" is the name of the specific OTU
+All OTU alignments must be store in a specific folder (where you will run HOME) with the name formatted as **alignment_"name"_OTU.fas**, where "NAME" will be the name our your HOME run and "OTU" is the name of the specific OTU
 
 
 
 ## Example of empirical applications - great apes microbiota: 
 
-Let's run HOME for 3 the great apes microbiota. Previously, your working directory must contain the host tree with a filename **host_tree_NAME.tre** (Newick format), and all the OTU alignments with the filenames **alignment_NAME_OTU.fas** (FASTA format).
+Let's run HOME for 3 OTUs from the great apes microbiota. Previously, your working directory must contain the host tree saved with a filename **host_tree_"name".tre** (Newick format), and all the OTU alignments with the filenames **alignment_"name"_OTU.fas** (FASTA format). You can also directly provide the host tree in the function *HOME_model*. 
 
 
 For instance, in this empirical application, you must provide:
