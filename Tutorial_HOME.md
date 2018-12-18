@@ -39,10 +39,10 @@ install_github("hmorlon/PANDA",ref="Benoit")
 # Simulations:
 
 
-You can *provide a host tree* (e.g. an empirical tree) and simulate the evolution of a mock microbiota on it. Your tree must be binary, rooted and ultrametric. You can either directly provide a host tree in the function *sim_microbiota* or you can have the host tree saved in your working directory (thus, its filename must be well-formated **host_tree_"name".tre** in a Newick format).
+You can *provide a host tree* (e.g. an empirical tree) and simulate the evolution of a mock microbiota on it. Your tree must be binary, rooted and ultrametric. You can either directly provide a host tree in the function *sim_microbiota*, or you can have the host tree saved in your working directory (thus, its filename must be well-formated **host_tree_"name".tre** in a Newick format).
 
 
-If you don't provide a host tree, it will randomly simulate a host tree (with a pure-birth process) according to the number of tips (i.e. number of host species) you provide. 
+If you don't provide a host tree, the function *sim_microbiota* will randomly simulate a host tree (with a pure-birth process) according to the number of tips (i.e. number of host species) you have provided. 
 
 
 
@@ -58,15 +58,25 @@ setwd("/my_working_directory/") # working directory where all the files and fold
 # name of your simulation
 name <- "simulation_tree_1" 
 
-# name of the different microbial OTU of your simulations (hereafter you will model th evolution of 6 OTUs on your host tree)
-name_index <-  c("S1","S2","S3","S4","S5","S6")  
+# name of the different microbial OTU of your simulations (hereafter you will model the evolution of 6 OTUs on your host tree)
+name_index <-  c("OTU1","OTU2","OTU3","OTU4","OTU5","OTU6")  
 
 # simulated scenarii for each OTU: 
 simul <- c(0,1,3,5,"indep","indep")
-# each simulated OTU has if own evolutionary history:
+# each simulated OTU has its own evolutionary history:
 # i) "0" simulates strict vertical transmission (i.e. O host-switch)
 # ii) any positive integer simulates horizontal transmissions (with this given number of host-switches)
 # iii) "indep" simulates environmental acquisition (i.e. independent evolutions) 
+
+
+
+# Load the host tree to simulate the evolution of the OTUs on it 
+host_tree <- read.tree("my_tree.tre")
+
+# if you don't provide a host tree, you must add the number of tips of the simulated host tree
+# n <- 20  
+
+
 
 # simulated substitution rate 
 simulated_mu <- 1  # simulated_mu=1 corresponds to on average 1 mutation per nucleotide
@@ -84,11 +94,7 @@ nb_cores <- 1 # if you don't run in a multi-cores machine, the default value is 
 # seed used for simulations 
 seed <- 1 
 
-# Load the host tree to simulate a microbiota on it 
-host_tree <- read.tree("my_tree.tre")
 
-# if you don't provide a host tree, you must add the size of the simulated host tree
-n <- 20  
 
 ```
 
@@ -106,12 +112,10 @@ seed=seed, nb_cores=nb_cores)
 
 
 
-Then, you can proceed to the **parameters estimation**. 
+Then, you can proceed to the **parameters estimation** by running HOME on the simulated microbiota.
 
 
 ```r
-
-##  Run HOME on the simulated microbiota
 
 
 
@@ -121,11 +125,11 @@ lambda <- c(1:25)
 # number of trees (for Monte-Carlo estimation of the number of switches)
 nb_tree <- 10000 
 
-# number of randomizations in the model selection testing independent evolutions 
+# number of randomizations in the model selection testing independent evolutions (R parameter)
 nb_random <- 10
 
 # rarefactions on the number of trees
-raref <- FALSE # if TRUE rarefactions on the number of trees are performed
+raref <- FALSE # if TRUE rarefactions on the number of trees will be performed
 
 ```
 
@@ -142,16 +146,16 @@ nb_random=nb_random, seed=seed, nb_cores=nb_cores)
 ## Creating alignments for each OTU
 
 
-In order to run HOME, you need first to create the microbial alignments for each OTU of the microbiota. The first steps of processing of the raw data (combining [QIIME](http://qiime.org) and [UPARSE](https://www.drive5.com/uparse/) thanks to the [BMP](http://www.brmicrobiome.org/16sillumina) pipelines) and the second steps to make the OTU alignments are available in a bash script [here](https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/make_clusters_OTU.sh).
+In order to run HOME, you need first to create the microbial alignments for each OTU of the empirical microbiota. The first step consists in the usual processing the raw data into OTUs (here we propose to combine [QIIME](http://qiime.org) and [UPARSE](https://www.drive5.com/uparse/) thanks to the [BMP](http://www.brmicrobiome.org/16sillumina) pipelines). Thus, the second step makes the OTU alignments for running HOME on them (using our own bash script: for each core OTU, it picks the most abundant sequence for every host and align them). An example of scripts to use for preparing alignments before running HOME is available in a bash script [here](https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/make_clusters_OTU.sh).
 
 
-All OTU alignments must be store in a specific folder (where you will run HOME) with the name formatted as **alignment_"name"_OTU.fas**, where "NAME" will be the name our your HOME run and "OTU" is the name of the specific OTU
+All OTU alignments must be stored in a specific folder (i.e. the working directory where you will run HOME) with the filenames formatted as **alignment_"name"_"OTUXXX".fas**, where "name" will be the name our your HOME run ("name"), and "OTUXXX" is the name of the specific OTU ("name_index"). 
 
 
 
 ## Example of empirical applications - great apes microbiota: 
 
-Let's run HOME for 3 OTUs from the great apes microbiota. Previously, your working directory must contain the host tree saved with a filename **host_tree_"name".tre** (Newick format), and all the OTU alignments with the filenames **alignment_"name"_OTU.fas** (FASTA format). You can also directly provide the host tree in the function *HOME_model*. 
+Let's run HOME for 3 OTUs from the great apes microbiota. First, your working directory must contain the host tree saved with a filename **host_tree_"name".tre** (Newick format), and all the OTU alignments with the filenames **alignment_"name"_"OTUXXX".fas** (FASTA format). You can also directly provide the host tree in the function *HOME_model*. 
 
 
 For instance, in this empirical application, you must provide:
@@ -187,7 +191,7 @@ name <- "great_apes"
 name_OTU <-  c("OTU0001","OTU0002","OTU0003")
 
 
-#  possible numbers of host-switches to test during the inference
+# possible numbers of host-switches to test during the inference
 lambda <- c(1:25) 
 
 # number of trees (for Monte-Carlo estimation of the number of switches)
@@ -221,6 +225,10 @@ nb_random=nb_random,  seed=seed, nb_cores=nb_cores)
 
 
 # Interpret Results: 
+
+
+The results of each HOME run are available in the folder "/my_working_directory/figures/". For each OTU, a HTMH file summaries all the results with tables and figures.
+
 
 # Example 1: Results from a simulated OTU with horizontal transmission
 
