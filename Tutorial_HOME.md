@@ -232,7 +232,7 @@ The results of each HOME run are available in the folder "/my_working_directory/
 
 # Example 1: Results from a simulated OTU with horizontal transmission
 
-## Description of the data - Simulation
+## Description of the simulated data
 
 <center>
 
@@ -243,13 +243,13 @@ Simulated substitution rate:|	1
 Number of simulated switches:|	3
 Seed for simulations:|	30
 Sequences length:	|300
-Probability variant sites:|	0.1
-Number of invariant sites:|	281
+Probability segregated sites:|	0.1
+Number of unvaried sites:|	281
 Number of strictly variant sites:|	19
 
 </center>
 
-## Summary of the most likely scenario:
+## Summary of the inferred scenario:
 
 Parameters  | Values
 ------------- | -------------
@@ -358,7 +358,7 @@ Host tree:
 
 # Example 2: Results from a simulated OTU with strict vertical transmission
 
-## Description of the data - Simulation
+## Description of the simulated data
 
 Parameters  | Values
 ------------- | -------------
@@ -367,11 +367,11 @@ Simulated substitution rate:|	1
 Number of simulated switches:|	0
 Seed for simulations:|	30
 Sequences length:	|300
-Probability variant sites:|	0.1
-Number of invariant sites:|	279
+Probability segregated sites:|	0.1
+Number of unvaried sites:|	279
 Number of strictly variant sites:|	21
 
-## Summary of the most likely scenario:
+## Summary of the inferred scenario:
 
 Parameters  | Values
 ------------- | -------------
@@ -464,7 +464,7 @@ A  |C |G |T
 
 # Example 3: Results from a simulated OTU with environnemental acquisition (independent evolution)
 
-## Description of the data - Simulation
+## Description of the simulated data
 
 Parameters  | Values
 ------------- | -------------
@@ -473,11 +473,11 @@ Simulated substitution rate:|	1
 Number of simulated switches:|	independent
 Seed for simulations:|	30
 Sequences length:	|300
-Probability variant sites:|	0.1
-Number of invariant sites:|	278
+Probability segregated sites:|	0.1
+Number of unvaried sites:|	278
 Number of strictly variant sites:|	22
 
-## Summary of the most likely scenario:
+## Summary of the inferred scenario:
 
 Parameters  | Values
 ------------- | -------------
