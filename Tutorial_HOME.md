@@ -230,6 +230,7 @@ nb_random=nb_random,  seed=seed, nb_cores=nb_cores)
 The results of each HOME run are available in the folder "/my_working_directory/figures/". For each OTU, a HTMH file summaries all the results with tables and figures. Here, we provide 3 examples of results interpretations. 
 
 
+
 # Example 1: Results from a simulated OTU with horizontal transmission
 
 ## Description of the simulated data
@@ -271,7 +272,7 @@ ksi | mu | -log(Likelihood)
 3 | 0.8519 | 137.151
 
 
-Minus log likelihood as a function of the number of switches:
+Minus log likelihood as a function of the number of host-switches (the minimum of this plot corresponds to the estimated number of switches):
 
 <p align="center">
     <img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_simul_C1_S65.png" width="500">
@@ -396,7 +397,7 @@ ksi | mu | -log(Likelihood)
 
 
 
-Minus log likelihood as a function of the number of switches:
+Minus log likelihood as a function of the number of switches (the minimum of this plot corresponds to the estimated number of switches):
 <p align="center">
 <img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_simul_C1_S5.png" width="500">
 </p>
@@ -500,7 +501,7 @@ ksi | mu | -log(Likelihood)
 ------------- | ------------- | -------------
 25 | 3.38 | 270.3
 
-Minus log likelihood as a function of the number of switches:
+Minus log likelihood as a function of the number of switches (the minimum of this plot corresponds to the estimated number of switches):
 
 <p align="center">
 <img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_simul_C1_S124.png" width="500">
