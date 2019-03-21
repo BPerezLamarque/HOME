@@ -31,7 +31,7 @@ Our model is part on the R package RPANDA (Morlon et al., 2016) availbale on the
   
 ```r
 library(devtools)
-install_github("hmorlon/PANDA",ref="Benoit")
+install_github("hmorlon/PANDA",ref="Benoit", dependencies = TRUE)
 
 ```
 
