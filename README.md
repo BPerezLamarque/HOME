@@ -26,7 +26,7 @@ This document indicates how to use our model of **HO**st-**M**icrobiota **E**vol
 
 # Installation:
   
-Our model is part on the R package RPANDA (Morlon et al., 2016) availbale on the CRAN or from gitHub.
+Our model is part on the R package RPANDA (Morlon et al., 2016) availbale on the CRAN or from GitHub.
   
   
 ```r
