@@ -151,7 +151,7 @@ nb_random=nb_random, seed=seed, nb_cores=nb_cores)
 ## Creating alignments for each OTU
 
 
-In order to run HOME, you need first to create the microbial alignments for each OTU of the empirical microbiota. The first step consists in the usual clustering of the raw reads into OTUs. Thus, the second step makes the OTU alignments for running HOME on them (using our own bash script: for each core OTU, it picks the most abundant sequence for every host and align them). Different pipelines can be used to obtain these microbial alignments for each OTU.
+In order to run HOME, you need first to create the microbial alignments for each OTU of the empirical microbiota. The **first step** consists in the usual clustering of the raw reads into OTUs. Thus, the **second step** makes the OTU alignments for running HOME on them (using our own bash script: for each core OTU, it picks the most abundant sequence for every host and align them). Different pipelines can be used to obtain these microbial alignments for each OTU.
 
 At the end of both steps, all OTU alignments must be stored in a specific folder (i.e. the working directory where you will run HOME) with the filenames formatted as **alignment_"name"_"OTUXXX".fas**, where "name" will be the name our your HOME run ("name"), and "OTUXXX" is the name of the specific OTU ("name_index").
 

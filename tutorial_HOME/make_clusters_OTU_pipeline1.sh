@@ -27,9 +27,8 @@ done <$map_file
 
 
 
-
 ###############################################################################################
-######################        FOR EACH THRESHOLD (E.G. 97%)         ###########################
+###############################   STEP1:  OTU CLUSTERING    (E.G. 97%)   ######################
 ###############################################################################################
 
 
@@ -74,13 +73,17 @@ make_otu_table.py -i OTU_table_97_temp.txt -t cluster_OTU_97_tax_assignments.txt
 biom summarize-table -i  OTU_table_97.biom -o OTU_table_summary.txt
 biom convert -i  OTU_table_97.biom  -o OTU_table_97.txt --to-tsv
 
+
+
+###############################################################################################
+###############################   STEP2:  MAKE OTU ALIGNMENTS         #########################
+###############################################################################################
+
+
+#  SELECT THE 75% CORE OTUs
+
 echo "Compute core OTUs:"
 compute_core_microbiome.py -i OTU_table_97.biom -o cores/
-
-
-############################
-#  SELECT THE 75% CORE OTUs
-############################
 
 core=75
 mkdir $path/alignments/
@@ -89,6 +92,7 @@ cp cores/core_otus_75.txt $path/alignments/$thre
 
 grep -o "OTU[0-9][0-9]*" cores/core_otus_75.txt > $path/alignments/$thre/list_core_OTU_97_75.txt #LIST OF CORES OTUs
 
+# MAKE ALIGNMENTS
 
 thre=97
 cd $path/alignments/$thre
