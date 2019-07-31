@@ -16,7 +16,7 @@ This document indicates how to use our model of **HO**st-**M**icrobiota **E**vol
 
 # Contents:
 **Installation;**\
-**Run Simulations;**\
+**[Run Simulations;](#run-simulations)**\
 **Run Empirical application;**\
 **Interpretation of Results:**\
      *       Example 1: Results from a simulation with horizontal transmission;\
@@ -24,7 +24,7 @@ This document indicates how to use our model of **HO**st-**M**icrobiota **E**vol
        *     Example 3: Results from a simulation with environmental acquisition;
 
 
-[Link](#simulations)
+
 
 # Installation:
   
@@ -38,7 +38,7 @@ install_github("hmorlon/PANDA",ref="Benoit", dependencies = TRUE)
 ```
 
 
-# Simulations:
+# Run Simulations:
 
 
 You can *provide a host tree* (e.g. an empirical tree) and simulate the evolution of a mock microbiota on it. Your tree must be binary, rooted and ultrametric. You can either directly provide a host tree in the function *sim_microbiota*, or you can have the host tree saved in your working directory (thus, its filename must be well-formated **host_tree_"name".tre** in a Newick format).
