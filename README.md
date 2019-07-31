@@ -16,8 +16,10 @@ This document indicates how to use our model of **HO**st-**M**icrobiota **E**vol
 
 # Contents:
 **[Installation](#installation);**\
-**[Run Simulations](#run-simulations);**\
-**[Run Empirical application](#run-empirical-application);**\
+**[Running Simulations](#running-simulations);**\
+**[Running Empirical application](#running-empirical-applications);**\
+    *       Creating microbial alignments for each OTU;\
+    *       Running HOME on the empirical application;
 **[Interpretation of the Results](#interpretation-of-the-results):**\
      *       Example 1: Results from a simulation with horizontal transmission;\
       *      Example 2: Results from a simulation with strict vertical transmission;\
@@ -38,7 +40,7 @@ install_github("hmorlon/PANDA",ref="Benoit", dependencies = TRUE)
 ```
 
 
-# Run Simulations:
+# Running Simulations:
 
 
 You can *provide a host tree* (e.g. an empirical tree) and simulate the evolution of a mock microbiota on it. Your tree must be binary, rooted and ultrametric. You can either directly provide a host tree in the function *sim_microbiota*, or you can have the host tree saved in your working directory (thus, its filename must be well-formated **host_tree_"name".tre** in a Newick format).
@@ -143,7 +145,7 @@ nb_random=nb_random, seed=seed, nb_cores=nb_cores)
 ```
 
 
-# Run Empirical applications: 
+# Running Empirical applications:
 
 ## Creating alignments for each OTU
 
@@ -156,7 +158,7 @@ Examples of bash pipelines to prepare alignments before running HOME are availab
 ### Pipeline 1: OTU clustering using QIIME1 and UPARSE
 
 This pipeline clusters OTU given a fixed similarity threshold (95, 97, or 99%) by combining [QIIME1](http://qiime.org) and [UPARSE](https://www.drive5.com/uparse/) thanks to the [BMP](https://www.brmicrobiome.org/clusteringmeth) pipelines.
-The bash pipelines used for studying the microbiota of great apes [(Perez-Lamarque & Morlon, 2019)](https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.13063)is available [here](https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/make_clusters_OTU.sh). Although, this pipeline has been designed for 454 sequencing technology, it can also be used on Illumina datasets.
+The bash pipelines used for studying the microbiota of great apes [(Perez-Lamarque & Morlon, 2019)](https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.13063) is available [here](https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/make_clusters_OTU.sh). Although, this pipeline has been designed for 454 sequencing technology, it can also be used on Illumina datasets.
 
 
 
@@ -174,7 +176,7 @@ All OTU alignments must be stored in a specific folder (i.e. the working directo
 Let's run HOME for 3 OTUs from the great apes microbiota. First, your working directory must contain the host tree saved with a filename **host_tree_"name".tre** (Newick format), and all the OTU alignments with the filenames **alignment_"name"_"OTUXXX".fas** (FASTA format). You can also directly provide the host tree in the function *HOME_model*. 
 
 
-For instance, in this empirical application, you must provide:
+For instance, in this empirical application (name="great_apes"), you must provide:
 
 - */my_working_directory/host_tree_great_apes.tre*
 - */my_working_directory/alignment_great_apes_OTU0001.fas*
@@ -195,8 +197,9 @@ example_great_apes_microbiota(name="great_apes")
 
 ```
 
+## Running HOME on the empirical application
 
-## Parameters of the empirical application 
+### Parameters of the empirical application
 
 ```r
 
@@ -227,7 +230,7 @@ seed <- 1
 
 ```
 
-## Run HOME on the empirical application 
+### HOME inference
 
 ```r
 
