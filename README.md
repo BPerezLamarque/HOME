@@ -24,6 +24,8 @@ This document indicates how to use our model of **HO**st-**M**icrobiota **E**vol
        *     Example 3: Results from a simulation with environmental acquisition;
 
 
+[Link](#imulations)
+
 # Installation:
   
 Our model is part on the R package RPANDA (Morlon et al., 2016) available on the CRAN or from GitHub.
