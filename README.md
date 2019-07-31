@@ -15,10 +15,10 @@ This document indicates how to use our model of **HO**st-**M**icrobiota **E**vol
 
 
 # Contents:
-**Installation;**\
-**[Run Simulations;](#run-simulations)**\
-**Run Empirical application;**\
-**Interpretation of Results:**\
+**[Installation](#installation);**\
+**[Run Simulations](#run-simulations);**\
+**[Run Empirical application](#run-empirical-application);**\
+**[Interpretation of the Results](#interpretation-of-the-results):**\
      *       Example 1: Results from a simulation with horizontal transmission;\
       *      Example 2: Results from a simulation with strict vertical transmission;\
        *     Example 3: Results from a simulation with environmental acquisition;
@@ -240,7 +240,7 @@ nb_random=nb_random,  seed=seed, nb_cores=nb_cores)
 ```
 
 
-# Interpret Results: 
+# Interpretation of the Results:
 
 
 The results of each HOME run are available in the folder "/my_working_directory/figures/". For each OTU, a HTMH file summaries all the results with tables and figures. Here, we provide 3 examples of results interpretations. 
