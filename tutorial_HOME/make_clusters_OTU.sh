@@ -1,12 +1,7 @@
 ####    CLUSTERING SEQUENCES
 
-#####  File of reads by sample (faster analyses)
-while read sample; do
-grep -A1 $sample $path/ochman_example_analysis/seqs.fna  > $path/ochman_original_data/seqs_$sample.fas
-done <$path/alignments/samples.txt
 
 
-####### SCRIPT
 
 path="YOUR_WORKING_DIRECTORY"
 path_usearch=/Users/applications/uparse/usearch  #PATH USEARCH
@@ -15,8 +10,19 @@ path_db=/Users/database/ #PATH GREENGENES AND RDP DATABASES
 
 source /macqiime/configs/bash_profile.txt  #LOAD QIIME (see http://qiime.org)
 
+
+#####  File of reads by sample (faster analyses)
+
+
 seqs_file=$path/ochman_original_data/seqs.fna #ALL READS
-map_file=$path/metadata/samples.txt #METADAT FILE
+map_file=$path/metadata/samples.txt #METADATA FILE (list of sample 
+
+
+while read sample; do
+grep -A1 $sample $seqs_file  > $path/ochman_original_data/seqs_$sample.fas
+done <$map_file
+
+
 
 
 
@@ -27,7 +33,7 @@ map_file=$path/metadata/samples.txt #METADAT FILE
 
 
 ###########################
-#  OTUs CLUSTERING
+#  OTU CLUSTERING
 ###########################
 
 thre=97  #THRESHOLD VALUE
