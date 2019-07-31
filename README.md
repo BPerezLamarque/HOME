@@ -153,22 +153,25 @@ nb_random=nb_random, seed=seed, nb_cores=nb_cores)
 
 In order to run HOME, you need first to create the microbial alignments for each OTU of the empirical microbiota. The first step consists in the usual clustering of the raw reads into OTUs. Thus, the second step makes the OTU alignments for running HOME on them (using our own bash script: for each core OTU, it picks the most abundant sequence for every host and align them). Different pipelines can be used to obtain these microbial alignments for each OTU.
 
+At the end of both steps, all OTU alignments must be stored in a specific folder (i.e. the working directory where you will run HOME) with the filenames formatted as **alignment_"name"_"OTUXXX".fas**, where "name" will be the name our your HOME run ("name"), and "OTUXXX" is the name of the specific OTU ("name_index").
+
+
 Examples of bash pipelines to prepare alignments before running HOME are available in the following.
+
 
 
 ### Pipeline 1: OTU clustering using QIIME1 and UPARSE
 
-This pipeline clusters OTU given a fixed similarity threshold (95, 97, or 99%) by combining [QIIME1](http://qiime.org) and [UPARSE](https://www.drive5.com/uparse/) thanks to the [BMP](https://www.brmicrobiome.org/clusteringmeth) pipelines.
+This pipeline clusters OTU given a fixed similarity threshold (97%, or any other value) by combining [QIIME1](http://qiime.org) and [UPARSE](https://www.drive5.com/uparse/) thanks to the [BMP](https://www.brmicrobiome.org/clusteringmeth) pipelines.
 The bash pipelines used for studying the microbiota of great apes [(Perez-Lamarque & Morlon, 2019)](https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.13063) is available [here](https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/make_clusters_OTU.sh). Although, this pipeline has been designed for 454 sequencing technology, it can also be used on Illumina datasets.
 
-
-
 ### Pipeline 2: OTU clustering using VSEARCH (SWARM OTUs)
+
+This pipeline clusters reads into SWARM OTUs ([Mahé et al., 2014](https://peerj.com/articles/593/); [Mahé et al., 2015](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4690345/pdf/peerj-03-1420.pdf)): OTU are defined without chosing an global clustering threshold. The step 1 of this pipeline is a direct application of [Frédéric Mahé's metabarcoding pipeline](https://github.com/frederic-mahe/swarm/wiki/Fred's-metabarcoding-pipeline) using [VSEARCH](https://github.com/torognes/vsearch) and [SWARM](https://github.com/torognes/swarm). This pipeline is specifically designed for Illumina datasets. 
 
 
 ### Pipeline 3: OTU clustering using VSEARCH (OTUs at 97%)
 
-All OTU alignments must be stored in a specific folder (i.e. the working directory where you will run HOME) with the filenames formatted as **alignment_"name"_"OTUXXX".fas**, where "name" will be the name our your HOME run ("name"), and "OTUXXX" is the name of the specific OTU ("name_index"). 
 
 
 

@@ -1,6 +1,7 @@
-####    CLUSTERING SEQUENCES
 
+####    PIPELINE 1 - HOME
 
+####    CLUSTERING SEQUENCES  AND  MAKE ALIGNMENTS
 
 
 path="YOUR_WORKING_DIRECTORY"
@@ -14,7 +15,7 @@ source /macqiime/configs/bash_profile.txt  #LOAD QIIME (see http://qiime.org)
 #### GREAT APES DATASET (https://doi.org/10.5061/dryad.023s6/3 (Sanders, et al., 2014)).
 
 
-seqs_file=$path/ochman_original_data/seqs.fna #FASTA READS (Fasta file of all reads with sample name specified in the header; see example https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/seqs.fna)
+seqs_file=$path/ochman_original_data/seqs.fna #FASTA READS (FASTA file of all reads with sample name specified in the header; see example https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/seqs.fna)
 
 map_file=$path/metadata/samples.txt #METADATA FILE (list of sample; see example https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/samples.txt)
 
