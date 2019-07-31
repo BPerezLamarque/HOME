@@ -8,7 +8,7 @@
 from __future__ import print_function
 
 __author__ = "Frédéric Mahé <frederic.mahe@cirad.fr> modified by Benoit Perez-Lamarque <benoit.perez@ens.fr>"
-__date__ = "2019/05/07"
+__date__ = "2019/03/07"
 __version__ = "$Revision: 5.0"
 
 import os
@@ -27,20 +27,19 @@ def representatives_parse():
     """
     Get seed sequences.
     """
-    separator = ";size="
     representatives_file = sys.argv[1]
     representatives = dict()
     with open(representatives_file, "rU") as representatives_file:
         for line in representatives_file:
             if line.startswith(">"):
-                amplicon = line.strip(">;\n").split(separator)[0]
+                amplicon = line.strip(">;\n")
             else:
-                representatives[amplicon] = line.strip()
+                representatives[amplicon] = line.strip("\n")
 
     return representatives
 
 
-def stats_parse():
+def stats_parse_old():
     """
     Map OTU seeds and stats.
     """
@@ -61,19 +60,41 @@ def stats_parse():
     return stats, sorted_stats, seeds
 
 
+
+def stats_parse():
+    """
+    Map OTU seeds and stats.
+    """
+    separator = "   "
+    stats_file = sys.argv[2]
+    stats = dict()
+    seeds = dict()
+    with open(stats_file, "rU") as stats_file:
+        for line in stats_file:
+            cloud, seed = line.strip().split(separator)[0:2]
+            stats[cloud] = 1
+            seeds[cloud] = (1, 1)
+    # Sort OTUs by decreasing mass
+    sorted_stats = sorted(stats.items(),
+                          key=operator.itemgetter(1, 0))
+    sorted_stats.reverse()
+
+    return stats, sorted_stats, seeds
+
+
 def swarms_parse():
     """
     Map OTUs.
     """
-    separator = "_[0-9]+|;size=[0-9]+;?| "  # parsing of abundance annotations
+    separator = "\t"
     swarms_file = sys.argv[3]
     swarms = dict()
     with open(swarms_file, "rU") as swarms_file:
         for line in swarms_file:
             line = line.strip()
-            amplicons = re.split(separator, line)[0::2]
+            amplicons = re.split(separator, line)[0::]
             seed = amplicons[0]
-            swarms[seed] = [amplicons]
+            swarms[seed] = [amplicons[1::]]
 
     return swarms
 
@@ -101,7 +122,6 @@ def uchime_parse():
     return uchime
 
 
-
 def stampa_parse():
     """
     Map amplicon ids and taxonomic assignments.
@@ -121,7 +141,6 @@ def fasta_parse():
     """
     Map amplicon ids, abundances and samples.
     """
-    separator = ";size="
     fasta_files = sys.argv[6:]
     samples = dict()
     amplicons2samples = dict()
@@ -132,8 +151,8 @@ def fasta_parse():
         with open(fasta_file, "rU") as fasta_file:
             for line in fasta_file:
                 if line.startswith(">"):
-                    amplicon, abundance = line.strip(">;\n").split(separator)
-                    abundance = int(abundance)
+                    amplicon = line.strip(">;\n")
+                    abundance = 1
                     if amplicon not in amplicons2samples:
                         amplicons2samples[amplicon] = {sample: abundance}
                     else:
@@ -151,7 +170,8 @@ def fasta_parse():
 
 def print_table(representatives, stats, sorted_stats,
                 swarms, uchime, amplicons2samples,
-                samples, seeds, stampa):
+                samples, seeds,
+                stampa):
     """
     Export results.
     """
@@ -163,6 +183,7 @@ def print_table(representatives, stats, sorted_stats,
           "\t".join(samples),
           sep="\t", file=sys.stdout)
 
+    # Print table content
     i = 1
     for seed, abundance in sorted_stats:
         sequence = representatives[seed]
@@ -174,18 +195,20 @@ def print_table(representatives, stats, sorted_stats,
         spread = len([occurrences[sample] for sample in samples if occurrences[sample] > 0])
         sequence_abundance, cloud = seeds[seed]
 
-
+        
+        # Chimera checking (deal with incomplete cases. Is it useful?)
         if seed in uchime:
             chimera_status = uchime[seed]
         else:
             chimera_status = "NA"
 
-
+        # Chimera checking (deal with incomplete cases. Is it useful?)
         if seed in stampa:
             identity, taxonomy = stampa[seed]
         else:
             identity, taxonomy = "NA", "NA"
 
+        # output
         print(i, abundance, cloud,
               seed, len(sequence), sequence_abundance,
               chimera_status, spread, sequence,
@@ -201,21 +224,29 @@ def main():
     """
     Read all fasta files and build a sorted OTU contingency table.
     """
+    #print("Parse taxonomic results")
     representatives = representatives_parse()
 
+    #print("Parse stats")
     stats, sorted_stats, seeds = stats_parse()
 
+#print("Parse swarms")
     swarms = swarms_parse()
 
+#print("Parse uchime")
     uchime = uchime_parse()
 
+    # Parse taxonomic assignment results
     stampa = stampa_parse()
     
+    #print("Parse fasta files")
     amplicons2samples, samples = fasta_parse()
 
-    print_table(representatives, stats, sorted_stats, swarms,
-                uchime, amplicons2samples, samples,
-                seeds, stampa)
+#print("Print table header")
+    print_table(representatives, stats, sorted_stats,
+            swarms,uchime, amplicons2samples, samples,
+            seeds,
+            stampa)
 
     return
 
