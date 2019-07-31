@@ -11,15 +11,16 @@ path_db=/Users/database/ #PATH GREENGENES AND RDP DATABASES
 source /macqiime/configs/bash_profile.txt  #LOAD QIIME (see http://qiime.org)
 
 
-#####  File of reads by sample (faster analyses)
+#### GREAT APES DATASET (https://doi.org/10.5061/dryad.023s6/3 (Sanders, et al., 2014)).
 
 
-seqs_file=$path/ochman_original_data/seqs.fna #ALL READS
-map_file=$path/metadata/samples.txt #METADATA FILE (list of sample 
+seqs_file=$path/ochman_original_data/seqs.fna #FASTA READS (Fasta file of all reads with sample name specified in the header; see example https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/seqs.fna)
+
+map_file=$path/metadata/samples.txt #METADATA FILE (list of sample; see example https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/samples.txt)
 
 
 while read sample; do
-grep -A1 $sample $seqs_file  > $path/ochman_original_data/seqs_$sample.fas
+    grep -A1 $sample $seqs_file  > $path/ochman_original_data/seqs_$sample.fas
 done <$map_file
 
 

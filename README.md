@@ -8,7 +8,7 @@
 This document indicates how to use our model of **HO**st-**M**icrobiota **E**volution. The first part details how to simulate mock microbiota. The second part details how to perform an empirical application; it is illustrated with the great apes microbiota data. The last part details how to interpret the HTML outputs of HOME.
 
 
-**Citation:** Perez-Lamarque B., Morlon H. Characterizing symbiont inheritance during host-microbiota evolution : application to the great apes microbiota (in prep.).
+**Citation:** Perez‐Lamarque, B., & Morlon, H. (2019). [Characterizing symbiont inheritance during host‐microbiota evolution: application to the great apes gut microbiota.](https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.13063) Molecular Ecology Resources.
 
 
 **Contact:** Benoît Perez-Lamarque, benoit.perez.lamarque@gmail.com
@@ -146,8 +146,22 @@ nb_random=nb_random, seed=seed, nb_cores=nb_cores)
 ## Creating alignments for each OTU
 
 
-In order to run HOME, you need first to create the microbial alignments for each OTU of the empirical microbiota. The first step consists in the usual processing the raw data into OTUs (here we propose to combine [QIIME1](http://qiime.org) and [UPARSE](https://www.drive5.com/uparse/) thanks to the [BMP](https://www.brmicrobiome.org/clusteringmeth) pipelines). Thus, the second step makes the OTU alignments for running HOME on them (using our own bash script: for each core OTU, it picks the most abundant sequence for every host and align them). An example of scripts to use for preparing alignments before running HOME is available in a bash script [here](https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/make_clusters_OTU.sh).
+In order to run HOME, you need first to create the microbial alignments for each OTU of the empirical microbiota. The first step consists in the usual clustering of the raw reads into OTUs. Thus, the second step makes the OTU alignments for running HOME on them (using our own bash script: for each core OTU, it picks the most abundant sequence for every host and align them). Different pipelines can be used to obtain these microbial alignments for each OTU.
 
+Examples of bash pipelines to prepare alignments before running HOME are available in the following.
+
+
+### Pipeline 1: OTU clustering using QIIME1 and UPARSE
+
+This pipeline clusters OTU given a fixed similarity threshold (95, 97, or 99%) by combining [QIIME1](http://qiime.org) and [UPARSE](https://www.drive5.com/uparse/) thanks to the [BMP](https://www.brmicrobiome.org/clusteringmeth) pipelines.
+The bash pipelines used for studying the microbiota of great apes [(Perez-Lamarque & Morlon, 2019)](https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.13063)is available [here](https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/make_clusters_OTU.sh). Although, this pipeline has been designed for 454 sequencing technology, it can also be used on Illumina datasets.
+
+
+
+### Pipeline 2: OTU clustering using VSEARCH (SWARM OTUs)
+
+
+### Pipeline 3: OTU clustering using VSEARCH (OTUs at 97%)
 
 All OTU alignments must be stored in a specific folder (i.e. the working directory where you will run HOME) with the filenames formatted as **alignment_"name"_"OTUXXX".fas**, where "name" will be the name our your HOME run ("name"), and "OTUXXX" is the name of the specific OTU ("name_index"). 
 
