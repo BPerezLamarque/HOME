@@ -19,6 +19,7 @@ This document indicates how to use our model of **HO**st-**M**icrobiota **E**vol
 **[Running Simulations](#running-simulations);**\
 **[Running Empirical application](#running-empirical-applications);**\
     *       Creating microbial alignments for each OTU;\
+    *       Example of empirical applications - great apes microbiota;\
     *       Running HOME on the empirical application;
 **[Interpretation of the Results](#interpretation-of-the-results):**\
      *       Example 1: Results from a simulation with horizontal transmission;\
