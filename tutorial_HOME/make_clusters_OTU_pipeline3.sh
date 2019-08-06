@@ -154,6 +154,10 @@ python3 \
     "${ASSIGNMENTS}" \
     reads_S[0-9]*_16s.fa > "${OTU_TABLE}"
 
+#NB: check that all the individual fasta files from each sample is present by typing "ls reads_S[0-9]*_16s.fa"
+
+
+
 # Filter per OTU size or spread, quality and chimeric status:
 
 TABLE="OTU_table_16S_97.txt"

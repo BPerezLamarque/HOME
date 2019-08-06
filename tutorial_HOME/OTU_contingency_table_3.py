@@ -132,6 +132,7 @@ def stampa_parse():
     with open(stampa_file, "rU") as stampa_file:
         for line in stampa_file:
             amplicon, identity, taxonomy = line.strip().split(separator)
+            #amplicon, identity, id, id2, taxonomy = line.strip().split(separator)
             stampa[amplicon] = (identity, taxonomy)
 
     return stampa
