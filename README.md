@@ -127,7 +127,7 @@ Then, you can proceed to the **parameters estimation** by running HOME on the si
 #  possible numbers of host-switches to test during the inference
 lambda <- c(1:25) 
 
-# number of trees (for Monte-Carlo estimation of the number of switches)
+# number of trees (for Monte Carlo estimation of the number of switches)
 nb_tree <- 10000 
 
 # number of randomizations in the model selection testing independent evolutions (R parameter)
@@ -218,7 +218,7 @@ name_OTU <-  c("OTU0001","OTU0002","OTU0003")
 # possible numbers of host-switches to test during the inference
 lambda <- c(1:25) 
 
-# number of trees (for Monte-Carlo estimation of the number of switches)
+# number of trees (for Monte Carlo estimation of the number of switches)
 nb_tree <- 10000 
 
 # number of randomizations in the model selection testing independent evolutions 
