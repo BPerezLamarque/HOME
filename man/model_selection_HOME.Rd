@@ -10,8 +10,7 @@ This function performs the model selections of HOME testing the null hypotheses 
 
 }
 
-\usage{model_selection_HOME(index, name, nb_tree=10000, lambda=seq(1,25), nb_random=10,
-seed=1, nb_cores=1, overwrite=TRUE)
+\usage{model_selection_HOME(index,name,nb_tree=10000,lambda=c(1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25),nb_cores=1,seed=1,nb_random=10,overwrite=TRUE,...)
 }
 
 \arguments{
@@ -44,6 +43,9 @@ a number of cores to run the analyses (ideally, it should be equal to the length
 
 \item{overwrite}{
 indicates whether the any previous results should be overwritten by the current run (default: TRUE).
+}
+\item{...}{
+optional - other arguments to be passed.
 }
 
 }

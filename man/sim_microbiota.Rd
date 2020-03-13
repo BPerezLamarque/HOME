@@ -10,13 +10,7 @@ This function simulates microbial alignments according to different models of ho
 }
 
 \usage{
-sim_microbiota(name, name_index, simul, provided_tree, n=20, mu=1,
-N=300, proportion_variant=0.1, seed=1, nb_cores=1, path)
-
-sim_microbiota(name, name_index, simul, provided_tree=NULL, n=20, mu=1,
-N=300, proportion_variant=0.1, model="uniform", mean=0.5, sd=0.01, host_signal=10,
-geo_signal=0, stochastic_map=NULL, path=getwd(), seed=1, nb_cores=1)
-
+sim_microbiota(name, name_index, simul, mu=1, n=20, provided_tree=NULL, N=300, proportion_variant=0.1, model="uniform", mean=0.5, sd=0.01, host_signal=10, geo_signal=0, stochastic_map=NULL, path=getwd(), seed=1, nb_cores=1, ...)
 }
 
 \arguments{
@@ -88,6 +82,10 @@ a number of cores to run the analyses
 optional - the path to the working directory
 }
 
+\item{...}{
+optional - other arguments to be passed.
+}
+
 }
 
 
@@ -132,10 +130,10 @@ sim_microbiota(name="example_simulation", name_index=c("Simul_1","Simul_2","Simu
 #  1 is transmitted with 5 host-switches (with host-phylogenetic dependency),
 #  and 1 is environmentally acquired)
 
-sim_microbiota(name="example_simulation", name_index=c("Simul_1","Simul_2","Simul_3"),
-               simul=c(0,5,"indep"), n=10, mu=1,
-               N=300, proportion_variant=0.1, model="host_dependent",
-               host_signal = 10)
+#sim_microbiota(name="example_simulation", name_index=c("Simul_1","Simul_2","Simul_3"),
+#               simul=c(0,5,"indep"), n=10, mu=1,
+#               N=300, proportion_variant=0.1, model="host_dependent",
+#               host_signal = 10)
 
 # geographic dependency
 # Simulate 3 microbial alignments on a host tree
@@ -150,12 +148,12 @@ host_tree <- phytools::pbtree(n=20) # simulate host phylogeny
 geo <- sample(size = 20,c("Area_1","Area_2","Area_3","Area_4"), replace=TRUE)
 names(geo) <- host_tree$tip.label
 
-stochastic_map <- phytools::make.simmap(host_tree, geo, model="SYM", nsim=1)
+#stochastic_map <- phytools::make.simmap(host_tree, geo, model="SYM", nsim=1)
 
-sim_microbiota(name="example_simulation", name_index=c("Simul_1","Simul_2","Simul_3"),
-               simul=c(0,5,"indep"), mu=1, provided_tree = host_tree,
-               N=300, proportion_variant=0.1, model="geo_dependent",
-               geo_signal = 0.25, stochastic_map = stochastic_map)
+#sim_microbiota(name="example_simulation", name_index=c("Simul_1","Simul_2","Simul_3"),
+#               simul=c(0,5,"indep"), mu=1, provided_tree = host_tree,
+#               N=300, proportion_variant=0.1, model="geo_dependent",
+#               geo_signal = 0.25, stochastic_map = stochastic_map)
 
 
 # temporal dependency
@@ -164,10 +162,10 @@ sim_microbiota(name="example_simulation", name_index=c("Simul_1","Simul_2","Simu
 #  1 is transmitted with 5 host-switches (with temporal dependency),
 #  and 1 is environmentally acquired)
 
-sim_microbiota(name = "example_simulation", name_index = c("Simul_1","Simul_2","Simul_3"),
-               simul = c(0,5,"indep"), n = 10, mu = 1,
-               N = 300, proportion_variant = 0.1, model = "temporal",
-               mean = 0.5, sd = 0.1)
+#sim_microbiota(name = "example_simulation", name_index = c("Simul_1","Simul_2","Simul_3"),
+#               simul = c(0,5,"indep"), n = 10, mu = 1,
+#               N = 300, proportion_variant = 0.1, model = "temporal",
+#               mean = 0.5, sd = 0.1)
 
 
 }

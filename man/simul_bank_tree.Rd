@@ -10,7 +10,7 @@ This function simulates the bank of symbiont trees, used for running HOME, for a
 
 }
 
-\usage{simul_bank_tree(nb_ksi, name, nb_tree=10000, lambda=seq(1,25), seed=1)}
+\usage{simul_bank_tree(nb_ksi,name,nb_tree=10000,lambda=c(1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25),seed=1)}
 
 \arguments{
 \item{nb_ksi}{

@@ -10,7 +10,7 @@ This function prepares the data for the inference of HOME (format data, run the 
 
 }
 
-\usage{prepare_data_HOME(iter, name, name_index, host_tree, path)
+\usage{prepare_data_HOME(iter,name,name_index,provided_tree=NULL,...)
 }
 
 \arguments{
@@ -23,13 +23,12 @@ the number of iteration of a particular index from name_index
 \item{name_index}{
 a vector with the names of the different symbionts (e.g. name of the OTUs)
 }
-\item{host_tree}{
+\item{provided_tree}{
 optional - the host tree of your study. It can also be provided in the working directory (see details).
 }
-\item{path}{
-optional - the path to the working directory
+\item{...}{
+optional - other arguments to be passed.
 }
-
 
 }
 

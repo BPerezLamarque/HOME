@@ -25,5 +25,5 @@ Perez‐Lamarque B, Morlon H. 2019. Characterizing symbiont inheritance during h
 
 
 \examples{
-data(great_apes_microbiota)
+data(great_apes_microbiota, envir = environment()))
 }

@@ -11,9 +11,7 @@ This function runs HOME for all the different OTUs (called "index"") on the host
 }
 
 \usage{
-HOME_model(name, name_index, provided_tree, nb_tree=5000, lambda=seq(1,25),
-raref=FALSE, empirical=TRUE, randomize=TRUE, nb_random=10, path, path_alignment,
-seed=3, nb_cores=1, overwrite=FALSE,figure=FALSE)
+HOME_model(name,name_index,nb_cores=1,seed=3,nb_tree=5000,lambda=c(1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25),raref=FALSE,empirical=TRUE,randomize=TRUE,nb_random=10,provided_tree=NULL,overwrite=TRUE,figure=FALSE,path,path_alignment,...)
 }
 
 \arguments{
@@ -65,6 +63,9 @@ indicates whether the any previous results should be overwritten by the current 
 }
 \item{figure}{
 indicates whether it automatically outputs figures at the end of the run (default: FALSE).
+}
+\item{...}{
+optional - other arguments to be passed.
 }
 }
 
