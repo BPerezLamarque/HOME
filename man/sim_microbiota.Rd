@@ -10,7 +10,9 @@ This function simulates microbial alignments according to different models of ho
 }
 
 \usage{
-sim_microbiota(name, name_index, simul, mu=1, n=20, provided_tree=NULL, N=300, proportion_variant=0.1, model="uniform", mean=0.5, sd=0.01, host_signal=10, geo_signal=0, stochastic_map=NULL, path=getwd(), seed=1, nb_cores=1, ...)
+sim_microbiota(name, name_index, simul, mu=1, n=20, provided_tree=NULL, N=300,
+proportion_variant=0.1, model="uniform", mean=0.5, sd=0.01, host_signal=10,
+geo_signal=0, stochastic_map=NULL, path=getwd(), seed=1, nb_cores=1, ...)
 }
 
 \arguments{

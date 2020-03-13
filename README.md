@@ -30,8 +30,18 @@ This document indicates how to use our model of **HO**st-**M**icrobiota **E**vol
 
 
 # Installation:
+
+
+Our model is part of the R-package HOME and can be installed from GitHub using devtools:
+```r
+library(devtools)
+install_github("BPerezLamarque/HOME", dependencies = TRUE)
+
+```
+
+
   
-Our model is part on the R package RPANDA (Morlon et al., 2016) available on the CRAN or from GitHub.
+Alternatively, our model is part on the R package RPANDA (Morlon et al., 2016) available from GitHub.
   
   
 ```r

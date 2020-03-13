@@ -10,7 +10,9 @@ This function performs the model selections of HOME testing the null hypotheses 
 
 }
 
-\usage{model_selection_HOME(index,name,nb_tree=10000,lambda=c(1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25),nb_cores=1,seed=1,nb_random=10,overwrite=TRUE,...)
+\usage{model_selection_HOME(index,name,nb_tree=10000,
+lambda=c(1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25),
+nb_cores=1,seed=1,nb_random=10,overwrite=TRUE,...)
 }
 
 \arguments{

@@ -10,7 +10,8 @@ This function outputs all the results of HOME into a HTML file with figures and 
 
 }
 
-\usage{output_results_HOME(iter,name,name_index,lambda=c(1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25),nb_tree=10000,empirical,randomize,raref,nb_random=10,figure=FALSE,...)}
+\usage{output_results_HOME(iter,name,name_index,lambda=c(1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25),
+nb_tree=10000,empirical,randomize,raref,nb_random=10,figure=FALSE,...)}
 
 \arguments{
 \item{iter}{
