@@ -11,7 +11,7 @@ This function performs the model selections of HOME testing the null hypotheses 
 }
 
 \usage{model_selection_HOME(index, name, nb_tree=10000, lambda=seq(1,25), nb_random=10,
-seed=1, nb_cores=1, overwrite=TRUE,...)
+seed=1, nb_cores=1, overwrite=TRUE)
 }
 
 \arguments{

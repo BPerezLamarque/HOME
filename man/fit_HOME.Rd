@@ -9,8 +9,7 @@ General inference of HOME
 This function infers parameters (substitution rate and number of host-switches) of HOME for one given OTU ("index").
 }
 
-\usage{fit_HOME(index, name, nb_tree=1000, lambda=seq(1,25),
-raref, nb_cores=1...)}
+\usage{fit_HOME(index, name, nb_tree=1000, lambda=seq(1,25),raref, nb_cores=1)}
 
 \arguments{
 \item{index}{

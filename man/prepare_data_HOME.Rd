@@ -10,7 +10,7 @@ This function prepares the data for the inference of HOME (format data, run the 
 
 }
 
-\usage{prepare_data_HOME(iter, name, name_index, host_tree, path...)
+\usage{prepare_data_HOME(iter, name, name_index, host_tree, path)
 }
 
 \arguments{

@@ -11,7 +11,7 @@ This function outputs all the results of HOME into a HTML file with figures and 
 }
 
 \usage{output_results_HOME(iter, name, name_index, nb_tree=10000, lambda=seq(1,25),
-empirical,randomize, raref, nb_cores, nb_random=10, figure=FALSE,...)}
+empirical,randomize, raref, nb_cores, nb_random=10, figure=FALSE)}
 
 \arguments{
 \item{iter}{
@@ -19,6 +19,9 @@ the number of iteration of a particular index from name_index
 }
 \item{name}{
 the name of the run
+}
+\item{name_index}{
+a vector with the names of the different symbionts (e.g. name of the OTUs)
 }
 \item{nb_tree}{
 a number of tree for Monte Carlo estimation of the number of switches (a low value will give inaccurate results whereas a high value will increase the computation time)

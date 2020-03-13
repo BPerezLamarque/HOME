@@ -26,7 +26,8 @@ Perez‐Lamarque B, Morlon H. 2019. Characterizing symbiont inheritance during h
 }
 \author{Benoît Perez-Lamarque}
 \seealso{
-\code{\link{Home_model}}
+\code{\link{HOME_model}},
+\code{\link{great_apes_microbiota}}
 }
 \examples{
 # This example may take a little bit of time. Be patient!
