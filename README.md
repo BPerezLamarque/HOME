@@ -41,7 +41,7 @@ install_github("BPerezLamarque/HOME", dependencies = TRUE)
 
 
   
-Alternatively, our model is part on the R package RPANDA (Morlon et al., 2016) available from GitHub.
+Alternatively, our model is also part on the R package RPANDA (Morlon et al., 2016) available from GitHub.
   
   
 ```r
@@ -184,6 +184,11 @@ This pipeline clusters reads into SWARM OTUs ([Mahé et al., 2014](https://peerj
 
 This pipeline clusters reads into OTUs given a fixed similarity threshold (97%, or any other value). The step 1 of this pipeline is a direct application of [Frédéric Mahé's metabarcoding pipeline](https://github.com/frederic-mahe/swarm/wiki/Fred's-metabarcoding-pipeline) using [VSEARCH](https://github.com/torognes/vsearch). This pipeline is specifically designed for Illumina datasets and is available [here](https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/make_clusters_OTU_pipeline3.sh).
 
+
+### Note: one-to-one correspondance
+
+A one-to-one correspondance between host tips in the tree and the fasta header of each OTU alignment is mandatory.
+If multiple sequences correspond to a unique host, there are several solutions : (1) one can only keep one sequence (the most abundant, and assumes that the other sequences are likely to come from PCR/sequencing errors); but if ones really wants to keep these sequences in the analyses, one has to add new tips in the host tree: (2) either by adding new tips with zero branch lengths to match the number of sequences (similar to what we did here https://doi.org/10.1111/1755-0998.13063 ; see [here for more details and a script to add ew tips with branch lengths close to zero](https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/add_host_tips.R) ), or (3) by adding a coalescent tree shape at the tip of each species (to model population differentiation for each species that gives the multiple sequences per host).
 
 
 ## Example of empirical applications - great apes microbiota: 
