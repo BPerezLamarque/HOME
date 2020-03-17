@@ -108,11 +108,9 @@ function(iter,name,name_index,lambda=c(1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25),n
             geom_violin(alpha=0.5, aes(y=V1),fill="#d35400", colour="#d35400",size=1.5,trim=T)+
             labs(x = "Simulated trees", y="-log(Likelihood)")+transparent_theme#_y_only#+scale_x_continuous(breaks=c())
           }
-          print("test1")
           pdf(paste("figures/profil_ll_",name,"_",index,"_",est_ksi,".pdf",sep=""),width=5,height=4)
           print(p)
           dev.off()
-          print("test2")
           }
       }
       
