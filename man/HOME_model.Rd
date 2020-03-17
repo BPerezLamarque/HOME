@@ -14,7 +14,7 @@ This function runs HOME for all the different OTUs (called "index"") on the host
 HOME_model(name,name_index,nb_cores=1,seed=3,nb_tree=5000,
 lambda=c(1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25),
 raref=FALSE,empirical=TRUE,randomize=TRUE,nb_random=10,provided_tree=NULL,
-overwrite=TRUE,figure=FALSE,path,path_alignment,...)
+overwrite=TRUE,figure=FALSE,path=getwd(),path_alignment=getwd(),...)
 }
 
 \arguments{
