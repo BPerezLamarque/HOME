@@ -10,7 +10,8 @@ This function simulates the bank of symbiont trees, used for running HOME, for a
 
 }
 
-\usage{simul_bank_tree(nb_ksi,name,nb_tree=10000,
+\usage{simul_bank_tree(nb_ksi,name,
+provided_tree=NULL,nb_tree=10000,
 lambda=c(1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25),
 seed=1)}
 
@@ -22,6 +23,9 @@ a positive integer which represents the given number of host-switches to simulat
 \item{name}{
 the name of the run
 }
+
+\item{provided_tree}{
+optional - the host tree of your study. It can also be provided as saved in the working directory}
 
 \item{nb_tree}{
 a number of trees to simulate
