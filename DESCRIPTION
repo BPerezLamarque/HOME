@@ -13,8 +13,6 @@ Imports:
     phytools,
     stats,
     phangorn,
-    expm,
-	colorspace,
 	ggplot2,
 	reshape2,
 	R2HTML,
