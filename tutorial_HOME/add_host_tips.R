@@ -37,10 +37,13 @@ add_host_tips <- function(host_tree, alignment){
   }
   host_tree <- drop.tip(host_tree, tip = host_tree$tip.label[!host_tree$tip.label %in% rownames(alignment)])
   host_tree$edge.length[host_tree$edge.length==0] <- 0.001
-  return(force.ultrametric(host_tree))
+  return(force.ultrametric(provided_tree,method = "extend"))
 }
 
 provided_tree <- add_host_tips(host_tree, alignment)
 
 # the provided_tree can directly be used to run HOME.
+
+HOME_model(name="name", name_index=c("OTU1"), provided_tree = provided_tree, nb_tree=5000, lambda=seq(1,30), nb_random=10)
+
 

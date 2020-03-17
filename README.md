@@ -254,9 +254,11 @@ seed <- 1
 
 ```r
 
+provided_tree <- read.tree(paste0("host_tree_",name,".tre"))
 
-HOME_model(name=name, name_index=name_OTU, nb_tree=nb_tree, lambda=lambda, empirical=TRUE, raref=raref, 
-nb_random=nb_random,  seed=seed, nb_cores=nb_cores)
+
+HOME_model(name=name, name_index=name_OTU, provided_tree, nb_tree=nb_tree, lambda=lambda, 
+empirical=TRUE, raref=raref, nb_random=nb_random,  seed=seed, nb_cores=nb_cores)
 
 
 
