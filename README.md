@@ -15,16 +15,16 @@ This document indicates how to use our model of **HO**st-**M**icrobiota **E**vol
 
 
 # Contents:
-**[Installation](#installation);**\
-**[Performing Simulations](#performing-simulations);**\
-**[Running Empirical application](#running-empirical-applications);**\
-    *       Creating microbial alignments for each OTU;\
-    *       Example of empirical applications - great apes microbiota;\
-    *       Running HOME on the empirical application;\
+**[Installation](#installation)**\
+**[Performing Simulations](#performing-simulations)**\
+**[Running Empirical application](#running-empirical-applications):**\
+    *       Creating microbial alignments for each OTU\
+    *       Example of empirical applications - great apes microbiota\
+    *       Running HOME on the empirical application\
 **[Interpretation of the Results](#interpretation-of-the-results):**\
-     *       Example 1: Results from a simulation with horizontal transmission;\
-      *      Example 2: Results from a simulation with strict vertical transmission;\
-       *     Example 3: Results from a simulation with environmental acquisition;
+     *       Example 1: Results from a simulation with horizontal transmission\
+      *      Example 2: Results from a simulation with strict vertical transmission\
+       *     Example 3: Results from a simulation with environmental acquisition
 
 
 
@@ -81,26 +81,24 @@ simul <- c(0,1,3,5,"indep","indep")
 # each simulated OTU has its own evolutionary history:
 # i) "0" simulates strict vertical transmission (i.e. O host-switch)
 # ii) any positive integer simulates horizontal transmissions (with this given number of host-switches)
-# iii) "indep" simulates environmental acquisition (i.e. independent evolutions) 
-
+# iii) "indep" simulates environmental acquisition (i.e. independent evolutions - the simulated OTU evolved on an independent simulated tree) 
 
 
 # Load the host tree to simulate the evolution of the OTUs on it 
 host_tree <- read.tree("my_tree.tre")
 
-# if you don't provide a host tree, you must add the number of tips of the simulated host tree
+# Alternatively, if you don't provide a host tree, you must add the number of tips of the simulated host tree
 # n <- 20  
 
 
+# proportion of variable nucleotides in the alignment
+proportion_variant <- 0.1 
 
 # simulated substitution rate 
-simulated_mu <- 1  # simulated_mu=1 corresponds to on average 1 mutation per nucleotide
+simulated_mu <- 1  # simulated_mu=1 corresponds to on average 1 mutation per variable nucleotide
 
 # total number of nucleotides in the alignment 
 N <- 300  
-
-# proportion of variable nucleotides in the alignment
-proportion_variant <- 0.1 
 
 
 # number of cores to run the analyses
@@ -121,18 +119,14 @@ sim_microbiota(name=name, name_index=name_index, simul=simul,
 provided_tree=host_tree, mu=simulated_mu, N=N, proportion_variant=proportion_variant, 
 seed=seed, nb_cores=nb_cores)
 
-
-
 ```
 
 
 
-Then, you can proceed to the **parameters estimation** by running HOME on the simulated microbiota.
+Then, you can proceed to the **parameters estimation** by running HOME on the simulated host-microbiota data.
 
 
 ```r
-
-
 
 #  possible numbers of host-switches to test during the inference
 lambda <- c(1:25) 
@@ -161,9 +155,9 @@ empirical=FALSE, raref=raref, nb_random=nb_random, seed=seed, nb_cores=nb_cores)
 ## Creating alignments for each OTU
 
 
-In order to run HOME, you need first to create the microbial alignments for each OTU of the empirical microbiota. The **first step** consists in the usual clustering of the raw reads into OTUs. Thus, the **second step** makes the OTU alignments for running HOME on them (using our own bash script: for each core OTU, it picks the most abundant sequence for every host and align them). Different pipelines can be used to obtain these microbial alignments for each OTU.
+In order to run HOME, you need first to make the microbial alignments for each OTU of your empirical microbiota. The **first step** consists in the usual clustering of the raw reads into OTUs. Thus, the **second step** makes the OTU alignments for running HOME on them (using our own bash script: for each core OTU, it picks the most abundant sequence for every host and align them). Different pipelines can be used to obtain these microbial alignments for each OTU.
 
-At the end of both steps, all OTU alignments must be stored in a specific folder (i.e. the working directory where you will run HOME) with the filenames formatted as **alignment_"name"_"OTUXXX".fas**, where "name" will be the name our your HOME run ("name"), and "OTUXXX" is the name of the specific OTU ("name_index").
+At the end of these two steps, all OTU alignments must be stored in a specific folder (i.e. the working directory where you will run HOME) with the filenames formatted as **alignment_"name"_"OTUXXX".fas**, where "name" will be the name our your HOME run ("name"), and "OTUXXX" is the name of the specific OTU ("name_index").
 
 
 Examples of bash pipelines to prepare alignments before running HOME are available in the following.
@@ -188,7 +182,7 @@ This pipeline clusters reads into OTUs given a fixed similarity threshold (97%, 
 ### Note: one-to-one correspondance
 
 A one-to-one correspondance between host tips in the tree and the fasta header of each OTU alignment is mandatory.
-If multiple sequences correspond to a unique host, there are several solutions : (1) one can only keep one sequence (the most abundant, and assumes that the other sequences are likely to come from PCR/sequencing errors); but if ones really wants to keep these sequences in the analyses, one has to add new tips in the host tree: (2) either by adding new tips with zero branch lengths to match the number of sequences (similar to what we did here https://doi.org/10.1111/1755-0998.13063 ; see [here for more details and a script to add new tips with branch lengths close to zero](https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/add_host_tips.R) ), or (3) by adding a coalescent tree shape at the tip of each species (to model population differentiation for each species that gives the multiple sequences per host).
+If multiple sequences correspond to a unique host, there are several solutions : (1) you can only keep one sequence (the most abundant, and assumes that the other sequences are likely to come from PCR/sequencing errors); but if you really want to keep these sequences in the analyses, you have to add new tips in the host tree: (2) either by adding new tips with zero branch lengths to match the number of sequences (similar to what we did here https://doi.org/10.1111/1755-0998.13063 ; see [here for more details and a script to add new tips with branch lengths close to zero](https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/add_host_tips.R) ), or (3) by adding a coalescent tree shape at the tip of each species (to model population differentiation for each species that gives the multiple sequences per host).
 
 
 ## Example of empirical applications - great apes microbiota: 
