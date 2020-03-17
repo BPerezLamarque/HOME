@@ -101,13 +101,15 @@ If you provide a binary rooted ultrametric host tree, it must be in Newick forma
 
 }
 \references{
-Perez‐Lamarque B, Morlon H. 2019. Characterizing symbiont inheritance during host–microbiota evolution: Application to the great apes gut microbiota. Molecular Ecology Resources 19: 1659–1671.
+Perez‐Lamarque B, Morlon H (2019). Characterizing symbiont inheritance during host-microbiota evolution: Application to the great apes gut microbiota. Molecular Ecology Resources 19:1659-1671.
 }
-\author{Benoît Perez-Lamarque}
+\author{Benoit Perez-Lamarque}
 \seealso{
 \code{\link{HOME_model}}
 }
 \examples{
+
+\dontshow{.old_wd <- setwd(tempdir())}
 
 # Simulate 3 microbial alignments on a host tree
 # (1 is vertically transmitted, 1 is transmitted with 5 host-switches,
@@ -169,7 +171,7 @@ names(geo) <- host_tree$tip.label
 #               N = 300, proportion_variant = 0.1, model = "temporal",
 #               mean = 0.5, sd = 0.1)
 
-
+\dontshow{setwd(.old_wd)}
 }
 
 

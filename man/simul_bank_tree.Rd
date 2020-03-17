@@ -46,9 +46,9 @@ See reference for more details.
 
 }
 \references{
-Perez‐Lamarque B, Morlon H. 2019. Characterizing symbiont inheritance during host–microbiota evolution: Application to the great apes gut microbiota. Molecular Ecology Resources 19: 1659–1671.
+Perez‐Lamarque B, Morlon H (2019). Characterizing symbiont inheritance during host-microbiota evolution: Application to the great apes gut microbiota. Molecular Ecology Resources 19:1659-1671.
 }
-\author{Benoît Perez-Lamarque}
+\author{Benoit Perez-Lamarque}
 \seealso{
 \code{\link{sim_microbiota}},
 \code{\link{prepare_data_HOME}},
@@ -60,11 +60,9 @@ Perez‐Lamarque B, Morlon H. 2019. Characterizing symbiont inheritance during h
 \examples{
 # Some examples may take a little bit of time. Be patient!
 
-
 # Simulate 3 microbial alignments on a host tree
 # (1 is vertically transmitted, 1 is transmitted with 5 host-switches,
 #  and 1 is environmentally acquired)
-
 
 name="example_simulation"
 name_index=c("Simul_1","Simul_2","Simul_3")

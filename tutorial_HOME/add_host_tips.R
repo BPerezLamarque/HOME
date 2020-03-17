@@ -6,7 +6,7 @@ library(phytools)
 
 # Load your host tree and one OTU alignment
 
-host_tree <- read.tree("host_tree_name.tre") # host tree with tips corresponding to host species names 
+host_tree <- read.tree("host_tree_name.tre") # host tree with tips corresponding to host species names
 # (e.g with tip names "species1", "species2", "species3", ...)
 # (warning: a host species name should not be a subset of another host species name in the following code)
 
@@ -30,7 +30,7 @@ add_host_tips <- function(host_tree, alignment){
       reads <- reads[which(!rownames(alignment)[reads] %in% host_tree$tip.label)]
       if (length(reads)>0){
         for (j in 1:length(reads)){
-          host_tree <- bind.tip(host_tree, tip.label=rownames(alignment)[reads[j]], edge.length=NULL, where=which(host_tree$tip.label==reference_tip), position=0.001)
+          host_tree <- bind.tip(host_tree, tip.label=rownames(alignment)[reads[j]], edge.length=NULL, where=which(host_tree$tip.label==reference_tip), position=min(0.001,min(host_tree$edge.length)))
         }
       }
     }
@@ -42,5 +42,5 @@ add_host_tips <- function(host_tree, alignment){
 
 provided_tree <- add_host_tips(host_tree, alignment)
 
-# the provided_tree can directly be used to run HOME. 
+# the provided_tree can directly be used to run HOME.
 

@@ -51,9 +51,9 @@ See reference for more details.
 
 }
 \references{
-Perez‐Lamarque B, Morlon H. 2019. Characterizing symbiont inheritance during host–microbiota evolution: Application to the great apes gut microbiota. Molecular Ecology Resources 19: 1659–1671.
+Perez‐Lamarque B, Morlon H (2019). Characterizing symbiont inheritance during host-microbiota evolution: Application to the great apes gut microbiota. Molecular Ecology Resources 19:1659-1671.
 }
-\author{Benoît Perez-Lamarque}
+\author{Benoit Perez-Lamarque}
 \seealso{
 \code{\link{sim_microbiota}},
 \code{\link{prepare_data_HOME}},
