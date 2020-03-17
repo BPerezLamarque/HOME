@@ -37,7 +37,7 @@ add_host_tips <- function(host_tree, alignment){
   }
   host_tree <- drop.tip(host_tree, tip = host_tree$tip.label[!host_tree$tip.label %in% rownames(alignment)])
   host_tree$edge.length[host_tree$edge.length==0] <- 0.001
-  return(force.ultrametric(provided_tree,method = "extend"))
+  return(force.ultrametric(host_tree,method = "extend"))
 }
 
 provided_tree <- add_host_tips(host_tree, alignment)
