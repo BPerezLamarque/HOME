@@ -8,7 +8,7 @@
 This document indicates how to use our model of **HO**st-**M**icrobiota **E**volution. The first part details how to simulate mock microbiota. The second part details how to perform an empirical application; it is illustrated with the great apes microbiota data. The last part details how to interpret the HTML outputs of HOME.
 
 
-**Citation:** Perez‐Lamarque, B., & Morlon, H. (2019). [Characterizing symbiont inheritance during host‐microbiota evolution: application to the great apes gut microbiota.](https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.13063) Molecular Ecology Resources.
+**Citation:** Perez‐Lamarque, B., & Morlon, H. (2019). [Characterizing symbiont inheritance during host‐microbiota evolution: application to the great apes gut microbiota.](https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.13063) Molecular Ecology Resources  19:1659-1671.
 
 
 **Contact:** Benoît Perez-Lamarque, benoit.perez.lamarque@gmail.com
@@ -16,7 +16,7 @@ This document indicates how to use our model of **HO**st-**M**icrobiota **E**vol
 
 # Contents:
 **[Installation](#installation);**\
-**[Running Simulations](#running-simulations);**\
+**[Performing Simulations](#performing-simulations);**\
 **[Running Empirical application](#running-empirical-applications);**\
     *       Creating microbial alignments for each OTU;\
     *       Example of empirical applications - great apes microbiota;\
@@ -51,7 +51,7 @@ install_github("hmorlon/PANDA",ref="Benoit", dependencies = TRUE)
 ```
 
 
-# Running Simulations:
+# Performing Simulations:
 
 
 You can *provide a host tree* (e.g. an empirical tree) and simulate the evolution of a mock microbiota on it. Your tree must be binary, rooted and ultrametric. You can either directly provide a host tree in the function *sim_microbiota*, or you can have the host tree saved in your working directory (thus, its filename must be well-formated **host_tree_"name".tre** in a Newick format).
@@ -150,8 +150,8 @@ raref <- FALSE # if TRUE rarefactions on the number of trees will be performed
 
 ```r
 
-HOME_model(name=name, name_index=name_index, nb_tree=nb_tree, lambda=lambda, empirical=FALSE, raref=raref, 
-nb_random=nb_random, seed=seed, nb_cores=nb_cores)
+HOME_model(name=name, name_index=name_index, provided_tree=host_tree, nb_tree=nb_tree, lambda=lambda, 
+empirical=FALSE, raref=raref, nb_random=nb_random, seed=seed, nb_cores=nb_cores)
 
 ```
 
@@ -257,7 +257,7 @@ seed <- 1
 provided_tree <- read.tree(paste0("host_tree_",name,".tre"))
 
 
-HOME_model(name=name, name_index=name_OTU, provided_tree, nb_tree=nb_tree, lambda=lambda, 
+HOME_model(name=name, name_index=name_OTU, provided_tree=provided_tree, nb_tree=nb_tree, lambda=lambda, 
 empirical=TRUE, raref=raref, nb_random=nb_random,  seed=seed, nb_cores=nb_cores)
 
 
@@ -268,7 +268,7 @@ empirical=TRUE, raref=raref, nb_random=nb_random,  seed=seed, nb_cores=nb_cores)
 # Interpretation of the Results:
 
 
-The results of each HOME run are available in the folder "/my_working_directory/figures/". For each OTU, a HTMH file summaries all the results with tables and figures. Here, we provide 3 examples of results interpretations. 
+The results of each HOME run are available in the folder "/my_working_directory/figures/". For each OTU, a HTML file summarizes all the results with tables and figures. Here, we provide 3 examples of results interpretations. 
 
 
 
@@ -306,7 +306,7 @@ p-value: Independent evolutions (subs. rate):|	0
 
 
 ## Host-switches inference:
-Most likely scenario estimated by the host-switches estimation: 
+The most likely number of host-switches: 
 
 ksi | mu | -log(Likelihood)
 ------------- | ------------- | -------------
@@ -429,7 +429,7 @@ p-value: Independent evolutions (subs. rate):|	0
 *CONCLUSION: STRICT VERTICAL TRANSMISSION.*
 
 ## Host-switches inference:
-Most likely scenario estimated by the host-switches estimation: 
+The most likely number of host-switches: 
 
 ksi | mu | -log(Likelihood)
 ------------- | ------------- | -------------
@@ -536,7 +536,7 @@ p-value: Independent evolutions (subs. rate):|	0.89
 *CONCLUSION:INDEPENDENT EVOLUTIONS (BASED ON THE NUMBER OF SWITCHES AND THE SUBSTITUTION RATE).*
 
 ## Host-switches inference:
-Most likely scenario estimated by the host-switches estimation: 
+The most likely number of host-switches: 
 
 ksi | mu | -log(Likelihood)
 ------------- | ------------- | -------------
