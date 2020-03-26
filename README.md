@@ -171,7 +171,7 @@ The bash pipelines used for studying the microbiota of great apes [(Perez-Lamarq
 
 ### Pipeline 2: OTU clustering using VSEARCH (SWARM OTUs)
 
-This pipeline clusters reads into SWARM OTUs ([Mahé et al., 2014](https://peerj.com/articles/593/); [Mahé et al., 2015](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4690345/pdf/peerj-03-1420.pdf)): OTU are defined without chosing an global clustering threshold. The step 1 of this pipeline is a direct application of [Frédéric Mahé's metabarcoding pipeline](https://github.com/frederic-mahe/swarm/wiki/Fred's-metabarcoding-pipeline) using [VSEARCH](https://github.com/torognes/vsearch) and [SWARM](https://github.com/torognes/swarm). This pipeline is specifically designed for Illumina datasets and is available [here](https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/make_clusters_OTU_pipeline3.sh).
+This pipeline clusters reads into SWARM OTUs ([Mahé et al., 2014](https://peerj.com/articles/593/); [Mahé et al., 2015](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4690345/pdf/peerj-03-1420.pdf)): OTU are defined without chosing an global clustering threshold. The step 1 of this pipeline is a direct application of [Frédéric Mahé's metabarcoding pipeline](https://github.com/frederic-mahe/swarm/wiki/Fred's-metabarcoding-pipeline) using [VSEARCH](https://github.com/torognes/vsearch) and [SWARM](https://github.com/torognes/swarm). This pipeline is specifically designed for Illumina datasets and is available [here](https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/make_clusters_OTU_pipeline2.sh).
 
 
 ### Pipeline 3: OTU clustering using VSEARCH (OTUs at 97%)
