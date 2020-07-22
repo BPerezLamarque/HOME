@@ -4,7 +4,7 @@
 ####    CLUSTERING SEQUENCES  AND  MAKE ALIGNMENTS
 
 
-## You first need to install PYTHON, VSEARCH, CUTADAPT and SWARM
+## You first need to install PYTHON3, VSEARCH, CUTADAPT and SWARM
 ## see https://github.com/frederic-mahe/swarm/wiki/Fred's-metabarcoding-pipeline for details
 
 
@@ -40,16 +40,10 @@ MIN_R=$(( ${#PRIMER_R} * 2 / 3 ))
 CUTADAPT="cutadapt --discard-untrimmed --minimum-length ${MIN_LENGTH}"
 
 # Trim forward & reverse primers, format
-zcat "${INPUT}" | sed '/^>/ ! s/U/T/g' | \
+zcat < "${INPUT}" | sed '/^>/ ! s/U/T/g' | \
 ${CUTADAPT} -g "${PRIMER_F}" -O "${MIN_F}" - 2> "${LOG}" | \
 ${CUTADAPT} -a "${ANTI_PRIMER_R}" -O "${MIN_R}" - 2>> "${LOG}" | \
 sed '/^>/ s/;/|/g ; /^>/ s/ /_/g ; /^>/ s/_/ /1' > "${OUTPUT}"
-
-gunzip -c  "${INPUT}" | sed '/^>/ ! s/U/T/g' | \
-${CUTADAPT} -g "${PRIMER_F}" -O "${MIN_F}" - 2> "${LOG}" | \
-${CUTADAPT} -a "${ANTI_PRIMER_R}" -O "${MIN_R}" - 2>> "${LOG}" | \
-sed '/^>/ s/;/|/g ; /^>/ s/ /_/g ; /^>/ s/_/ /1' > "${OUTPUT}"
-
 
 
 

@@ -30,7 +30,7 @@ def representatives_parse():
     separator = ";size="
     representatives_file = sys.argv[1]
     representatives = dict()
-    with open(representatives_file, "rU") as representatives_file:
+    with open(representatives_file, "r") as representatives_file:
         for line in representatives_file:
             if line.startswith(">"):
                 amplicon = line.strip(">;\n").split(separator)[0]
@@ -48,7 +48,7 @@ def stats_parse():
     stats_file = sys.argv[2]
     stats = dict()
     seeds = dict()
-    with open(stats_file, "rU") as stats_file:
+    with open(stats_file, "r") as stats_file:
         for line in stats_file:
             cloud, mass, seed, seed_abundance = line.strip().split(separator)[0:4]
             stats[seed] = int(mass)
@@ -68,7 +68,7 @@ def swarms_parse():
     separator = "_[0-9]+|;size=[0-9]+;?| "  # parsing of abundance annotations
     swarms_file = sys.argv[3]
     swarms = dict()
-    with open(swarms_file, "rU") as swarms_file:
+    with open(swarms_file, "r") as swarms_file:
         for line in swarms_file:
             line = line.strip()
             amplicons = re.split(separator, line)[0::2]
@@ -85,7 +85,7 @@ def uchime_parse():
     separator = " "
     uchime_file = sys.argv[4]
     uchime = dict()
-    with open(uchime_file, "rU") as uchime_file:
+    with open(uchime_file, "r") as uchime_file:
         for line in uchime_file:
             OTU = line.strip().split("\t")
             try:
@@ -109,7 +109,7 @@ def stampa_parse():
     separator = "\t"
     stampa_file = sys.argv[5]
     stampa = dict()
-    with open(stampa_file, "rU") as stampa_file:
+    with open(stampa_file, "r") as stampa_file:
         for line in stampa_file:
             amplicon, identity, taxonomy = line.strip().split(separator)
             stampa[amplicon] = (identity, taxonomy)
@@ -129,7 +129,7 @@ def fasta_parse():
         sample = os.path.basename(fasta_file)
         sample = os.path.splitext(sample)[0]
         samples[sample] = samples.get(sample, 0) + 1
-        with open(fasta_file, "rU") as fasta_file:
+        with open(fasta_file, "r") as fasta_file:
             for line in fasta_file:
                 if line.startswith(">"):
                     amplicon, abundance = line.strip(">;\n").split(separator)
@@ -145,7 +145,6 @@ def fasta_parse():
         print("Warning: some samples are duplicated", file=sys.stderr)
         print("\n".join(duplicates), file=sys.stderr)
     samples = sorted(samples.keys())
-
     return amplicons2samples, samples
 
 
@@ -163,6 +162,7 @@ def print_table(representatives, stats, sorted_stats,
           "\t".join(samples),
           sep="\t", file=sys.stdout)
 
+	# Print table content
     i = 1
     for seed, abundance in sorted_stats:
         sequence = representatives[seed]

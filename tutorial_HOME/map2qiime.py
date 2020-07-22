@@ -1,26 +1,15 @@
 #!/usr/bin/python3
 # Converts readmap.uc file from otupipe.bash into QIIME OTU map.
-#
-#Modify otupipe readmap2qiime.py script [http://www.drive5.com/usearch/manual/otupipe.html]
-
-##Leandro Nascimento Lemos
-##Victor Pylro
-##Luiz Roesch
-##17-04-2014 versao0.1
-#QiimeToUparse
-#How to use this script?
-#python map2qiime.py map.uc > otu_table.txt
 
 
-
-OTU_PREFIX="OTU"
+#OTU_PREFIX="OTU"
 
 import sys
 
 UCFileName = sys.argv[1]
 File = open(UCFileName)
 
-n = len(OTU_PREFIX)
+#n = len(OTU_PREFIX)
 OTUToReads = {}
 LineNr = 0
 while 1:
@@ -36,19 +25,21 @@ while 1:
 		print >> sys.stderr, "Line %d in .uc file has < 10 fields" % LineNr
 		sys.exit(1)
 
-	if Fields[0] != 'H':
-		continue
+#	if Fields[0] != 'H':
+#		continue
+	if Fields[9] == '*':
+		Fields[9] = Fields[8]
 
 	ReadLabel = Fields[8]
-	TargetLabel = Fields[9]
+#	TargetLabel = Fields[9]
+	OTU = Fields[9]
 	
+#	if not TargetLabel.startswith(OTU_PREFIX):
+#		continue
+	
+#	nome = "OTU"
+#	OTU = nome + (TargetLabel)
 
-	if not TargetLabel.startswith(OTU_PREFIX):
-		continue
-	
-	nome = "OTU"
-#	OTU = int(nome) + int(TargetLabel[n:])
-	OTU = nome + (TargetLabel[n:])	
 	try:
 		OTUToReads[OTU].append(ReadLabel)
 	except:

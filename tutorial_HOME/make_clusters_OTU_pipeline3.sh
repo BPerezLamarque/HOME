@@ -4,7 +4,7 @@
 ####    CLUSTERING SEQUENCES  AND  MAKE ALIGNMENTS
 
 
-## You first need to install PYTHON, VSEARCH, and CUTADAPT
+## You first need to install PYTHON3, VSEARCH, and CUTADAPT
 ## see https://github.com/frederic-mahe/swarm/wiki/Fred's-metabarcoding-pipeline for details
 
 
@@ -40,16 +40,10 @@ MIN_R=$(( ${#PRIMER_R} * 2 / 3 ))
 CUTADAPT="cutadapt --discard-untrimmed --minimum-length ${MIN_LENGTH}"
 
 # Trim forward & reverse primers, format
-zcat "${INPUT}" | sed '/^>/ ! s/U/T/g' | \
+zcat < "${INPUT}" | sed '/^>/ ! s/U/T/g' | \
 ${CUTADAPT} -g "${PRIMER_F}" -O "${MIN_F}" - 2> "${LOG}" | \
 ${CUTADAPT} -a "${ANTI_PRIMER_R}" -O "${MIN_R}" - 2>> "${LOG}" | \
 sed '/^>/ s/;/|/g ; /^>/ s/ /_/g ; /^>/ s/_/ /1' > "${OUTPUT}"
-
-gunzip -c  "${INPUT}" | sed '/^>/ ! s/U/T/g' | \
-${CUTADAPT} -g "${PRIMER_F}" -O "${MIN_F}" - 2> "${LOG}" | \
-${CUTADAPT} -a "${ANTI_PRIMER_R}" -O "${MIN_R}" - 2>> "${LOG}" | \
-sed '/^>/ s/;/|/g ; /^>/ s/ /_/g ; /^>/ s/_/ /1' > "${OUTPUT}"
-
 
 
 
@@ -126,7 +120,7 @@ sed 's/;size=[0-9]*//g' reads_16s_OTU_97.uchime > reads_16s_OTU_97_clean.uchime
 vsearch -usearch_global reads_16s.fa -db reads_16s_OTU_97_final.fa --threads 4 -strand plus -id 0.97 -uc reads_16s_mapped_otu.uc
 cut -f 9- reads_16s_mapped_otu.uc > reads_16s_mapped_otu.txt
 
-python bmp-map2qiime.py reads_16s_mapped_otu.uc > reads_16s_mapped_otu_temp.txt # python script present in https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/bmp-map2qiime.py ; from the BMP projects https://www.brmicrobiome.org)
+python3 bmp-map2qiime.py reads_16s_mapped_otu.uc > reads_16s_mapped_otu_temp.txt # python script present in https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/bmp-map2qiime.py ; from the BMP projects https://www.brmicrobiome.org)
 
 grep ">" reads_16s_OTU_97_clean.fa > reads_16s_mapped_otu_clean2.txt
 sed 's/>//g' reads_16s_mapped_otu_clean2.txt > reads_16s_mapped_otu_clean3.txt

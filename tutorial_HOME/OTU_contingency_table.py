@@ -8,7 +8,7 @@
 from __future__ import print_function
 
 __author__ = "Frédéric Mahé <frederic.mahe@cirad.fr> modified by Benoit Perez-Lamarque <benoit.perez@ens.fr>"
-__date__ = "2019/03/07"
+__date__ = "2020/07/18"
 __version__ = "$Revision: 5.0"
 
 import os
@@ -27,53 +27,56 @@ def representatives_parse():
     """
     Get seed sequences.
     """
+    separator = ";size="
     representatives_file = sys.argv[1]
     representatives = dict()
     with open(representatives_file, "r") as representatives_file:
         for line in representatives_file:
             if line.startswith(">"):
-                amplicon = line.strip(">;\n")
+                amplicon = line.strip(">;\n").split(separator)[0]
             else:
-                representatives[amplicon] = line.strip("\n")
+                representatives[amplicon] = line.strip()
 
     return representatives
+
 
 def stats_parse():
     """
     Map OTU seeds and stats.
     """
-    separator = "   "
+    separator = "\t"
     stats_file = sys.argv[2]
     stats = dict()
-    seeds = dict()
     with open(stats_file, "r") as stats_file:
         for line in stats_file:
-            cloud, seed = line.strip().split(separator)[0:2]
-            stats[cloud] = 1
-            seeds[cloud] = (1, 1)
+            cloud, mass, seed, seed_abundance = line.strip().split(separator)[0:4]
+            stats[seed] = int(mass)
     # Sort OTUs by decreasing mass
     sorted_stats = sorted(stats.items(),
                           key=operator.itemgetter(1, 0))
     sorted_stats.reverse()
 
-    return stats, sorted_stats, seeds
+    return stats, sorted_stats
 
 
 def swarms_parse():
     """
     Map OTUs.
     """
-    separator = "    "
+    separator = "_[0-9]+|;size=[0-9]+;?| "  # parsing of abundance annotations
     swarms_file = sys.argv[3]
     swarms = dict()
     with open(swarms_file, "r") as swarms_file:
         for line in swarms_file:
             line = line.strip()
-            amplicons = re.split(separator, line)[0::]
+            amplicons = re.split(separator, line)[0::2]
             seed = amplicons[0]
-            swarms[seed] = [amplicons[1::]]
+            amplicons = [string for string in amplicons if string != '']
+            #amplicons[0] = amplicons[0].strip("OTU")
+            swarms[seed] = [amplicons]
+
     return swarms
-    
+
 
 def uchime_parse():
     """
@@ -98,6 +101,7 @@ def uchime_parse():
     return uchime
 
 
+
 def stampa_parse():
     """
     Map amplicon ids and taxonomic assignments.
@@ -108,6 +112,7 @@ def stampa_parse():
     with open(stampa_file, "r") as stampa_file:
         for line in stampa_file:
             amplicon, identity, taxonomy = line.strip().split(separator)
+            amplicon, abundance = amplicon.split(";size=")
             stampa[amplicon] = (identity, taxonomy)
 
     return stampa
@@ -133,62 +138,59 @@ def fasta_parse():
                     if amplicon not in amplicons2samples:
                         amplicons2samples[amplicon] = {sample: abundance}
                     else:
-                        # deal with duplicated samples (sha1 problem)
+                        # deal with duplicated samples
                         amplicons2samples[amplicon][sample] = amplicons2samples[amplicon].get(sample, 0) + abundance
-    # deal with duplicated samples (sha1 problem)
+    # deal with duplicated samples
     duplicates = [sample for sample in samples if samples[sample] > 1]
     if duplicates:
         print("Warning: some samples are duplicated", file=sys.stderr)
         print("\n".join(duplicates), file=sys.stderr)
     samples = sorted(samples.keys())
-    
     return amplicons2samples, samples
 
 
 def print_table(representatives, stats, sorted_stats,
                 swarms, uchime, amplicons2samples,
-                samples, seeds, stampa):
+                samples, stampa):
     """
     Export results.
     """
     # Print table header
-    print("OTU", "total", "cloud",
-          "amplicon", "length", "abundance",
+    print("OTU", "abundance",
+          "amplicon", "length",
           "chimera", "spread",
-          "sequence", "identity", "taxonomy",
+          #"sequence",  # sequences makes the OTU table too heavy
+          "identity", "taxonomy",
           "\t".join(samples),
           sep="\t", file=sys.stdout)
 
-    # Print table content
+	# Print table content
     i = 1
     for seed, abundance in sorted_stats:
         sequence = representatives[seed]
         occurrences = dict([(sample, 0) for sample in samples])
         for amplicons in swarms[seed]:
             for amplicon in amplicons:
-                amplicon, abundances = amplicon.split(";size=")
                 for sample in samples:
+                    #amplicon = amplicon.strip("OTU")
                     occurrences[sample] += amplicons2samples[amplicon].get(sample, 0)
         spread = len([occurrences[sample] for sample in samples if occurrences[sample] > 0])
-        sequence_abundance, cloud = seeds[seed]
 
-        
-        # Chimera checking (deal with incomplete cases. Is it useful?)
+
         if seed in uchime:
             chimera_status = uchime[seed]
         else:
             chimera_status = "NA"
 
-        # Chimera checking (deal with incomplete cases. Is it useful?)
+
         if seed in stampa:
             identity, taxonomy = stampa[seed]
         else:
             identity, taxonomy = "NA", "NA"
 
-        # output
-        print(i, abundance, cloud,
-              seed, len(sequence), sequence_abundance,
-              chimera_status, spread, sequence,
+        print(i, abundance,
+              seed, len(sequence),
+              chimera_status, spread,
               identity, taxonomy,
               "\t".join([str(occurrences[sample]) for sample in samples]),
               sep="\t", file=sys.stdout)
@@ -201,29 +203,21 @@ def main():
     """
     Read all fasta files and build a sorted OTU contingency table.
     """
-    #print("Parse taxonomic results")
     representatives = representatives_parse()
 
-    #print("Parse stats")
-    stats, sorted_stats, seeds = stats_parse()
+    stats, sorted_stats = stats_parse()
 
-#print("Parse swarms")
     swarms = swarms_parse()
 
-#print("Parse uchime")
     uchime = uchime_parse()
 
-    # Parse taxonomic assignment results
     stampa = stampa_parse()
     
-    #print("Parse fasta files")
     amplicons2samples, samples = fasta_parse()
 
-#print("Print table header")
-    print_table(representatives, stats, sorted_stats,
-            swarms,uchime, amplicons2samples, samples,
-            seeds,
-            stampa)
+    print_table(representatives, stats, sorted_stats, swarms,
+                uchime, amplicons2samples, samples,
+                stampa)
 
     return
 
