@@ -3,9 +3,6 @@
 # Extract fasta files by their descriptors stored in a separate file.
 # Requires biopython
 
-# TODO:
-# - Create more sophisticated logic for matching IDs/Descriptions/Partial matches etc.
-#    - Create a mode variable to encapsulate invert/partial/description/id etc?
 from Bio import SeqIO
 import sys, six
 import argparse
@@ -14,8 +11,11 @@ import argparse
 def get_keys(args):
     """Turns the input key file into a list. May be memory intensive."""
     
+    separator = ";size="
+    
     with open(args.keyfile, "r") as kfh:
-        keys = [line.rstrip('\n').lstrip('>') for line in kfh]
+        keys = [line.rstrip('\n').lstrip('>').split(separator)[0] for line in kfh]
+        
     return keys
 
 
@@ -71,7 +71,9 @@ def main():
     # Parse in the multifasta and assign an iterable variable:
     for seq in SeqIO.parse(args.fasta, 'fasta'):
         if args.invert is False:
-            if seq.id in keys:
+            separator = ";size="
+            seq_id = seq.id.split(separator)[0]
+            if seq_id in keys:
                 print(seq.format("fasta"))
                 if args.outfile is not None:
                     SeqIO.write(seq, args.outfile, "fasta")

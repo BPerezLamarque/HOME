@@ -18,9 +18,9 @@ path="YOUR_WORKING_DIRECTORY"
 
 cd $path
 
-RELEASE=132
-URL="https://www.arb-silva.de/fileadmin/silva_databases/release_${RELEASE}/Exports"
-INPUT="SILVA_${RELEASE}_SSURef_Nr99_tax_silva.fasta.gz"
+RELEASE=138
+URL="https://ftp.arb-silva.de/release_${RELEASE}/Exports"
+INPUT="SILVA_${RELEASE}_SSURef_NR99_tax_silva.fasta.gz"
 
 # Download and check
 wget -c ${URL}/${INPUT}{,.md5} && md5 -r ${INPUT}.md5
@@ -64,68 +64,11 @@ cd $path
 # add also FASTA files "reads_Sk_16s.fa" (for every sample "Sk", you must have a separate file containing all the metabarcoding reads from this sample).
 
 
-swarm=/Users/appli/swarm/swarm-2.2.2-macos-x86_64 #PATH SWARM
+
+swarm=/Users/appli/swarm/swarm-3.0.0-macos-x86_64/bin/swarm #PATH SWARM v3
 
 
-## Dereplication using VSEARCH
-
-vsearch \
-    --derep_fulllength reads_16s.fa \
-    --sizein \
-    --sizeout \
-    --relabel_sha1 \
-    --fasta_width 0 \
-    --output reads_16s_derep.fa
-
-
-## SWARM clustering
-
-FINAL_FASTA="swarm_otu.fas"
-THREADS=4  #number of cores
-
-$swarm \
-    -d 1 -f -t ${THREADS} -z \
-    -i ${FINAL_FASTA/.fas/_1f.struct} \
-    -s ${FINAL_FASTA/.fas/_1f.stats} \
-    -w list_otu_16S_1f.fa \
-    -o ${FINAL_FASTA/.fas/_1f.swarms} < reads_16s_derep.fa
-
-
-# Sort representatives
-
-vsearch --fasta_width 0 \
-    --sortbysize list_otu_16S_1f.fa \
-    --output list_otu_16S_1f_final.fa
-
-
-# Chimera checking
-
-vsearch --uchime_denovo list_otu_16S_1f_final.fa \
-    --uchimeout list_otu_16S_1f_final.uchime
-
-
-# Assign taxonomy to OTUs using known reference sequences (obtained from SILVA)
-
-vsearch --usearch_global "list_otu_16S_1f_final.fa" \
---threads 4 \
---dbmask none \
---qmask none \
---rowlen 0 \
---notrunclabels \
---userfields query+id1+target \
---maxaccepts 0 \
---maxrejects 32 \
---top_hits_only \
---output_no_hits \
---db ../taxonomy/SILVA_132_SSURef_Nr99_tax_silva_515F_926R.fasta \
---id 0.5 \
---iddef 1 \
---userout "taxonomy_otu_16S_1f_final.txt"
-
-sed 's/;size=[0-9]*;//g' taxonomy_otu_16S_1f_final.txt > taxonomy_otu_16S_1f_clean.txt
-
-
-#  Dereplicate the fasta file of every sample
+#  Dereplicate of fasta file of every  individual sample  using VSEARCH
 
 declare -a list_samples=(S1 S2 S3 S4) # declare the list of the samples names "Sk"
 
@@ -139,21 +82,80 @@ do
         --fasta_width 0 \
         --output reads_S"$k"_16s_derep.fa
 done
+# sha1 (encoding system) is giving the same names to the identical amplicons across samples
+
+
+## Dereplication of fasta file of all the reads using VSEARCH
+
+vsearch \
+    --derep_fulllength reads_16s.fa \
+    --sizein \
+    --sizeout \
+    --relabel_sha1 \
+    --fasta_width 0 \
+    --output reads_16s_derep.fa
+# sha1 (encoding system) is giving the same names to the identical amplicons across samples
+
+
+
+## SWARM clustering
+
+FINAL_FASTA="swarm_otu.fas"
+THREADS=2  #number of cores
+
+$swarm \
+    -d 1 -f -t ${THREADS} -z \
+    -i ${FINAL_FASTA/.fas/_1f.struct} \
+    -s "stats_swarm_1f.txt" \
+    -w "reads_16S_swarm_1f.fa" \
+    -o "reads_16S_mapped_swarm_1f.txt" < reads_16S_derep.fa
+
+
+# Sort representatives
+
+vsearch --fasta_width 0 \
+    --sortbysize reads_16S_swarm_1f.fa \
+    --output reads_16S_swarm_1f_final.fa
+
+
+# Chimera checking
+
+vsearch --uchime_denovo reads_16S_swarm_1f_final.fa \
+    --uchimeout reads_16S_swarm_1f.uchime
+
+
+# Assign taxonomy to OTUs using known reference sequences (obtained from SILVA)
+
+vsearch --usearch_global "reads_16S_swarm_1f_final.fa" \
+    --threads 4 \
+    --dbmask none \
+    --qmask none \
+    --rowlen 0 \
+    --notrunclabels \
+    --userfields query+id1+target \
+    --maxaccepts 0 \
+    --maxrejects 32 \
+    --top_hits_only \
+    --output_no_hits \
+    --db SILVA_138_SSURef_NR99_tax_silva_515F_926R.fasta \
+    --id 0.5 \
+    --iddef 1 \
+    --userout "taxonomy_otu_16S_swarm_1f.txt"
+
+sed 's/;size=[0-9]*;//g' taxonomy_otu_16S_1f_final.txt > taxonomy_otu_16S_1f_clean.txt
 
 
 # Make the OTU table
 
-FASTA="reads_16s_derep.fa"
-STATS="swarm_otu_1f.stats"
-SWARMS="swarm_otu_1f.swarms"
-REPRESENTATIVES="list_otu_16S_1f_final.fa"
-UCHIME="list_otu_16S_1f_final.uchime"
-ASSIGNMENTS="taxonomy_otu_16S_1f_clean.txt"
-OTU_TABLE="OTU_table_16S_1f.txt"
+STATS="stats_swarm_1f.txt"
+SWARMS="reads_16S_mapped_swarm_1f.txt"
+REPRESENTATIVES="reads_16S_swarm_1f_final.fa"
+UCHIME="reads_16S_swarm_1f.uchime"
+ASSIGNMENTS="taxonomy_otu_16S_swarm_1f.txt"
+OTU_TABLE="OTU_table_16S_swarm_1f.txt"
 
 
-SCRIPT="OTU_contingency_table_2.py"  # this script is located https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/OTU_contingency_table_2.py
-
+SCRIPT="OTU_contingency_table.py"  # this script is located https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/OTU_contingency_table.py
 
 python3 \
     "${SCRIPT}" \
@@ -167,26 +169,12 @@ python3 \
 
 # Filter per OTU size or spread, quality and chimeric status:
 
-TABLE="OTU_table_16S_1f.txt"
+TABLE="OTU_table_16S_swarm_1f.txt"
 FILTERED="${TABLE/.txt/_filtered.txt}"
 
 head -n 1 "${TABLE}" > "${FILTERED}"
-cat "${TABLE}" | awk '$7 == "N" && $5 >= 250 && $2 >= 3 && $8 >= 2' >> "${FILTERED}"
-
-
-# Map the raw reads back to OTU
-
-rm list_sample.txt
-for k in "${list_samples[@]}"
-do
-echo $k >> list_sample.txt
-done
-
-while read sample; do
-echo $sample
-vsearch -usearch_global reads_S"$sample"_16s.fa -db list_otu_16S_1f_final.fa --threads 4 -strand plus -id 0.95 -uc reads_S"$sample"_16s_mapped_otu.uc
-cut -f 9- reads_S"$sample"_16s_mapped_otu.uc > reads_S"$sample"_16s_mapped_otu.txt
-done <list_sample.txt
+cat "${TABLE}" | awk '$5 == "N" && $4 >= 150 && $2 >= 5 && $6 >= 2' >> "${FILTERED}"
+# remove chimera, remove OTU shorter than 150 bp, only keep OTUs represented by at least 5 sequences, and spread in at least 2 samples
 
 
 
@@ -201,9 +189,13 @@ done <list_sample.txt
 ###############################################################################################
 
 
-# This step rely on bash script, VSEARCH, python script (https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/fasta_extract.py) and the FASTX-Toolkit (http://hannonlab.cshl.edu/fastx_toolkit/commandline.html)
-# it also relies on QIIME1 to align the sequences (but any other software can be used)
+# This step rely on bash script, VSEARCH, and python script (available in https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/fasta_extract.py)
+# it also relies on MAFFT to align the sequences (but any other software can be used)
 
+# it requires to first run the R script select_core_OTUs. R (available in https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/select_core_OTUs.R) to generate the files  list_core_OTU.txt and list_sample_OTU_$OTU.txt
+
+
+MAPPED_OTUS="reads_16S_mapped_swarm_1f.txt"
 
 while read OTU; do
     echo $OTU
@@ -212,29 +204,50 @@ while read OTU; do
     touch alignment_$OTU.fas
     while read sample; do
         echo $sample
-        grep -E "$OTU" reads_S"$sample"_16s_mapped_otu.txt | cut -f -1 > "name_seq_OTU_"$OTU".txt"
-        python fasta_extract.py -f reads_S"$sample"_16s.fa -k "name_seq_OTU_"$OTU".txt" > sequences_by_sample_by_OTU.fas
 
-        ###########   get the most abundant sequence
-        vsearch -derep_fulllength sequences_by_sample_by_OTU.fas -output sequences_by_"$sample"_by_"$OTU"_derep_1.fas -sizeout -quiet -relabel $sample"_"
-        vsearch -sortbysize sequences_by_"$sample"_by_"$OTU"_derep_1.fas -output sequences_by_"$sample"_by_"$OTU"_derep.fas -minsize 2 -quiet
-        /Users/appli/fastx/fasta_formatter -i sequences_by_"$sample"_by_"$OTU"_derep.fas -o sequences_by_"$sample"_by_"$OTU".fas  # FASTX-Toolkit
-        rm sequences_by_"$sample"_by_"$OTU"_derep*
-        head -n 2 sequences_by_"$sample"_by_"$OTU".fas | sed "1s/.*/>$sample/" >> alignment_$OTU.fas
-        rm sequences*
+        list_reads=$(grep "$OTU" $MAPPED_OTUS )
+
+        # Set space as the delimiter
+        IFS=' '
+
+        #Read the split words into an array based on space delimiter
+        read -a strarr <<< "$list_reads"
+
+        # Print each value of the array by using the loop
+        touch "list_sequences.txt"
+        rm "list_sequences.txt"
+        touch "list_sequences.txt"
+        for val in "${strarr[@]}";
+        do
+            sequence=$(echo $val | sed 's/;size=*.*[0-9]//')
+            echo $sequence >> "list_sequences.txt"
+        done
+        
+        python3 fasta_extract.py -f reads_S"$sample"_16s_derep.fa -k "list_sequences.txt" > "sequences_by_"$sample"_by_"$OTU".fas"
+        # This script  fasta_extract.py is available here: https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/fasta_extract.py
+        
+        ###########   get the most abundant sequence per sample
+        vsearch -sortbysize "sequences_by_"$sample"_by_"$OTU".fas" -output "sequences_by_"$sample"_by_"$OTU"_sorted.fas" -minsize 1 -quiet
+        
+        vsearch --fasta_width 0 --quiet \
+            --sortbysize "sequences_by_"$sample"_by_"$OTU"_sorted.fas" \
+            --output "sequences_by_"$sample"_by_"$OTU".fas"
+        
+        sed "s/>/>"$sample"_/" "sequences_by_"$sample"_by_"$OTU".fas" > "sequences_by_"$sample"_by_"$OTU"_label.fas"
+        
+        head -n 2 "sequences_by_"$sample"_by_"$OTU"_label.fas" >> alignment_$OTU.fas
+        
+        rm "sequences_by_"$sample"_by_"*
+        
     done <list_sample_OTU_$OTU.txt
 
-    ###########   Align the sequences (use QIIME1 or any other software)
-    source activate qiime1
-    align_seqs.py -i alignment_$OTU.fas -m muscle -o output/
-    source deactivate
-    cp output/alignment_"$OTU"_aligned.fasta alignment_"$name"_"$OTU".fas
 
+    ###########   Align the sequences (use MAFFT or any other software)
+    
+    mafft --quiet alignment_$OTU.fas > alignment_mafft_$OTU.fas
 
-    rm alignment*
-    rm name_seq*
-    rm -r output
+    rm alignment_$OTU.fas
+
 done <list_core_OTU.txt
-
 
 
