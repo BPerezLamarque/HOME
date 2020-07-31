@@ -99,7 +99,7 @@ vsearch -sortbysize reads_16s_derep.fa -output reads_16s_sorted.fa -minsize 1
 
 ## OTU clustering (at 97%)
 
-vsearch -cluster_size  reads_16S_sorted.fa --id 0.97 --centroids reads_16S_OTU_97.fa --uc clusters_97.uc --sizeout
+vsearch -cluster_size  reads_16S_sorted.fa --id 0.97 --centroids reads_16S_OTU_97.fa --uc clusters_97.uc  --sizein --sizeout
 
 # Make file that mapped reads to OTUs
 
