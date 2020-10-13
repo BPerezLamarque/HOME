@@ -15,6 +15,7 @@ import os
 import re
 import sys
 import operator
+import numpy as np
 
 #*****************************************************************************#
 #                                                                             #
@@ -73,7 +74,7 @@ def swarms_parse():
             seed = amplicons[0]
             amplicons = [string for string in amplicons if string != '']
             #amplicons[0] = amplicons[0].strip("OTU")
-            swarms[seed] = [amplicons]
+            swarms[seed] = [np.unique(amplicons)]
 
     return swarms
 
