@@ -21,6 +21,6 @@ while 1:
     	
 	amplicon, abundance = Line.strip(">;\n").split(separator)
 
-	sys.stdout.write(str(LineNr) + "\t" + abundance + "\t" + amplicon + "\t" + abundance)
+	sys.stdout.write(str(int(((float(LineNr)-1)/2)+1)) + "\t" + abundance + "\t" + amplicon + "\t" + abundance)
 
 	sys.stdout.write("\n")

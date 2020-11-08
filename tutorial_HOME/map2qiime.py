@@ -48,6 +48,6 @@ while 1:
 for OTU in OTUToReads.keys():
 	sys.stdout.write(str(OTU))
 	for ReadLabel in OTUToReads[OTU]:
-		sys.stdout.write("    " + ReadLabel)
+		sys.stdout.write(" " + ReadLabel)
 
 	sys.stdout.write("\n")

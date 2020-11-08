@@ -75,7 +75,7 @@ def swarms_parse():
             amplicons = [string for string in amplicons if string != '']
             #amplicons[0] = amplicons[0].strip("OTU")
             swarms[seed] = [np.unique(amplicons)]
-
+            
     return swarms
 
 
@@ -139,7 +139,6 @@ def fasta_parse():
                     if amplicon not in amplicons2samples:
                         amplicons2samples[amplicon] = {sample: abundance}
                     else:
-                        # deal with duplicated samples
                         amplicons2samples[amplicon][sample] = amplicons2samples[amplicon].get(sample, 0) + abundance
     # deal with duplicated samples
     duplicates = [sample for sample in samples if samples[sample] > 1]
@@ -173,7 +172,6 @@ def print_table(representatives, stats, sorted_stats,
         for amplicons in swarms[seed]:
             for amplicon in amplicons:
                 for sample in samples:
-                    #amplicon = amplicon.strip("OTU")
                     occurrences[sample] += amplicons2samples[amplicon].get(sample, 0)
         spread = len([occurrences[sample] for sample in samples if occurrences[sample] > 0])
 
