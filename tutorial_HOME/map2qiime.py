@@ -5,6 +5,7 @@
 #OTU_PREFIX="OTU"
 
 import sys
+import numpy as np
 
 UCFileName = sys.argv[1]
 File = open(UCFileName)
@@ -43,11 +44,16 @@ while 1:
 	try:
 		OTUToReads[OTU].append(ReadLabel)
 	except:
-		OTUToReads[OTU] = [ ReadLabel ]
+		OTUToReads[OTU] = [ ReadLabel ] # [ "" ]
 
 for OTU in OTUToReads.keys():
 	sys.stdout.write(str(OTU))
-	for ReadLabel in OTUToReads[OTU]:
-		sys.stdout.write(" " + ReadLabel)
+	all_reads=np.unique(OTUToReads[OTU])
+#	all_reads=all_reads.remove('')
+#    if len(all_reads)>1:
+#		print(all_reads)
+	for ReadLabel in all_reads:
+		if ReadLabel!=str(OTU):
+			sys.stdout.write(" " + ReadLabel)
 
 	sys.stdout.write("\n")
