@@ -13,7 +13,7 @@ This function runs HOME for all the different OTUs (called "index"") on the host
 \usage{
 HOME_model(name,name_index,nb_cores=1,seed=3,nb_tree=5000,
 lambda=c(1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25),
-raref=FALSE,empirical=TRUE,randomize=TRUE,nb_random=10,provided_tree=NULL,
+raref=FALSE,empirical=TRUE,randomize=TRUE,nb_random=10,provided_tree=NULL,tolerance=0.05,
 overwrite=TRUE,figure=FALSE,path=getwd(),path_alignment=getwd(),...)
 }
 
@@ -60,6 +60,9 @@ a seed to assure the reproducibility
 }
 \item{nb_cores}{
 a number of cores to run the analyses (ideally, it should be equal to the length of lambda for an optimal speed)
+}
+\item{tol}{
+the desired accuracy of the \emph{optimize} function (to estimate mu). A low value will give a more accurate estimate, but will take more computational time.
 }
 \item{overwrite}{
 indicates whether the any previous results should be overwritten by the current run (default: TRUE).

@@ -10,7 +10,7 @@ This function infers parameters (substitution rate and number of host-switches) 
 }
 
 \usage{fit_HOME(index,name,nb_tree=10000,lambda=c(1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25),
-nb_cores=1,raref=FALSE,...)}
+nb_cores=1,tolerance=0.05,raref=FALSE,...)}
 
 \arguments{
 \item{index}{
@@ -30,6 +30,9 @@ a vector of integer values of number of switches to test during estimations
 
 \item{raref}{
 if TRUE rarefactions on the number of trees are performed (i.e. to test if nb_tree is large enough). thus their results are vizualizable using the function \emph{output_results_HOME}.
+}
+\item{tol}{
+the desired accuracy of the \emph{optimize} function (to estimate mu). A low value will give a more accurate estimate, but will take more computational time.
 }
 
 \item{nb_cores}{

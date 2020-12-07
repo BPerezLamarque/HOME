@@ -12,7 +12,7 @@ This function performs the model selections of HOME testing the null hypotheses 
 
 \usage{model_selection_HOME(index,name,nb_tree=10000,
 lambda=c(1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25),
-nb_cores=1,seed=1,nb_random=10,overwrite=TRUE,...)
+nb_cores=1,seed=1,nb_random=10,tolerance=0.05,overwrite=TRUE,...)
 }
 
 \arguments{
@@ -42,7 +42,9 @@ a seed to assure the reproducibility
 \item{nb_cores}{
 a number of cores to run the analyses (ideally, it should be equal to the length of lambda for an optimal speed)
 }
-
+\item{tol}{
+the desired accuracy of the \emph{optimize} function (to estimate mu). A low value will give a more accurate estimate, but will take more computational time.
+}
 \item{overwrite}{
 indicates whether the any previous results should be overwritten by the current run (default: TRUE).
 }
