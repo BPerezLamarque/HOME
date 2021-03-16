@@ -11,5 +11,5 @@ importFrom(graphics, lines, mtext, par, plot, matplot, matlines, abline, text, p
 importFrom(R2HTML,HTMLStart,HTML.title,HTML,HTMLInsertGraph,HTMLStop)
 import(Rcpp)
 importFrom(RPANDA,CreateClassObject)
-export(HOME_model,fit_HOME,model_selection_HOME,output_results_HOME,prepare_data_HOME,simul_bank_tree,sim_microbiota,example_great_apes_microbiota)
+export(HOME_model,fit_HOME,model_selection_HOME,output_results_HOME,prepare_data_HOME,simul_bank_tree,sim_microbiota,example_great_apes_microbiota, simulate_alignment)
 useDynLib(HOME)

@@ -106,6 +106,7 @@ Perez-Lamarque B, Morlon H (2019). Characterizing symbiont inheritance during ho
 \author{Benoit Perez-Lamarque}
 \seealso{
 \code{\link{HOME_model}}
+\code{\link{simulate_alignment}}
 }
 \examples{
 
