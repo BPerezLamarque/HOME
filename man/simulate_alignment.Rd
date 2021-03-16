@@ -1,5 +1,5 @@
-\name{sim_microbiota}
-\alias{sim_microbiota}
+\name{simulate_alignment}
+\alias{simulate_alignment}
 
 \title{
 Simulate a sequence alignment on a phylogentic tree
