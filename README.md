@@ -310,14 +310,14 @@ ksi | mu | -log(Likelihood)
 Minus log likelihood as a function of the number of host-switches (the minimum of this plot corresponds to the estimated number of switches):
 
 <p align="center">
-    <img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_simul_C1_S65.png" width="500">
+    <img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/figures/profil_model_switches_simul_C1_S65.png" width="500">
 </p>
 
 
 Estimated substitution rate as a function of the number of switches:
 
 <p align="center">
-<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_mu_simul_C1_S65.png" width="500">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/figures/profil_model_switches_mu_simul_C1_S65.png" width="500">
 </p>
 
 
@@ -329,7 +329,7 @@ Likelihood ratio test testing the model of strict vertical transmission (ksi=0).
 
 
 <p align="center">
-<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/pure_vertical_transmission_simul_C1_S65.png" width="500">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/figures/pure_vertical_transmission_simul_C1_S65.png" width="500">
 </p>
 
 
@@ -348,7 +348,7 @@ Empirical ranking (mu distribution)|	0
 
 
 <p align="center">
-<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/independent_evolution_bootstrap_simul_C1_S65.png" width="500">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/figures/independent_evolution_bootstrap_simul_C1_S65.png" width="500">
 </p>
 
 Representation of the estimated numbers of switches and the estimated substitution rates for the randomized alignments (in blue) and the empirical alignment (in orange). Independent evolutions can be rejected if the orange dot stands alone in the bottom left corner (i.e. rejected if p-values < 0.05).
@@ -386,7 +386,7 @@ Absolute position| 0.022 |0.089 |0.13
 Host tree: 
 
 <p align="center">
-<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/test/host_tree_simul_C1_S65.png" width="500">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/figures/host_tree_simul_C1_S65.png" width="500">
 </p>
 
 
@@ -434,12 +434,12 @@ ksi | mu | -log(Likelihood)
 
 Minus log likelihood as a function of the number of switches (the minimum of this plot corresponds to the estimated number of switches):
 <p align="center">
-<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_simul_C1_S5.png" width="500">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/figures/profil_model_switches_simul_C1_S5.png" width="500">
 </p>
 
 Estimated substitution rate as a function of the number of switches:
 <p align="center">
-<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_mu_simul_C1_S5.png" width="500">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/figures/profil_model_switches_mu_simul_C1_S5.png" width="500">
 </p>
 
 
@@ -450,7 +450,7 @@ Likelihood ratio test testing the model of strict vertical transmission (ksi=0).
 
 
 <p align="center">
-<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/pure_vertical_transmission_simul_C1_S5.png" width="500">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/figures/pure_vertical_transmission_simul_C1_S5.png" width="500">
 </p>
 
 
@@ -469,7 +469,7 @@ Empirical ranking (mu distribution)|	0
 
 
 <p align="center">
-<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/independent_evolution_bootstrap_simul_C1_S5.png" width="500">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/figures/independent_evolution_bootstrap_simul_C1_S5.png" width="500">
 </p>
 
 Representation of the estimated numbers of switches and the estimated substitution rates for the randomized alignments (in blue) and the empirical alignment (in orange). Independent evolutions can be rejected if the orange dot stands alone in the bottom left corner (i.e. rejected if p-values < 0.05).
@@ -539,13 +539,13 @@ ksi | mu | -log(Likelihood)
 Minus log likelihood as a function of the number of switches (the minimum of this plot corresponds to the estimated number of switches):
 
 <p align="center">
-<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_simul_C1_S124.png" width="500">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/figures/profil_model_switches_simul_C1_S124.png" width="500">
 </p>
 
 
 Estimated substitution rate as a function of the number of switches:
 <p align="center">
-<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/profil_model_switches_mu_simul_C1_S124.png" width="500">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/figures/profil_model_switches_mu_simul_C1_S124.png" width="500">
 </p>
 
 ## Strict vertical transmission model:
@@ -553,7 +553,7 @@ Estimated substitution rate as a function of the number of switches:
 Likelihood ratio test testing the model of strict vertical transmission (ksi=0). Strict vertical transmission is rejected if p-value < 0.05.
 
 <p align="center">
-<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/pure_vertical_transmission_simul_C1_S124.png" width="500">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/figures/pure_vertical_transmission_simul_C1_S124.png" width="500">
 </p>
 
 
@@ -572,7 +572,7 @@ Empirical ranking (ksi distribution)|	0.56
 Empirical ranking (mu distribution)|	0.88
 
 <p align="center">
-<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/independent_evolution_bootstrap_simul_C1_S124.png" width="500">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/figures/independent_evolution_bootstrap_simul_C1_S124.png" width="500">
 </p>
 
 Representation of the estimated numbers of switches and the estimated substitution rates for the randomized alignments (in blue) and the empirical alignment (in orange). Independent evolutions can be rejected if the orange dot stands alone in the bottom left corner (i.e. rejected if p-values < 0.05).
