@@ -386,7 +386,7 @@ Absolute position| 0.022 |0.089 |0.13
 Host tree: 
 
 <p align="center">
-<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/host_tree_simul_C1_S65.png" width="500">
+<img src="https://github.com/BPerezLamarque/HOME/blob/master/tutorial_HOME/test/host_tree_simul_C1_S65.png" width="500">
 </p>
 
 
