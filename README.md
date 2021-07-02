@@ -5,7 +5,13 @@
 
 
 
-This document indicates how to use our model of **HO**st-**M**icrobiota **E**volution. The first part details how to simulate mock microbiota. The second part details how to perform an empirical application; it is illustrated with the great apes microbiota data. The last part details how to interpret the HTML outputs of HOME.
+This document indicates how to use our model of **HO**st-**M**icrobiota **E**volution. 
+
+The first part presents how to simulate mock microbiota. 
+
+The second part explains how to perform an empirical application; it is illustrated with the great apes microbiota data. 
+
+The last part shows how to interpret the HTML outputs of HOME.
 
 
 **Citation:** Perez‐Lamarque, B., & Morlon, H. (2019). [Characterizing symbiont inheritance during host‐microbiota evolution: application to the great apes gut microbiota.](https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.13063) Molecular Ecology Resources  19:1659-1671.
