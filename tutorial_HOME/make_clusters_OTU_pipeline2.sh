@@ -68,7 +68,7 @@ cd $path
 swarm=/Users/appli/swarm/swarm-3.0.0-macos-x86_64/bin/swarm #PATH SWARM v3
 
 
-#  Dereplicate of fasta file of every  individual sample  using VSEARCH
+# Step 1-A: Dereplicate of fasta file of every  individual sample  using VSEARCH
 
 declare -a list_samples=(S1 S2 S3 S4) # declare the list of the samples names "Sk"
 
@@ -85,7 +85,7 @@ done
 # sha1 (encoding system) is giving the same names to the identical amplicons across samples
 
 
-## Dereplication of fasta file of all the reads using VSEARCH
+##  Step 1-B: Dereplication of fasta file of all the reads using VSEARCH
 
 vsearch \
     --derep_fulllength reads_16s.fa \
@@ -98,7 +98,7 @@ vsearch \
 
 
 
-## SWARM clustering
+##   Step 1-C: SWARM clustering
 
 FINAL_FASTA="swarm_otu.fas"
 THREADS=2  #number of cores
@@ -112,19 +112,18 @@ $swarm \
 
 
 # Sort representatives
-
 vsearch --fasta_width 0 \
     --sortbysize reads_16S_swarm_1f.fa \
     --output reads_16S_swarm_1f_final.fa
 
 
-# Chimera checking
+##  Step 1-D: Chimera checking
 
 vsearch --uchime_denovo reads_16S_swarm_1f_final.fa \
     --uchimeout reads_16S_swarm_1f.uchime
 
 
-# Assign taxonomy to OTUs using known reference sequences (obtained from SILVA)
+##  Step 1-E:  Assign taxonomy to OTUs using known reference sequences (obtained from SILVA)
 
 vsearch --usearch_global "reads_16S_swarm_1f_final.fa" \
     --threads 4 \
@@ -145,7 +144,7 @@ vsearch --usearch_global "reads_16S_swarm_1f_final.fa" \
 sed 's/;size=[0-9]*;//g' taxonomy_otu_16S_1f_final.txt > taxonomy_otu_16S_1f_clean.txt
 
 
-# Make the OTU table
+##  Step 1-F:  Make the OTU table
 
 STATS="stats_swarm_1f.txt"
 SWARMS="reads_16S_mapped_swarm_1f.txt"
