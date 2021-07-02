@@ -117,12 +117,12 @@ python3 make_stats.py reads_16S_ASV_final.fa > stats_16S_ASV.txt # python script
 
 ##  Step 1-D:  Chimera filtering (use uchime3_denovo for denoised OTUs)
 
-vsearch --uchime3_denovo reads_16S_ASV.fa --uchimeout reads_16S_ASV.uchime
+vsearch --uchime3_denovo reads_16S_ASV.fa --uchimeout reads_16S_ASV.uchime --nonchimeras reads_16S_ASV_nonchimeras.fa
 
 
 ##  Step 1-E:  Assign taxonomy
 
-vsearch --usearch_global reads_16S_ASV_final.fa \
+vsearch --usearch_global reads_16S_ASV_nonchimeras.fa \
     --threads 2 \
     --dbmask none \
     --qmask none \

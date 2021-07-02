@@ -119,13 +119,12 @@ vsearch --fasta_width 0 \
 
 ##  Step 1-D: Chimera checking
 
-vsearch --uchime_denovo reads_16S_swarm_1f_final.fa \
-    --uchimeout reads_16S_swarm_1f.uchime
+vsearch --uchime_denovo reads_16S_swarm_1f_final.fa --uchimeout reads_16S_swarm_1f.uchime  --nonchimeras reads_16S_swarm_1f_nonchimeras.fa
 
 
 ##  Step 1-E:  Assign taxonomy to OTUs using known reference sequences (obtained from SILVA)
 
-vsearch --usearch_global "reads_16S_swarm_1f_final.fa" \
+vsearch --usearch_global "reads_16S_swarm_1f_nonchimeras.fa" \
     --threads 4 \
     --dbmask none \
     --qmask none \

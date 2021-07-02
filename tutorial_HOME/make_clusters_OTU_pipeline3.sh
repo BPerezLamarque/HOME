@@ -117,11 +117,11 @@ python3 make_stats.py reads_16S_OTU_97_final.fa > stats_16S_OTU97.txt # python s
 
 ##  Step 1-D:  Chimera filtering
 
-vsearch --uchime_denovo reads_16S_OTU_97.fa --uchimeout reads_16S_OTU_97.uchime
+vsearch --uchime_denovo reads_16S_OTU_97.fa --uchimeout reads_16S_OTU_97.uchime  --nonchimeras reads_16S_OTU_97_nonchimeras.fa
 
 
 ##  Step 1-E:  Assign taxonomy
-vsearch --usearch_global reads_16S_OTU_97_final.fa \
+vsearch --usearch_global reads_16S_OTU_97_nonchimeras.fa \
     --threads 2 \
     --dbmask none \
     --qmask none \
