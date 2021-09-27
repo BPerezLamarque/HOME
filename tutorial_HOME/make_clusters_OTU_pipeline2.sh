@@ -140,7 +140,6 @@ vsearch --usearch_global "reads_16S_swarm_1f_nonchimeras.fa" \
     --iddef 1 \
     --userout "taxonomy_otu_16S_swarm_1f.txt"
 
-sed 's/;size=[0-9]*;//g' taxonomy_otu_16S_1f_final.txt > taxonomy_otu_16S_1f_clean.txt
 
 
 ##  Step 1-F:  Make the OTU table
