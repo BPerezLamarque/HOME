@@ -18,7 +18,7 @@ path="YOUR_WORKING_DIRECTORY"
 
 cd $path
 
-RELEASE=138
+RELEASE=138.1
 URL="https://ftp.arb-silva.de/release_${RELEASE}/Exports"
 INPUT="SILVA_${RELEASE}_SSURef_NR99_tax_silva.fasta.gz"
 
