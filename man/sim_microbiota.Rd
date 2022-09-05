@@ -12,7 +12,8 @@ This function simulates microbial alignments according to different models of ho
 \usage{
 sim_microbiota(name, name_index, simul, mu=1, n=20, provided_tree=NULL, N=300,
 proportion_variant=0.1, model="uniform", mean=0.5, sd=0.01, host_signal=10,
-geo_signal=0, stochastic_map=NULL, path=getwd(), seed=1, nb_cores=1, ...)
+geo_signal=0, stochastic_map=NULL, delta,
+path=getwd(), seed=1, nb_cores=1, ...)
 }
 
 \arguments{
@@ -69,6 +70,10 @@ optional – for "model=geo_dependent", the host-switches are preferentially sim
 
 \item{stochastic_map}{
 optional – for "model=geo_dependent", the host-switches are preferentially simulated between host lineages sharing the same geographic area. "stochastic_map" represents a stochastic mapping that indicates the ancestral biogeography of the host lineages (it indicates which host lineages occupied which geographic areas at a given time, and thus indicates which lineages are sharing the same vs. different areas). "stochastic_map" must be an A object of class "simmap" (R-package phytools, Revell, 2012).
+}
+
+\item{delta}{
+rate of duplication (by default no duplication are simulated: delta=0)
 }
 
 \item{seed}{
