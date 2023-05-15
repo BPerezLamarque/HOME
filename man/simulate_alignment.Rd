@@ -16,7 +16,7 @@ simulate_alignment(tree, mu=0.5, N=300, proportion_variant=0.1)
 \arguments{
 
 \item{tree}{
-a n-tips, binary, rooted, and ultrametric tree to simulate the alignments on it}
+a n-tips, binary, rooted, and ultrametric tree to simulate the alignments on it. All branch lengths must be >0. }
 
 
 \item{mu}{
